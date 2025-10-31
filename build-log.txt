@@ -1,0 +1,11 @@
+
+> payload-ecommerce-template@1.0.1 build C:\projects\New folder (3)\payload-ecommerce-template
+> cross-env NODE_OPTIONS=--no-deprecation next build
+
+   Γû▓ Next.js 15.4.1
+   - Environments: .env
+   - Experiments (use with caution):
+     Γ£ô reactCompiler
+     Γ£ô viewTransition
+
+   Creating an optimized production build ...

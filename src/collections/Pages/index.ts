@@ -40,7 +40,7 @@ const access: any = ({ req }) => {
       },
     }
   } else if (user?.collection=="administrators" && user.role == "tenants"){
-    // let boole = user.id == req?.data?.tenant.tenantID
+ 
     return {
       "tenant.tenantID": {
         equals: user.id,
