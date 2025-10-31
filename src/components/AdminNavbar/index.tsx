@@ -61,6 +61,8 @@ export const AdminNavbar = async (props: ServerProps) => {
     i18n,
   );
 
+ 
+
   const navPreferences = await getNavPrefs({ payload, user });
 
   const LogoutComponent = RenderServerComponent({
@@ -81,6 +83,8 @@ export const AdminNavbar = async (props: ServerProps) => {
       user,
     },
   });
+
+
 
   return (
     <NavWrapper baseClass={baseClass}>

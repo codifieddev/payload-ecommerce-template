@@ -34,6 +34,7 @@ import { Footer } from "./globals/Footer/config";
 import { Header } from "./globals/Header/config";
 import { plugins } from "./plugins";
 import { getServerSideURL } from "./utilities/getURL";
+import { Websites } from "./collections/Tenants";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -124,6 +125,7 @@ export default buildConfig({
     ProductCategories,
     ProductSubCategories,
     ProductReviews,
+    Websites,
   ],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [

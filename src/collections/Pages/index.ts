@@ -23,14 +23,41 @@ import { generatePreviewPath } from "@/utilities/generatePreviewPath";
 
 import { revalidateDelete, revalidatePage } from "./hooks/revalidatePage";
 
-import type { CollectionConfig } from "payload";
+import type { Access, CollectionConfig } from "payload";
+
+const access: any = ({ req }) => {
+  const user = req.user
+  const url = req?.url
+  if(url?.includes('/api')){
+    return true
+  }
+  if (user?.collection=="administrators" && (url?.includes('/api') || user?.role === 'superadmin')) {
+    return true
+  } else if (user?.collection=="administrators" && user?.role == 'admin') {
+    return {
+      createdBy: {
+        equals: user.id,
+      },
+    }
+  } else if (user?.collection=="administrators" && user.role == "tenants"){
+    // let boole = user.id == req?.data?.tenant.tenantID
+    return {
+      "tenant.tenantID": {
+        equals: user.id,
+      }
+    }
+  }
+  else {
+    return false
+  }
+}
 
 export const Pages: CollectionConfig<"pages"> = {
   slug: "pages",
   access: {
     create: authenticated,
     delete: authenticated,
-    read: authenticatedOrPublished,
+    read: access,
     update: authenticated,
   },
   labels: {
@@ -43,9 +70,6 @@ export const Pages: CollectionConfig<"pages"> = {
       pl: "Strony",
     },
   },
-  // This config controls what's populated by default when a page is referenced
-  // https://payloadcms.com/docs/queries/select#defaultpopulate-collection-config-property
-  // Type safe if the collection slug generic is passed to `CollectionConfig` - `CollectionConfig<'pages'>
   defaultPopulate: {
     title: true,
     slug: true,
@@ -136,6 +160,31 @@ export const Pages: CollectionConfig<"pages"> = {
       admin: {
         position: "sidebar",
       },
+    },
+    {
+      name: 'website',
+      type: 'relationship',
+      relationTo: 'websites',
+      required: true,
+      admin: { position: 'sidebar' },
+      filterOptions: ({ user }) => {
+        if (!user) return false
+        if (user.collection=="administrators" && user.role === 'superadmin') return true
+        return {
+          createdBy: { equals: user.id },
+        }
+      }, 
+    },
+    {
+      name: 'createdBy',
+      type: 'relationship',
+      relationTo: 'administrators',
+      required: true,
+      defaultValue: ({ req: { user } }) => user?.id,
+      admin: {
+        readOnly: true,
+        position: 'sidebar',
+      }
     },
 
     ...slugField(),

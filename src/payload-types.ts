@@ -79,6 +79,7 @@ export interface Config {
     productCategories: ProductCategory;
     productSubCategories: ProductSubCategory;
     productReviews: ProductReview;
+    websites: Website;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -112,6 +113,7 @@ export interface Config {
     productCategories: ProductCategoriesSelect<false> | ProductCategoriesSelect<true>;
     productSubCategories: ProductSubCategoriesSelect<false> | ProductSubCategoriesSelect<true>;
     productReviews: ProductReviewsSelect<false> | ProductReviewsSelect<true>;
+    websites: WebsitesSelect<false> | WebsitesSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -273,6 +275,8 @@ export interface Page {
     description?: string | null;
   };
   publishedAt?: string | null;
+  website: string | Website;
+  createdBy: string | Administrator;
   slug?: string | null;
   slugLock?: boolean | null;
   updatedAt: string;
@@ -444,6 +448,8 @@ export interface Category {
 export interface Administrator {
   id: string;
   name?: string | null;
+  role: 'admin' | 'superadmin' | 'tenants';
+  createdBy?: (string | null) | Administrator;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -1203,6 +1209,38 @@ export interface Product {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "websites".
+ */
+export interface Website {
+  id: string;
+  name: string;
+  slug: string;
+  domains?:
+    | {
+        domain?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  theme?: {
+    primaryColor?: string | null;
+    font?: string | null;
+  };
+  settings?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  createdBy: string | Administrator;
+  tenantID?: (string | null) | Administrator;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "customers".
  */
 export interface Customer {
@@ -1721,6 +1759,10 @@ export interface PayloadLockedDocument {
         value: string | ProductReview;
       } | null)
     | ({
+        relationTo: 'websites';
+        value: string | Website;
+      } | null)
+    | ({
         relationTo: 'redirects';
         value: string | Redirect;
       } | null)
@@ -1841,6 +1883,8 @@ export interface PagesSelect<T extends boolean = true> {
         description?: T;
       };
   publishedAt?: T;
+  website?: T;
+  createdBy?: T;
   slug?: T;
   slugLock?: T;
   updatedAt?: T;
@@ -2176,6 +2220,8 @@ export interface CategoriesSelect<T extends boolean = true> {
  */
 export interface AdministratorsSelect<T extends boolean = true> {
   name?: T;
+  role?: T;
+  createdBy?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -2427,6 +2473,31 @@ export interface ProductReviewsSelect<T extends boolean = true> {
   author?: T;
   rating?: T;
   review?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "websites_select".
+ */
+export interface WebsitesSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  domains?:
+    | T
+    | {
+        domain?: T;
+        id?: T;
+      };
+  theme?:
+    | T
+    | {
+        primaryColor?: T;
+        font?: T;
+      };
+  settings?: T;
+  createdBy?: T;
+  tenantID?: T;
   updatedAt?: T;
   createdAt?: T;
 }

@@ -1,4 +1,4 @@
-import { draftMode } from "next/headers";
+import { draftMode, headers } from "next/headers";
 import { setRequestLocale } from "next-intl/server";
 import { getPayload } from "payload";
 import React, { cache } from "react";
@@ -14,6 +14,7 @@ import config from "@payload-config";
 import PageClient from "./page.client";
 
 import type { Metadata } from "next";
+import { getTenantByDomain } from "@/lib/getPage";
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config });
@@ -48,18 +49,26 @@ type Args = {
 
 export default async function Page({ params: paramsPromise }: Args) {
   // const { isEnabled: draft } = await draftMode();
+  const header = await headers()
+  const domain = header.get("x-tenant-domain") || header.get("host") || ""
   const { slug = "home", locale } = await paramsPromise;
+
+  const page = await getTenantByDomain(domain, slug)
+
+  console.log("PAGE", page)
 
   const url = `/${locale}/${slug}`;
 
-  const page = await queryPageBySlug({
-    slug,
-    locale,
-  });
+  // const page = await queryPageBySlug({
+  //   slug,
+  //   locale,
+  // });
 
-  if (!page) {
-    return <PayloadRedirects url={url} locale={locale} />;
-  }
+  // if (!page) {
+  //   return <PayloadRedirects url={url} locale={locale} />;
+  // }
+
+  if (!page) return <div>Page not found</div>
 
   setRequestLocale(locale);
 

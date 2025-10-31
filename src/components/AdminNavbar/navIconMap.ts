@@ -5,11 +5,13 @@ import {
   CircleDollarSign,
   ClipboardList,
   FileImageIcon,
+  FilePlus,
   Footprints,
   LayoutTemplate,
   type LucideProps,
   Mail,
   Menu,
+  Monitor,
   PackageSearch,
   PanelsTopLeft,
   RssIcon,
@@ -27,7 +29,7 @@ import {
 import { type CollectionSlug, type GlobalSlug } from "payload";
 import { type ExoticComponent } from "react";
 
-export const navIconMap: Partial<Record<CollectionSlug | GlobalSlug, ExoticComponent<LucideProps>>> = {
+export const navIconMap: Partial<Record<CollectionSlug | any | GlobalSlug, ExoticComponent<LucideProps>>> = {
   redirects: ArrowRightLeft,
   forms: TextCursorInput,
   "form-submissions": SendIcon,
@@ -53,6 +55,8 @@ export const navIconMap: Partial<Record<CollectionSlug | GlobalSlug, ExoticCompo
   "inpost-courier": TruckIcon,
   "inpost-pickup": BoxesIcon,
   paywalls: CircleDollarSign,
+  websites: Monitor,
+  "websites/create": FilePlus 
 };
 
 export const getNavIcon = (slug: string) =>
