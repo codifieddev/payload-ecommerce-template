@@ -8,6 +8,7 @@ import {
 
 import { authenticated } from "@/access/authenticated";
 import { authenticatedOrPublished } from "@/access/authenticatedOrPublished";
+import { superAdminOnly, superAdminOnlyAdmin } from "@/access/roleBasedAccess";
 import { Hotspot } from "@/blocks/(ecommerce)/Hotspot/config";
 import { Accordion } from "@/blocks/Accordion/config";
 import { Archive } from "@/blocks/ArchiveBlock/config";
@@ -26,39 +27,38 @@ import { revalidateDelete, revalidatePage } from "./hooks/revalidatePage";
 import type { Access, CollectionConfig } from "payload";
 
 const access: any = ({ req }) => {
-  const user = req.user
-  const url = req?.url
-  if(url?.includes('/api')){
-    return true
+  const user = req.user;
+  const url = req?.url;
+  if (url?.includes("/api")) {
+    return true;
   }
-  if (user?.collection=="administrators" && (url?.includes('/api') || user?.role === 'superadmin')) {
-    return true
-  } else if (user?.collection=="administrators" && user?.role == 'admin') {
+  if (user?.collection == "administrators" && (url?.includes("/api") || user?.role === "superadmin")) {
+    return true;
+  } else if (user?.collection == "administrators" && user?.role == "admin") {
     return {
       createdBy: {
         equals: user.id,
       },
-    }
-  } else if (user?.collection=="administrators" && user.role == "tenants"){
- 
+    };
+  } else if (user?.collection == "administrators" && user.role == "tenants") {
     return {
       "tenant.tenantID": {
         equals: user.id,
-      }
-    }
+      },
+    };
+  } else {
+    return false;
   }
-  else {
-    return false
-  }
-}
+};
 
 export const Pages: CollectionConfig<"pages"> = {
   slug: "pages",
   access: {
-    create: authenticated,
-    delete: authenticated,
+    admin: superAdminOnlyAdmin,
+    create: superAdminOnly,
+    delete: superAdminOnly,
     read: access,
-    update: authenticated,
+    update: superAdminOnly,
   },
   labels: {
     singular: {
@@ -162,29 +162,29 @@ export const Pages: CollectionConfig<"pages"> = {
       },
     },
     {
-      name: 'website',
-      type: 'relationship',
-      relationTo: 'websites',
+      name: "website",
+      type: "relationship",
+      relationTo: "websites",
       required: true,
-      admin: { position: 'sidebar' },
+      admin: { position: "sidebar" },
       filterOptions: ({ user }) => {
-        if (!user) return false
-        if (user.collection=="administrators" && user.role === 'superadmin') return true
+        if (!user) return false;
+        if (user.collection == "administrators" && user.role === "superadmin") return true;
         return {
           createdBy: { equals: user.id },
-        }
-      }, 
+        };
+      },
     },
     {
-      name: 'createdBy',
-      type: 'relationship',
-      relationTo: 'administrators',
+      name: "createdBy",
+      type: "relationship",
+      relationTo: "administrators",
       required: true,
       defaultValue: ({ req: { user } }) => user?.id,
       admin: {
         readOnly: true,
-        position: 'sidebar',
-      }
+        position: "sidebar",
+      },
     },
 
     ...slugField(),

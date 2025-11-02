@@ -448,7 +448,7 @@ export interface Category {
 export interface Administrator {
   id: string;
   name?: string | null;
-  role: 'admin' | 'superadmin' | 'tenants';
+  role?: ('admin' | 'superadmin' | 'tenants' | 'clients') | null;
   createdBy?: (string | null) | Administrator;
   updatedAt: string;
   createdAt: string;

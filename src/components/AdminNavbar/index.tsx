@@ -61,7 +61,7 @@ export const AdminNavbar = async (props: ServerProps) => {
     i18n,
   );
 
- 
+  console.log('groups in navbar', groups);
 
   const navPreferences = await getNavPrefs({ payload, user });
 

@@ -9,12 +9,12 @@ const access: Access = async ({ req }) => {
   if (!user) return false;
 
   // Type guard: only apply role logic if it's an Administrator
-  if (user.collection === 'administrators') {
+  if (user.collection === "administrators") {
     const role = user.role;
 
-    if (role === 'superadmin') return true;
+    if (role === "superadmin") return true;
 
-    if (role === 'admin') {
+    if (role === "admin") {
       return {
         createdBy: {
           equals: user.id,
@@ -46,11 +46,11 @@ export const Administrators: CollectionConfig = {
     update: authenticated,
   },
   admin: {
-    defaultColumns: ["name", "email"],
+    defaultColumns: ["name", "email", "role", "createdBy"],
     useAsTitle: "name",
     group: {
-      en: "Page Settings",
-      pl: "Ustawienia strony",
+      en: "Administration",
+      pl: "Administracja",
     },
   },
   auth: true,
@@ -60,33 +60,40 @@ export const Administrators: CollectionConfig = {
       type: "text",
     },
     {
-      name: 'role',
-      type: 'select',
-      label: 'Role',
+      name: "role",
+      type: "select",
+      label: "Role",
       options: [
-        { label: 'Admin', value: 'admin' },
-        { label: 'Super Admin', value: 'superadmin' },
-        { label: 'Tenants', value: 'tenants' },
+        { label: "Admin", value: "admin" },
+        { label: "Super Admin", value: "superadmin" },
+        { label: "Tenants", value: "tenants" },
+        { label: "Clients", value: "clients" },
       ],
-      defaultValue: 'admin',
-      required: true,
+      // defaultValue: "admin",
+      required: false,
       admin: {
-        position: 'sidebar',
+        position: "sidebar",
       },
       filterOptions: ({ req, options }) => {
-        if (req.user?.collection === 'administrators') {
-          if (req.user.role === 'admin') {
+        // If no user is authenticated (first user creation), show all options
+        if (!req.user) {
+          return options;
+        }
+
+        if (req.user?.collection === "administrators") {
+          if (req.user.role === "admin") {
             // Admins can only see "Tenants"
             return [
-              { label: 'Tenants', value: 'tenants' },
+              { label: "Tenants", value: "tenants" },
+              { label: "Clients", value: "clients" },
             ];
           }
-          if (req.user.role === 'superadmin') {
+          if (req.user.role === "superadmin") {
             // Superadmins can see all
             return options;
           }
         }
-    
+
         // Other users (tenants/customers) see none
         return [];
       },
@@ -109,7 +116,7 @@ export const Administrators: CollectionConfig = {
         readOnly: true,
         position: "sidebar",
       },
-    }
+    },
   ],
   // hooks: {
   //   beforeValidate: [

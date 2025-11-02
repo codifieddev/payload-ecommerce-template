@@ -1,5 +1,6 @@
 import { type CollectionConfig } from "payload";
 
+import { superAdminOnly, superAdminOnlyAdmin } from "@/access/roleBasedAccess";
 import { getChartData } from "@/endpoints/adminDashboard/getChartData";
 import { getOrderCount } from "@/endpoints/adminDashboard/getOrderCount";
 import { getRevenue } from "@/endpoints/adminDashboard/getRevenue";
@@ -29,6 +30,13 @@ export const Orders: CollectionConfig = {
       en: "Orders",
       pl: "Zamówienia",
     },
+  },
+  access: {
+    admin: superAdminOnlyAdmin,
+    create: superAdminOnly,
+    delete: superAdminOnly,
+    read: superAdminOnly,
+    update: superAdminOnly,
   },
   hooks: {
     beforeValidate: [generateID],
@@ -363,11 +371,7 @@ export const Orders: CollectionConfig = {
                   name: "pickupShipmentMenu",
                   type: "ui",
                   admin: {
-                    condition: (data) =>
-                      Boolean(
-                        // eslint-disable-next-line
-                        data.orderDetails?.shipping === "inpost-pickup",
-                      ),
+                    condition: (data) => Boolean(data.orderDetails?.shipping === "inpost-pickup"),
                     components: {
                       Field:
                         "@/collections/(ecommerce)/Orders/components/inpost-pickup/PickupShipmentMenu#PickupShipmentMenu",
@@ -418,7 +422,6 @@ export const Orders: CollectionConfig = {
                   name: "courierShipmentMenu",
                   type: "ui",
                   admin: {
-                    // eslint-disable-next-line
                     condition: (data) => data.orderDetails.shipping !== "inpost-pickup",
                     components: {
                       Field:
@@ -468,7 +471,7 @@ export const Orders: CollectionConfig = {
                       },
                       admin: {
                         width: "50%",
-                        // eslint-disable-next-line
+
                         condition: (data) => data.orderDetails.shipping === "inpost-pickup",
                       },
                     },
@@ -481,7 +484,7 @@ export const Orders: CollectionConfig = {
                       },
                       admin: {
                         width: "50%",
-                        // eslint-disable-next-line
+
                         condition: (data) => data.orderDetails.shipping === "inpost-pickup",
                       },
                     },

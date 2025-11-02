@@ -1,6 +1,7 @@
 import { revalidateTag } from "next/cache";
 import { type CollectionConfig } from "payload";
 
+import { superAdminOnlyAdmin } from "@/access/roleBasedAccess";
 import { countryList } from "@/globals/(ecommerce)/Couriers/utils/countryList";
 
 import { createTokenAndSendEmail } from "./hooks/createTokenAndSendEmail";
@@ -8,6 +9,7 @@ import { createTokenAndSendEmail } from "./hooks/createTokenAndSendEmail";
 export const Customers: CollectionConfig = {
   slug: "customers",
   access: {
+    admin: superAdminOnlyAdmin,
     create: () => true,
   },
   labels: {
@@ -22,8 +24,8 @@ export const Customers: CollectionConfig = {
   },
   admin: {
     group: {
-      en: "Clients",
-      pl: "Klienci",
+      en: "Customer Management",
+      pl: "Zarządzanie Klientami",
     },
     defaultColumns: ["fullName", "email", "createdAt", "updatedAt"],
     useAsTitle: "fullName",
