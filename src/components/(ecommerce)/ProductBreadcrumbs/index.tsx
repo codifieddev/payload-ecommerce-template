@@ -6,7 +6,7 @@ export const ProductBreadcrumbs = ({ product }: { product: Product }) => {
     <>
       <nav aria-label="Breadcrumb" className="container mr-auto px-4 pt-6 sm:px-6 lg:px-8">
         <ol role="list" className="flex items-center space-x-4">
-          {product.categoriesArr && typeof product.categoriesArr[0].category !== "string" && (
+          {product.categoriesArr?.[0]?.category && typeof product.categoriesArr[0].category !== "string" && (
             <li key={product.categoriesArr[0].category.id}>
               <div className="flex items-center">
                 <Link
@@ -21,7 +21,7 @@ export const ProductBreadcrumbs = ({ product }: { product: Product }) => {
               </div>
             </li>
           )}
-          {product.categoriesArr?.[0].subcategories &&
+          {product.categoriesArr?.[0]?.subcategories?.[0] &&
             typeof product.categoriesArr[0].category !== "string" &&
             typeof product.categoriesArr[0].subcategories[0] !== "string" && (
               <li key={product.categoriesArr[0].subcategories[0].id}>
