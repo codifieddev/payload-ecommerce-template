@@ -1,21 +1,20 @@
 export async function getTenantByDomain(domain: string, slug: string) {
-  console.log("FETCHING TENANT FOR DOMAIN", domain, slug)
+ 
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/api/websites?where[domains.domain][equals]=${domain}`,
       // { next: { revalidate: 3600 } }, // 1 hour cache
     )
 
-    console.log( `${process.env.NEXT_PUBLIC_SERVER_URL}/api/website?where[domains.domain][equals]=${domain}`)
-
+    
+  
     const json = await res.json()
 
 
     let id = json?.docs?.[0]
 
-    console.log("TENANT ID", id)
   
     const final = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/pages?where[website][equals]=${id.id}&where[slug][equals]=${'home'}`,
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/pages?where[website][equals]=${id.id}&where[slug][equals]=${slug}`,
       // { next: { revalidate: 60 } },
     )
   

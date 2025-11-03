@@ -38,14 +38,23 @@ export const Websites: CollectionConfig = {
     { name: 'slug', type: 'text', required: true, unique: true },
     { name: 'domains', type: 'array', fields: [{ name: 'domain', type: 'text' }] },
     {
-      name: 'theme',
-      type: 'group',
+      label: 'WebSite Settings',
+      type: "collapsible",
       fields: [
-        { name: 'primaryColor', type: 'text' },
-        { name: 'font', type: 'text' },
-      ],
+        {
+          label: "Website Theme",
+          type: "collapsible",
+          admin:{
+            
+          },
+          fields: [
+            { name: 'primaryColor', type: 'text' },
+            { name: 'secondaryColor', type: 'text' },
+            { name: 'fontFamily', type: 'text' },
+          ]
+        },
+      ]
     },
-    { name: 'settings', type: 'json' },
     {
       name: 'createdBy',
       type: 'relationship',

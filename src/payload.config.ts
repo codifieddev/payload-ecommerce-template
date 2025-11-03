@@ -49,13 +49,15 @@ export default buildConfig({
     components: {
       afterLogin: ["@/components/AdminResetPassword#AdminResetPassword"],
       graphics: {
+        // Identifiable Logo
         Logo: "@/components/AdminLogoBig/AdminLogoBig#AdminLogoBig",
+        // Identifiable Icon (used in the top left of the admin nav)
         Icon: "@/components/AdminLogoIcon/AdminLogoIcon#AdminLogoIcon",
       },
       Nav: {
         path: "@/components/AdminNavbar#AdminNavbar",
       },
-      beforeDashboard: ["@/components/BeforeDashboard#BeforeDashboard"],
+      // beforeDashboard: ["@/components/BeforeDashboard#BeforeDashboard"],
       views: {
         dashboard: {
           Component: "@/components/(ecommerce)/AdminDashboard#AdminDashboard",
