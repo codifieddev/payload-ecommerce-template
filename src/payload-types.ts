@@ -213,7 +213,7 @@ export interface Page {
   id: string;
   title: string;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'twoColumn' | 'singleColumnBackground' | 'videoModal';
     richText?: {
       root: {
         type: string;
@@ -255,6 +255,23 @@ export interface Page {
       | null;
     media?: (string | null) | Media;
     reversed?: boolean | null;
+    video_heading?: string | null;
+    video_subheading?: string | null;
+    video_description?: string | null;
+    video_url: string;
+    video_backgroundColor?: string | null;
+    twoCol_imagePosition?: ('left' | 'right') | null;
+    twoCol_heading?: string | null;
+    twoCol_subheading?: string | null;
+    twoCol_description?: string | null;
+    twoCol_image: string | Media;
+    twoCol_backgroundColor?: string | null;
+    single_heading?: string | null;
+    single_subheading?: string | null;
+    single_description?: string | null;
+    backgroundType?: ('color' | 'image') | null;
+    single_backgroundColor?: string | null;
+    single_backgroundImage?: (string | null) | Media;
   };
   layout: (
     | CallToActionBlock
@@ -1221,19 +1238,9 @@ export interface Website {
         id?: string | null;
       }[]
     | null;
-  theme?: {
-    primaryColor?: string | null;
-    font?: string | null;
-  };
-  settings?:
-    | {
-        [k: string]: unknown;
-      }
-    | unknown[]
-    | string
-    | number
-    | boolean
-    | null;
+  primaryColor?: string | null;
+  secondaryColor?: string | null;
+  fontFamily?: string | null;
   createdBy: string | Administrator;
   tenantID?: (string | null) | Administrator;
   updatedAt: string;
@@ -1862,6 +1869,23 @@ export interface PagesSelect<T extends boolean = true> {
             };
         media?: T;
         reversed?: T;
+        video_heading?: T;
+        video_subheading?: T;
+        video_description?: T;
+        video_url?: T;
+        video_backgroundColor?: T;
+        twoCol_imagePosition?: T;
+        twoCol_heading?: T;
+        twoCol_subheading?: T;
+        twoCol_description?: T;
+        twoCol_image?: T;
+        twoCol_backgroundColor?: T;
+        single_heading?: T;
+        single_subheading?: T;
+        single_description?: T;
+        backgroundType?: T;
+        single_backgroundColor?: T;
+        single_backgroundImage?: T;
       };
   layout?:
     | T
@@ -2489,13 +2513,9 @@ export interface WebsitesSelect<T extends boolean = true> {
         domain?: T;
         id?: T;
       };
-  theme?:
-    | T
-    | {
-        primaryColor?: T;
-        font?: T;
-      };
-  settings?: T;
+  primaryColor?: T;
+  secondaryColor?: T;
+  fontFamily?: T;
   createdBy?: T;
   tenantID?: T;
   updatedAt?: T;

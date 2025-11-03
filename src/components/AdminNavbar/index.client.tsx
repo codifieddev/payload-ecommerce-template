@@ -69,7 +69,7 @@ export const NavClient = ({ groups, navPreferences }: Props) => {
 
             const activeCollection = pathname === href 
 
-            console.log(activeCollection, pathname, href);
+        
             const Icon = getNavIcon(slug);
 
             return (

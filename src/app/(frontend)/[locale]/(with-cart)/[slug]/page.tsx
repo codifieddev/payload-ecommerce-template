@@ -51,15 +51,18 @@ export default async function Page({ params: paramsPromise }: Args) {
   // const { isEnabled: draft } = await draftMode();
   const header = await headers()
   const domain = header.get("x-tenant-domain") || header.get("host") || ""
+  console.log(domain)
   const { slug = "home", locale } = await paramsPromise;
-
-  const page = await getTenantByDomain(domain, slug)
-
-  console.log("PAGE", page)
+  let page:any = null;
+  
+  // if(!process.env.NEXT_PUBLIC_SERVER_URL.includes(domain)){
+   page = await getTenantByDomain(domain, slug)
+   if (!page) return <div>Page not found</div>
+  // }
 
   const url = `/${locale}/${slug}`;
 
-  // const page = await queryPageBySlug({
+  // page = await queryPageBySlug({
   //   slug,
   //   locale,
   // });
@@ -67,8 +70,6 @@ export default async function Page({ params: paramsPromise }: Args) {
   // if (!page) {
   //   return <PayloadRedirects url={url} locale={locale} />;
   // }
-
-  if (!page) return <div>Page not found</div>
 
   setRequestLocale(locale);
 
