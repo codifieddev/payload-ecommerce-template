@@ -19,9 +19,11 @@ import { ProductSubCategories } from "./collections/(ecommerce)/ProductSubCatego
 import { Products } from "./collections/(ecommerce)/Products";
 import { Administrators } from "./collections/Administrators";
 import { Categories } from "./collections/Categories";
+
 import { Media } from "./collections/Media";
 import { Pages } from "./collections/Pages";
 import { Posts } from "./collections/Posts";
+
 import { InPostCourier } from "./globals/(ecommerce)/Couriers/InPostCourier/config";
 import { InPostCourierCOD } from "./globals/(ecommerce)/Couriers/InPostCourierCOD/config";
 import { InPostPickup } from "./globals/(ecommerce)/Couriers/InPostPickup/config";
@@ -128,6 +130,7 @@ export default buildConfig({
     ProductSubCategories,
     ProductReviews,
     Websites,
+   
   ],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [

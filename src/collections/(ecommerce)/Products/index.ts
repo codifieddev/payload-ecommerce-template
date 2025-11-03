@@ -2,6 +2,7 @@ import { type CollectionConfig } from "payload";
 
 import { anyone } from "@/access/anyone";
 import { authenticated } from "@/access/authenticated";
+import { superAdminOnlyAdmin, superAdminOnly } from "@/access/roleBasedAccess";
 // import { authenticatedOrPublished } from "@/access/authenticatedOrPublished";
 import { currencyField } from "@/fields/currencyField";
 import { defaultLexical } from "@/fields/defaultLexical";
@@ -21,11 +22,12 @@ export const Products: CollectionConfig = {
     },
   },
   access: {
-    create: authenticated,
-    delete: authenticated,
+    admin: superAdminOnlyAdmin,
+    create: superAdminOnly,
+    delete: superAdminOnly,
     // read: authenticatedOrPublished,
     read: anyone,
-    update: authenticated,
+    update: superAdminOnly,
   },
   admin: {
     defaultColumns: ["title"],
@@ -370,21 +372,17 @@ export const Products: CollectionConfig = {
               },
               validate: (value) => {
                 if (!value) return true;
-                // eslint-disable-next-line
+
                 const groupedByVariantSlug = value.reduce((acc: Record<string, any[]>, item: any) => {
-                  // eslint-disable-next-line
                   if (!acc[item.variantSlug]) {
-                    // eslint-disable-next-line
                     acc[item.variantSlug] = [];
                   }
-                  // eslint-disable-next-line
+
                   acc[item.variantSlug].push(item);
                   return acc;
-                  // eslint-disable-next-line
                 }, {}) as any[];
 
                 const duplicateSlugs = Object.keys(groupedByVariantSlug).filter(
-                  // eslint-disable-next-line
                   (slug) => groupedByVariantSlug[slug].length > 1,
                 );
                 if (duplicateSlugs.length > 0) {
@@ -572,10 +570,8 @@ export const Products: CollectionConfig = {
                   },
                   relationTo: "productSubCategories",
                   filterOptions: ({ siblingData }) => {
-                    // eslint-disable-next-line
                     const siblingDataTyped: {
                       category: string;
-                      // eslint-disable-next-line
                     } = siblingData as any;
                     return {
                       category: {
