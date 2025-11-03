@@ -1,7 +1,8 @@
 
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
-import { fadeInUp, stagger } from "./anim";
+import { fadeInUp, stagger } from "../anim";
+
 
 type Feature = { id: string; title: string; caption: string; image: string };
 export default function FeatureTiles({ items }: { items: Feature[] }) {

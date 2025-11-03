@@ -1,10 +1,10 @@
 import * as React from "react";
 import { motion } from "framer-motion";
-import { cn } from "@/lib/cn";
 import footerLogo from "../../../public/assets/Image/logo-footer.svg"
 import { FaHeadset } from "react-icons/fa";
 import appStore from "../../../public/assets/Image/appStore.png"
 import googlePlay from "../../../public/assets/Image/googlePlay.png"
+import { cn } from "@/utilities/cn";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 16 },
@@ -178,8 +178,8 @@ export default function Footer({
             <div className="mt-6 flex  items-center gap-3">
               {/* <StoreBadge type="apple" />
               <StoreBadge type="google" /> */}
-              <img src={appStore} alt="apple store" className="w-1/2"></img>
-              <img src={googlePlay} alt="google store" className="w-1/2"></img>
+              {/* <img src={appStore} alt="apple store" className="w-1/2"></img>
+              <img src={googlePlay} alt="google store" className="w-1/2"></img> */}
 
             </div>
           </div>

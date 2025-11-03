@@ -39,6 +39,31 @@ const categories = [
   { id: "nakiri", label: "Nakiri", products: pettyProducts.slice(0, 6) },
 ];
 
+// export async function generateStaticParams() {
+//   const payload = await getPayload({ config });
+//   const pages = await payload.find({
+//     collection: "pages",
+//     draft: false,
+//     limit: 1000,
+//     overrideAccess: true,
+//     pagination: false,
+//     select: {
+//       slug: true,
+//     },
+//   });
+
+//   const params = routing.locales.flatMap((locale) => {
+//     return pages.docs
+//       ?.filter((doc) => doc.slug !== "home")
+//       .map(({ slug }) => {
+//         return { locale, slug };
+//       });
+//   });
+
+//   return params;
+// }
+
+
 export async function generateStaticParams() {
   const payload = await getPayload({ config });
   const pages = await payload.find({
@@ -52,13 +77,17 @@ export async function generateStaticParams() {
     },
   });
 
+  // ✅ Ensure only valid slugs are included
   const params = routing.locales.flatMap((locale) => {
     return pages.docs
-      ?.filter((doc) => doc.slug !== "home")
-      .map(({ slug }) => {
-        return { locale, slug };
-      });
+      ?.filter((doc) => typeof doc.slug === "string" && doc.slug.length > 0 && doc.slug !== "home")
+      .map(({ slug }) => ({
+        locale,
+        slug,
+      }));
   });
+
+  console.log("Generated static params:", params); // optional debug
 
   return params;
 }
