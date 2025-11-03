@@ -37,6 +37,7 @@ import { Header } from "./globals/Header/config";
 import { plugins } from "./plugins";
 import { getServerSideURL } from "./utilities/getURL";
 import { Websites } from "./collections/Tenants";
+import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -147,21 +148,28 @@ export default buildConfig({
   ],
   plugins: [
     ...plugins,
-    s3Storage({
+    // s3Storage({
+    //   collections: {
+    //     [Media.slug]: true,
+    //   },
+    //   bucket: process.env.S3_BUCKET ?? "",
+    //   config: {
+    //     endpoint: process.env.S3_ENDPOINT ?? "",
+    //     region: "auto",
+    //     credentials: {
+    //       accessKeyId: process.env.S3_ACCESS_KEY_ID ?? "",
+    //       secretAccessKey: process.env.S3_SECRET_ACCESS_KEY ?? "",
+    //     },
+    //     requestChecksumCalculation: "WHEN_REQUIRED",
+    //     responseChecksumValidation: "WHEN_REQUIRED",
+    //   },
+    // }),
+    vercelBlobStorage({
+      enabled: true,
       collections: {
         [Media.slug]: true,
       },
-      bucket: process.env.S3_BUCKET ?? "",
-      config: {
-        endpoint: process.env.S3_ENDPOINT ?? "",
-        region: "auto",
-        credentials: {
-          accessKeyId: process.env.S3_ACCESS_KEY_ID ?? "",
-          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY ?? "",
-        },
-        requestChecksumCalculation: "WHEN_REQUIRED",
-        responseChecksumValidation: "WHEN_REQUIRED",
-      },
+      token: process.env.BLOB_READ_WRITE_TOKEN,
     }),
   ],
   secret: process.env.PAYLOAD_SECRET,

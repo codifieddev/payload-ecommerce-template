@@ -41,16 +41,17 @@ const useCartStore = create<CartState>((set) => ({
   cart: canUseDOM
     ? (() => {
         const cartData = window.localStorage.getItem("cart");
-        if (cartData && cartData.length > 1) {
+        if (cartData) {
           try {
-            return cartData ? (JSON.parse(cartData) as Cart) : [];
+            return JSON.parse(cartData) as Cart;
           } catch (error) {
             console.error("Error parsing cart data from localStorage", error);
+            // Clear corrupted data
+            window.localStorage.removeItem("cart");
             return [];
           }
-        } else {
-          return [];
         }
+        return [];
       })()
     : null,
 

@@ -15,6 +15,29 @@ import PageClient from "./page.client";
 
 import type { Metadata } from "next";
 import { getTenantByDomain } from "@/lib/getPage";
+import Hero from "../../../../../frontendComponents/Hero";
+import AboutKarloBan from "@/frontendComponents/sections/AboutKarloBan";
+import AboutStrip from "@/frontendComponents/sections/AboutStrip";
+import Testimonials from "@/frontendComponents/sections/Testimonials";
+import ProductTabsGrid from "@/frontendComponents/sections/ProductTabsGrid";
+
+const pettyProducts: any = [
+  { id: "p1", name: "Petty 173mm", priceEUR: 220, image: "/assets/products/product-img.png", size: "173mm" },
+  { id: "p2", name: "Petty 173mm", priceEUR: 220, image: "/assets/products/product-img.png", size: "173mm" },
+  { id: "p3", name: "Petty 173mm", priceEUR: 220, image: "/assets/products/product-img.png", size: "173mm" },
+  { id: "p4", name: "Petty 173mm", priceEUR: 220, image: "/assets/products/product-img.png", size: "173mm" },
+  { id: "p5", name: "Petty 173mm", priceEUR: 220, image: "/assets/products/product-img.png", size: "173mm" },
+  { id: "p6", name: "Petty 173mm", priceEUR: 220, image: "/assets/products/product-img.png", size: "173mm" },
+  { id: "p7", name: "Petty 173mm", priceEUR: 220, image: "/assets/products/product-img.png", size: "173mm" },
+  { id: "p8", name: "Petty 173mm", priceEUR: 220, image: "/assets/products/product-img.png", size: "173mm" },
+];
+
+const categories = [
+  { id: "petty", label: "Petty", products: pettyProducts },
+  { id: "gyuto", label: "Gyuto", products: pettyProducts.slice(0, 6) },
+  { id: "santoku", label: "Santoku", products: pettyProducts.slice(0, 6) },
+  { id: "nakiri", label: "Nakiri", products: pettyProducts.slice(0, 6) },
+];
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config });
@@ -49,15 +72,16 @@ type Args = {
 
 export default async function Page({ params: paramsPromise }: Args) {
   // const { isEnabled: draft } = await draftMode();
-  const header = await headers()
-  const domain = header.get("x-tenant-domain") || header.get("host") || ""
-  console.log(domain)
+  const header = await headers();
+  const domain = header.get("x-tenant-domain") || header.get("host") || "";
+
   const { slug = "home", locale } = await paramsPromise;
-  let page:any = null;
-  
+
+  let page: any = null;
+
   // if(!process.env.NEXT_PUBLIC_SERVER_URL.includes(domain)){
-   page = await getTenantByDomain(domain, slug)
-   if (!page) return <div>Page not found</div>
+  page = await getTenantByDomain(domain, slug);
+  if (!page) return <div>Page not found</div>;
   // }
 
   const url = `/${locale}/${slug}`;
@@ -76,15 +100,39 @@ export default async function Page({ params: paramsPromise }: Args) {
   const { hero, layout } = page;
 
   return (
-    <article className="pb-24 pt-16">
-      <PageClient />
+    <article className="pt-16 pb-24">
+      {/* <PageClient /> */}
       {/* Allows redirects for valid pages too */}
       {!page && slug !== "home" && <PayloadRedirects locale={locale} url={url} />}
 
       {/* {draft && <LivePreviewListener />} */}
 
-      <RenderHero {...hero} />
-      <RenderBlocks blocks={layout} />
+      {/* <RenderHero {...hero} /> */}
+      <Hero
+        title="Izuzetna oštrina nadomak ruke"
+        subtitle="Autentični, 100% ručno kovani noževi. Izrađeni da nadžive generacije."
+        cta={{ label: "Kupi nož" }}
+        // bgImage="/assets/hero/hero-knife.jpg"
+      />
+      <AboutKarloBan />
+      <AboutStrip />
+      <section className="container mx-auto px-4 py-10">
+        {/* Section Title */}
+        <h3 className="mb-1 inline-block w-full border-b border-gray-200 pb-2 text-[16px] font-medium text-[#FF7020]">
+          Naši kuharski noževi
+        </h3>
+
+        {/* Section Description */}
+        <p className="max-w-4xl text-[28px] leading-[160%] font-medium text-[#4F4640]">
+          Otkrijte kolekciju ručno kovanih noževa stvorenih za kuhare koji traže više od alata. Svaki model
+          spaja preciznost, dugotrajnost i ljepotu rada iz majstorskih ruku.
+        </p>
+      </section>
+
+      <ProductTabsGrid categories={categories} />
+
+      {/* <RenderBlocks blocks={layout} /> */}
+      <Testimonials />
     </article>
   );
 }
