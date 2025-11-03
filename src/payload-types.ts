@@ -282,7 +282,225 @@ export interface Page {
     | CarouselBlock
     | AccordionBlock
     | HotspotBlock
+    | {
+        textType: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'paragraph' | 'blockquote' | 'code';
+        content: string;
+        textAlign?: ('left' | 'center' | 'right' | 'justify') | null;
+        textColor?: ('default' | 'primary' | 'secondary' | 'accent' | 'muted' | 'custom') | null;
+        customTextColor?: string | null;
+        fontSize?: ('xs' | 'sm' | 'default' | 'lg' | 'xl' | '2xl' | '3xl' | 'custom') | null;
+        customFontSize?: string | null;
+        fontWeight?: ('light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold') | null;
+        lineHeight?: ('tight' | 'normal' | 'relaxed' | 'loose') | null;
+        letterSpacing?: ('tighter' | 'tight' | 'normal' | 'wide' | 'wider' | 'widest') | null;
+        textTransform?: ('none' | 'uppercase' | 'lowercase' | 'capitalize') | null;
+        fontFamily?: ('default' | 'sans' | 'serif' | 'mono') | null;
+        backgroundColor?: ('transparent' | 'light' | 'dark' | 'primary' | 'secondary' | 'custom') | null;
+        customBackgroundColor?: string | null;
+        padding?: {
+          top?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+          bottom?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+          left?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+          right?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+        };
+        margin?: {
+          top?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+          bottom?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+        };
+        maxWidth?: ('full' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
+        /**
+         * Make the entire text block clickable
+         */
+        link?: {
+          enable?: boolean | null;
+          url?: string | null;
+          newTab?: boolean | null;
+          rel?: ('none' | 'nofollow' | 'noopener' | 'noreferrer' | 'noopener noreferrer') | null;
+          linkStyle?: ('default' | 'underline' | 'no-underline' | 'hover-underline') | null;
+          linkColor?: ('inherit' | 'primary' | 'secondary' | 'accent' | 'custom') | null;
+          customLinkColor?: string | null;
+        };
+        /**
+         * Add custom CSS classes for additional styling
+         */
+        className?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'textBlock';
+      }
+    | {
+        layoutType:
+          | 'single-column'
+          | 'two-columns'
+          | 'three-columns'
+          | 'four-columns'
+          | 'sidebar-left'
+          | 'sidebar-right'
+          | 'hero'
+          | 'split-screen'
+          | 'card-grid'
+          | 'masonry'
+          | 'feature-sections'
+          | 'custom-grid';
+        columnRatio?: ('equal' | '1-2' | '2-1' | '1-3' | '3-1' | '1-2-1' | 'custom') | null;
+        /**
+         * Use CSS grid values (e.g., 1fr 2fr or 300px 1fr)
+         */
+        customColumnRatio?: string | null;
+        maxWidth?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full' | 'custom') | null;
+        customMaxWidth?: string | null;
+        alignment?: ('left' | 'center' | 'right') | null;
+        verticalAlignment?: ('top' | 'center' | 'bottom' | 'stretch') | null;
+        gap?: ('none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl') | null;
+        responsiveBehavior?: ('stack' | 'keep' | 'reverse' | 'hide-mobile') | null;
+        backgroundColor?:
+          | (
+              | 'transparent'
+              | 'white'
+              | 'light-gray'
+              | 'gray'
+              | 'dark-gray'
+              | 'black'
+              | 'primary'
+              | 'secondary'
+              | 'accent'
+              | 'custom'
+            )
+          | null;
+        customBackgroundColor?: string | null;
+        backgroundImage?: {
+          enable?: boolean | null;
+          image?: (string | null) | Media;
+          size?: ('cover' | 'contain' | 'auto') | null;
+          position?: ('center' | 'top' | 'bottom' | 'left' | 'right') | null;
+          attachment?: ('scroll' | 'fixed') | null;
+          overlay?: boolean | null;
+          overlayColor?: string | null;
+        };
+        gradient?: {
+          enable?: boolean | null;
+          type?: ('linear' | 'radial') | null;
+          direction?: ('to-right' | 'to-left' | 'to-bottom' | 'to-top' | 'to-bottom-right') | null;
+          colorStops?: string | null;
+        };
+        padding?: {
+          top?: ('none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl') | null;
+          bottom?: ('none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl') | null;
+          left?: ('none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl') | null;
+          right?: ('none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl') | null;
+        };
+        margin?: {
+          top?: ('none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl') | null;
+          bottom?: ('none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl') | null;
+        };
+        border?: {
+          enable?: boolean | null;
+          width?: ('1' | '2' | '4' | '8') | null;
+          style?: ('solid' | 'dashed' | 'dotted') | null;
+          color?: string | null;
+        };
+        borderRadius?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+        shadow?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+        minHeight?: ('none' | '300' | '400' | '500' | '50vh' | '75vh' | '100vh' | 'custom') | null;
+        customMinHeight?: string | null;
+        animation?: {
+          enable?: boolean | null;
+          type?: ('fade-in' | 'fade-in-up' | 'slide-up' | 'zoom-in') | null;
+          duration?: ('fast' | 'normal' | 'slow') | null;
+        };
+        /**
+         * For anchor links
+         */
+        customId?: string | null;
+        className?: string | null;
+        columns?:
+          | {
+              /**
+               * Optional label for this column
+               */
+              columnName?: string | null;
+              content?: {
+                root: {
+                  type: string;
+                  children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              } | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'layoutBlock';
+      }
+    | {
+        label: string;
+        link: {
+          type: 'external' | 'internal' | 'email' | 'phone' | 'anchor';
+          url?: string | null;
+          page?: (string | null) | Page;
+          email?: string | null;
+          phone?: string | null;
+          anchor?: string | null;
+          newTab?: boolean | null;
+          rel?: ('none' | 'nofollow' | 'noopener' | 'noreferrer' | 'noopener noreferrer' | 'sponsored') | null;
+        };
+        icon?: {
+          enable?: boolean | null;
+          /**
+           * e.g., "arrow-right" or icon class from your icon library
+           */
+          iconName?: string | null;
+          position?: ('left' | 'right') | null;
+          iconSize?: ('sm' | 'md' | 'lg') | null;
+        };
+        variant: 'primary' | 'secondary' | 'outline' | 'ghost' | 'link' | 'destructive' | 'success' | 'custom';
+        customColors?: {
+          backgroundColor?: string | null;
+          textColor?: string | null;
+          hoverBackgroundColor?: string | null;
+          hoverTextColor?: string | null;
+          borderColor?: string | null;
+        };
+        size?: ('xs' | 'sm' | 'md' | 'lg' | 'xl') | null;
+        fullWidth?: boolean | null;
+        alignment?: ('left' | 'center' | 'right') | null;
+        borderRadius?: ('none' | 'sm' | 'md' | 'lg' | 'xl' | 'full') | null;
+        shadow?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+        fontWeight?: ('normal' | 'medium' | 'semibold' | 'bold') | null;
+        textTransform?: ('none' | 'uppercase' | 'lowercase' | 'capitalize') | null;
+        animation?: ('none' | 'scale-up' | 'scale-down' | 'lift' | 'slide-right' | 'pulse' | 'bounce') | null;
+        disabled?: boolean | null;
+        /**
+         * Accessibility label for screen readers (optional)
+         */
+        ariaLabel?: string | null;
+        padding?: {
+          horizontal?: ('default' | 'sm' | 'md' | 'lg' | 'xl') | null;
+          vertical?: ('default' | 'sm' | 'md' | 'lg' | 'xl') | null;
+        };
+        margin?: {
+          top?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+          bottom?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+        };
+        /**
+         * Add custom CSS classes for additional styling
+         */
+        className?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'buttonBlock';
+      }
   )[];
+  Code?: string | null;
   meta?: {
     title?: string | null;
     /**
@@ -1898,7 +2116,193 @@ export interface PagesSelect<T extends boolean = true> {
         carousel?: T | CarouselBlockSelect<T>;
         accordion?: T | AccordionBlockSelect<T>;
         hotspotZone?: T | HotspotBlockSelect<T>;
+        textBlock?:
+          | T
+          | {
+              textType?: T;
+              content?: T;
+              textAlign?: T;
+              textColor?: T;
+              customTextColor?: T;
+              fontSize?: T;
+              customFontSize?: T;
+              fontWeight?: T;
+              lineHeight?: T;
+              letterSpacing?: T;
+              textTransform?: T;
+              fontFamily?: T;
+              backgroundColor?: T;
+              customBackgroundColor?: T;
+              padding?:
+                | T
+                | {
+                    top?: T;
+                    bottom?: T;
+                    left?: T;
+                    right?: T;
+                  };
+              margin?:
+                | T
+                | {
+                    top?: T;
+                    bottom?: T;
+                  };
+              maxWidth?: T;
+              link?:
+                | T
+                | {
+                    enable?: T;
+                    url?: T;
+                    newTab?: T;
+                    rel?: T;
+                    linkStyle?: T;
+                    linkColor?: T;
+                    customLinkColor?: T;
+                  };
+              className?: T;
+              id?: T;
+              blockName?: T;
+            };
+        layoutBlock?:
+          | T
+          | {
+              layoutType?: T;
+              columnRatio?: T;
+              customColumnRatio?: T;
+              maxWidth?: T;
+              customMaxWidth?: T;
+              alignment?: T;
+              verticalAlignment?: T;
+              gap?: T;
+              responsiveBehavior?: T;
+              backgroundColor?: T;
+              customBackgroundColor?: T;
+              backgroundImage?:
+                | T
+                | {
+                    enable?: T;
+                    image?: T;
+                    size?: T;
+                    position?: T;
+                    attachment?: T;
+                    overlay?: T;
+                    overlayColor?: T;
+                  };
+              gradient?:
+                | T
+                | {
+                    enable?: T;
+                    type?: T;
+                    direction?: T;
+                    colorStops?: T;
+                  };
+              padding?:
+                | T
+                | {
+                    top?: T;
+                    bottom?: T;
+                    left?: T;
+                    right?: T;
+                  };
+              margin?:
+                | T
+                | {
+                    top?: T;
+                    bottom?: T;
+                  };
+              border?:
+                | T
+                | {
+                    enable?: T;
+                    width?: T;
+                    style?: T;
+                    color?: T;
+                  };
+              borderRadius?: T;
+              shadow?: T;
+              minHeight?: T;
+              customMinHeight?: T;
+              animation?:
+                | T
+                | {
+                    enable?: T;
+                    type?: T;
+                    duration?: T;
+                  };
+              customId?: T;
+              className?: T;
+              columns?:
+                | T
+                | {
+                    columnName?: T;
+                    content?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        buttonBlock?:
+          | T
+          | {
+              label?: T;
+              link?:
+                | T
+                | {
+                    type?: T;
+                    url?: T;
+                    page?: T;
+                    email?: T;
+                    phone?: T;
+                    anchor?: T;
+                    newTab?: T;
+                    rel?: T;
+                  };
+              icon?:
+                | T
+                | {
+                    enable?: T;
+                    iconName?: T;
+                    position?: T;
+                    iconSize?: T;
+                  };
+              variant?: T;
+              customColors?:
+                | T
+                | {
+                    backgroundColor?: T;
+                    textColor?: T;
+                    hoverBackgroundColor?: T;
+                    hoverTextColor?: T;
+                    borderColor?: T;
+                  };
+              size?: T;
+              fullWidth?: T;
+              alignment?: T;
+              borderRadius?: T;
+              shadow?: T;
+              fontWeight?: T;
+              textTransform?: T;
+              animation?: T;
+              disabled?: T;
+              ariaLabel?: T;
+              padding?:
+                | T
+                | {
+                    horizontal?: T;
+                    vertical?: T;
+                  };
+              margin?:
+                | T
+                | {
+                    top?: T;
+                    bottom?: T;
+                  };
+              className?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
+  Code?: T;
   meta?:
     | T
     | {
