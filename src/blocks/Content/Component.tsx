@@ -7,6 +7,7 @@ import {
 } from "@/blocks/globals";
 import { CMSLink } from "@/components/Link";
 import RichText from "@/components/RichText";
+import { VisualEditingWrapper } from "@/components/VisualEditingWrapper";
 import { cn } from "@/utilities/cn";
 
 import type { ContentBlock as ContentBlockProps } from "@/payload-types";
@@ -73,9 +74,16 @@ export const ContentBlock = (props: ContentBlockProps) => {
                 style={col.background ? { background: col.background } : {}}
                 key={index}
               >
-                {richText && <RichText data={richText} enableProse={enableProse ?? false} />}
+                <VisualEditingWrapper
+                  blockType="content-column"
+                  blockId={`content-col-${index}`}
+                  field="columns"
+                  isInlineEditable={true}
+                >
+                  {richText && <RichText data={richText} enableProse={enableProse ?? false} />}
 
-                {enableLink && <CMSLink {...link} />}
+                  {enableLink && <CMSLink {...link} />}
+                </VisualEditingWrapper>
               </div>
             );
           })}
