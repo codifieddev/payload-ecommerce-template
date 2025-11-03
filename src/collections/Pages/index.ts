@@ -25,6 +25,9 @@ import { generatePreviewPath } from "@/utilities/generatePreviewPath";
 import { revalidateDelete, revalidatePage } from "./hooks/revalidatePage";
 
 import type { Access, CollectionConfig } from "payload";
+import { TextBlock } from "@/blocks/Heading";
+import { LayoutBlock } from "@/blocks/Container";
+import { ButtonBlock } from "@/blocks/Button";
 
 const access: any = ({ req }) => {
   const user = req.user;
@@ -110,15 +113,35 @@ export const Pages: CollectionConfig<"pages"> = {
           fields: [hero],
           label: "Hero",
         },
+
         {
           fields: [
             {
               name: "layout",
               type: "blocks",
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion, Hotspot],
+              blocks: [
+                CallToAction,
+                Content,
+                MediaBlock,
+                Archive,
+                FormBlock,
+                Carousel,
+                Accordion,
+                Hotspot,
+                TextBlock,
+                LayoutBlock,
+                ButtonBlock,
+              ],
               required: true,
               admin: {
                 initCollapsed: true,
+              },
+            },
+            {
+              name: "Code",
+              type: "code",
+              admin: {
+                language: "HTML",
               },
             },
           ],

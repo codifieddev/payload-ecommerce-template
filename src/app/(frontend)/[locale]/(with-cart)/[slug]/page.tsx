@@ -63,7 +63,6 @@ const categories = [
 //   return params;
 // }
 
-
 export async function generateStaticParams() {
   const payload = await getPayload({ config });
   const pages = await payload.find({
@@ -126,7 +125,9 @@ export default async function Page({ params: paramsPromise }: Args) {
 
   setRequestLocale(locale);
 
-  const { hero, layout } = page;
+  const { hero, layout, Code } = page;
+
+  console.log(page);
 
   return (
     <article className="pt-16 pb-24">
@@ -143,6 +144,9 @@ export default async function Page({ params: paramsPromise }: Args) {
         cta={{ label: "Kupi nož" }}
         // bgImage="/assets/hero/hero-knife.jpg"
       />
+
+      <div dangerouslySetInnerHTML={{ __html: Code }} />
+
       <AboutKarloBan />
       <AboutStrip />
       <section className="container mx-auto px-4 py-10">
