@@ -203,7 +203,8 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
 
   const ogImage = getImageURL(meta?.image);
 
-  const title = meta?.title ? meta?.title + " | Karloban" : "Karloban";
+  const title = meta?.title ? meta?.title : "Default";
+  console.log(title)
 
   return {
     description: meta?.description,
