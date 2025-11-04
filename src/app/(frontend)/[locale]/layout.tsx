@@ -1,8 +1,7 @@
-// eslint-disable-next-line
 import { GeistMono } from "geist/font/mono";
-// eslint-disable-next-line
+
 import { GeistSans } from "geist/font/sans";
-// import { draftMode } from "next/headers";
+import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
@@ -10,7 +9,8 @@ import PlausibleProvider from "next-plausible";
 import { type ReactNode, unstable_ViewTransition as ViewTransition } from "react";
 
 import "../globals.css";
-// import { LivePreviewListener } from "@/components/LivePreviewListener";
+import { AdminBar } from "@/components/AdminBar";
+import { LivePreviewListener } from "@/components/LivePreviewListener";
 import { Footer } from "@/globals/Footer/Component";
 import { type Locale } from "@/i18n/config";
 import { routing } from "@/i18n/routing";
@@ -32,7 +32,7 @@ export default async function RootLayout({
   params: Promise<{ locale: string }>;
   children: ReactNode;
 }) {
-  // const { isEnabled } = await draftMode();
+  const { isEnabled } = await draftMode();
   const { locale } = await params;
 
   if (!routing.locales.includes(locale as Locale)) {
@@ -64,12 +64,13 @@ export default async function RootLayout({
               customDomain="plausible.pimento.cloud"
             />
             <NextIntlClientProvider locale={locale} messages={messages}>
-              {/* <AdminBar
-              adminBarProps={{
-                preview: isEnabled,
-              }}
-            /> */}
-              {/* {isEnabled && <LivePreviewListener />} */}
+              <AdminBar
+                adminBarProps={{
+                  preview: isEnabled,
+                }}
+              />
+              {isEnabled && <LivePreviewListener />}
+
               {children}
               <Footer />
             </NextIntlClientProvider>

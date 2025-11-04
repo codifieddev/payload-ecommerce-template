@@ -4,8 +4,11 @@ import { getPayload } from "payload";
 import React, { cache } from "react";
 
 import { RenderBlocks } from "@/blocks/RenderBlocks";
+import { LivePreviewListener } from "@/components/LivePreviewListener";
 import { PayloadRedirects } from "@/components/PayloadRedirects";
 import { RenderHero } from "@/components/heros/RenderHero";
+import { VisualEditingToolbar } from "@/components/VisualEditingToolbar";
+import { VisualEditingClient } from "@/components/VisualEditingClient";
 import { type Locale } from "@/i18n/config";
 import { routing } from "@/i18n/routing";
 import { generateMeta } from "@/utilities/generateMeta";
@@ -99,7 +102,7 @@ type Args = {
 };
 
 export default async function Page({ params: paramsPromise }: Args) {
-  // const { isEnabled: draft } = await draftMode();
+  const { isEnabled: draft } = await draftMode();
   const header = await headers();
   const domain = header.get("x-tenant-domain") || header.get("host") || "";
 
@@ -132,10 +135,13 @@ export default async function Page({ params: paramsPromise }: Args) {
   return (
     <article className="pt-16 pb-24">
       {/* <PageClient /> */}
+      <PageClient />
       {/* Allows redirects for valid pages too */}
       {!page && slug !== "home" && <PayloadRedirects locale={locale} url={url} />}
 
-      {/* {draft && <LivePreviewListener />} */}
+      {draft && <LivePreviewListener />}
+      {draft && <VisualEditingToolbar pageId={page?.id} pageSlug={slug} />}
+      {draft && <VisualEditingClient pageId={page?.id} />}
 
       {/* <RenderHero {...hero} /> */}
       <Hero
@@ -145,7 +151,7 @@ export default async function Page({ params: paramsPromise }: Args) {
         // bgImage="/assets/hero/hero-knife.jpg"
       />
 
-      <div dangerouslySetInnerHTML={{ __html: Code }} />
+      {/* <div dangerouslySetInnerHTML={{ __html: Code }} /> */}
 
       <AboutKarloBan />
       <AboutStrip />
@@ -166,6 +172,8 @@ export default async function Page({ params: paramsPromise }: Args) {
 
       {/* <RenderBlocks blocks={layout} /> */}
       <Testimonials />
+      <RenderHero {...hero} />
+      <RenderBlocks blocks={layout} pageId={page?.id} />
     </article>
   );
 }
