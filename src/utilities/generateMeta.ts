@@ -21,11 +21,13 @@ const getImageURL = (image?: Media | Config["db"]["defaultIDType"] | null) => {
 export const generateMeta = async (args: { doc: Partial<Page> | Partial<Post> }): Promise<Metadata> => {
   const { doc } = args || {};
 
+  console.log("====>>>", args)
+
   const ogImage = getImageURL(doc?.meta?.image);
 
   const title = doc?.meta?.title
-    ? doc?.meta?.title + " | Payload Ecommerce Template"
-    : "Payload Ecommerce Template";
+    ? doc?.meta?.title + " | Karloban"
+    : "Karloban";
 
   return {
     description: doc?.meta?.description,

@@ -23,6 +23,9 @@ import AboutKarloBan from "@/frontendComponents/sections/AboutKarloBan";
 import AboutStrip from "@/frontendComponents/sections/AboutStrip";
 import Testimonials from "@/frontendComponents/sections/Testimonials";
 import ProductTabsGrid from "@/frontendComponents/sections/ProductTabsGrid";
+import { mergeOpenGraph } from "@/utilities/mergeOpenGraph";
+import { Config, Media } from "@/payload-types";
+import { getServerSideURL } from "@/utilities/getURL";
 
 const pettyProducts: any = [
   { id: "p1", name: "Petty 173mm", priceEUR: 220, image: "/assets/products/product-img.png", size: "173mm" },
@@ -176,6 +179,23 @@ export default async function Page({ params: paramsPromise }: Args) {
   );
 }
 
+
+
+const getImageURL = (image?: Media | Config["db"]["defaultIDType"] | null) => {
+  const serverUrl = getServerSideURL();
+
+  let url = serverUrl + "/website-template-OG.webp";
+
+  if (image && typeof image === "object" && "url" in image) {
+    const ogUrl = image.sizes?.og?.url;
+
+    url = ogUrl ? serverUrl + ogUrl : serverUrl + image.url;
+  }
+
+  return url;
+};
+
+
 export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
   const { slug = "home", locale } = await paramsPromise;
   const page = await queryPageBySlug({
@@ -183,7 +203,32 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
     locale,
   });
 
-  return generateMeta({ doc: page! });
+  const meta = page?.meta
+
+  const ogImage = getImageURL(meta?.image);
+
+  const title = meta?.title
+    ? meta?.title + " | Karloban"
+    : "Karloban";
+
+  return {
+      description: meta?.description,
+      openGraph: mergeOpenGraph({
+        description: meta?.description ?? "",
+        images: ogImage
+          ? [
+              {
+                url: ogImage,
+              },
+            ]
+          : undefined,
+        title,
+        url: Array.isArray(page!.slug) ? page!.slug.join("/") : "/",
+      }),
+      title,
+    };
+
+  
 }
 
 const queryPageBySlug = cache(async ({ slug, locale }: { slug: string; locale: Locale }) => {
