@@ -172,7 +172,7 @@ export default function HeaderMinor({
             <a href="/" aria-label="Home">
         
                 <img
-                  src={logo}
+                  src={"/assets/Image/logo.svg"}
                   alt="Logo"
                   className="h-6 w-auto md:h-10 select-none"
                 />
@@ -196,7 +196,7 @@ export default function HeaderMinor({
               aria-label="Cart"
             >
               {/* <CartIcon className="h-5 w-5" /> */}
-              <img src={cart}></img>
+              <img src={"/assets/Image/cart.svg"}></img>
               {cartCount > 0 && (
                 <span className="absolute -right-1 -top-1 inline-flex h-4 min-w-[16px] items-center justify-center rounded-full bg-[#FF7020] px-1 text-[10px] font-bold text-white">
                   {cartCount}
