@@ -171,7 +171,7 @@ export default async function Page({ params: paramsPromise }: Args) {
       {/* <RenderBlocks blocks={layout} /> */}
       <Testimonials />
       {/* <RenderHero {...hero} /> */}
-      {/* <RenderBlocks blocks={layout} pageId={page?.id} /> */}
+      <RenderBlocks blocks={layout} pageId={page?.id} />
     </article>
   );
 }
