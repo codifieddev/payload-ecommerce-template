@@ -151,7 +151,7 @@ export default async function Page({ params: paramsPromise }: Args) {
         // bgImage="/assets/hero/hero-knife.jpg"
       />
 
-      {/* <div dangerouslySetInnerHTML={{ __html: Code }} /> */}
+      <div dangerouslySetInnerHTML={{ __html: Code }} />
 
       <AboutKarloBan />
       <AboutStrip />
@@ -172,8 +172,8 @@ export default async function Page({ params: paramsPromise }: Args) {
 
       {/* <RenderBlocks blocks={layout} /> */}
       <Testimonials />
-      <RenderHero {...hero} />
-      <RenderBlocks blocks={layout} pageId={page?.id} />
+      {/* <RenderHero {...hero} /> */}
+      {/* <RenderBlocks blocks={layout} pageId={page?.id} /> */}
     </article>
   );
 }

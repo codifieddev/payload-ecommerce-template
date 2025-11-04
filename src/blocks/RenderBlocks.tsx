@@ -48,7 +48,7 @@ export const RenderBlocks = ({ blocks, pageId }: { blocks: Page["layout"][0][]; 
                   field={`layout.${index}`}
                   className="block-wrapper"
                 >
-                  {/* @ts-expect-error - There can type be error, payload team did it like that */}
+                
                   <Block {...block} disableInnerContainer fieldPath={`layout.${index}`} />
                 </VisualEditingWrapper>
               );
