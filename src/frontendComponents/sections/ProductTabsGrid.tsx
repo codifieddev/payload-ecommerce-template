@@ -5,6 +5,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { fadeInUp, stagger } from "../anim";
+import Link from "next/link";
 
 export type Product = { id: string; name: string; priceEUR: number; image: string; size?: string };
 type Category = { id: string; label: string; products: Product[] };
@@ -32,6 +33,7 @@ export default function ProductTabsGrid({ categories }: { categories: Category[]
             >
               {c.products.map((p) => (
                 <motion.div key={p.id} variants={fadeInUp}>
+                  <Link href="/product/knife-1">
                   <Card className="group overflow-hidden">
                     <div className="aspect-[1/1] w-full overflow-hidden">
                       <img
@@ -53,6 +55,8 @@ export default function ProductTabsGrid({ categories }: { categories: Category[]
                       {/* <Button className="h-8 px-4 py-2 text-xs">Add To Bag</Button> */}
                     </CardFooter>
                   </Card>
+                  </Link>
+                  
                 </motion.div>
               ))}
             </motion.div>

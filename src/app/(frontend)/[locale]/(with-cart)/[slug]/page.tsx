@@ -88,9 +88,6 @@ export async function generateStaticParams() {
         slug,
       }));
   });
-
-  console.log("Generated static params:", params); // optional debug
-
   return params;
 }
 
@@ -151,7 +148,7 @@ export default async function Page({ params: paramsPromise }: Args) {
         // bgImage="/assets/hero/hero-knife.jpg"
       />
 
-      <div dangerouslySetInnerHTML={{ __html: Code }} />
+      {/* <div dangerouslySetInnerHTML={{ __html: Code }} /> */}
 
       <AboutKarloBan />
       <AboutStrip />
@@ -160,6 +157,7 @@ export default async function Page({ params: paramsPromise }: Args) {
         <h3 className="mb-1 inline-block w-full border-b border-gray-200 pb-2 text-[16px] font-medium text-[#FF7020]">
           Naši kuharski noževi
         </h3>
+
 
         {/* Section Description */}
         <p className="max-w-4xl text-[28px] leading-[160%] font-medium text-[#4F4640]">
