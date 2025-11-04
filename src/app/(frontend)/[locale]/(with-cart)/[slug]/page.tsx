@@ -194,22 +194,36 @@ const getImageURL = (image?: Media | Config["db"]["defaultIDType"] | null) => {
 
 export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
   const { slug = "home", locale } = await paramsPromise;
-  const page = await queryPageBySlug({
-    slug,
-    locale,
-  });
+
+  let page;
+  try {
+    page = await queryPageBySlug({
+      slug,
+      locale,
+    });
+  } catch (error) {
+    console.error("Error fetching page for metadata:", error);
+    page = null;
+  }
 
   const meta = page?.meta;
+  const ogImage = getImageURL(meta?.image as Media | Config["db"]["defaultIDType"] | null);
+  const title = meta?.title ? meta?.title + " | Karloban" : "Karloban";
 
-  const ogImage = getImageURL(meta?.image);
-
-  const title = meta?.title ? meta?.title : "Default";
-  console.log(title)
+  // Generate URL based on slug parameter if page is not available
+  const pageUrl = page?.slug
+    ? Array.isArray(page.slug)
+      ? page.slug.join("/")
+      : `/${page.slug}`
+    : slug === "home"
+      ? "/"
+      : `/${slug}`;
 
   return {
-    description: meta?.description,
+    description: meta?.description || "Autentični, 100% ručno kovani noževi. Izrađeni da nadžive generacije.",
     openGraph: mergeOpenGraph({
-      description: meta?.description ?? "",
+      description:
+        meta?.description ?? "Autentični, 100% ručno kovani noževi. Izrađeni da nadžive generacije.",
       images: ogImage
         ? [
             {
@@ -218,7 +232,7 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
           ]
         : undefined,
       title,
-      url: page?.slug ? (Array.isArray(page.slug) ? page.slug.join("/") : `/${page.slug}`) : "/",
+      url: pageUrl,
     }),
     title,
   };

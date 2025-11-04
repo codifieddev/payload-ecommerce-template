@@ -74,3 +74,28 @@ Follow these steps to get your ecommerce store up and running on your local mach
 - **Customizing Pages**: You can edit pages like 'About Us' or create new ones using the 'Pages' collection.
 
 Feel free to explore the admin panel to discover all the features!
+
+## 🔀 Git Workflow & Development
+
+For detailed instructions on working with branches, committing changes, and pushing code, please refer to our comprehensive **[Git Workflow Guide](./GIT_WORKFLOW.md)**.
+
+### Quick Start for Developers:
+```bash
+# Switch to development branch
+git checkout development
+
+# Create a new feature branch
+git checkout -b feature/your-feature-name
+
+# Make changes, stage, and commit
+git add .
+git commit -m "feat: add your feature description"
+
+# Push to remote
+git push -u origin feature/your-feature-name
+```
+
+### Current Branch Structure:
+- **`development`**: Main development branch
+- **`feature/*`**: Feature branches
+- **`hotfix/*`**: Critical bug fixes
