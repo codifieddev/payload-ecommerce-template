@@ -161,7 +161,6 @@ export default async function Page({ params: paramsPromise }: Args) {
           Naši kuharski noževi
         </h3>
 
-
         {/* Section Description */}
         <p className="max-w-4xl text-[28px] leading-[160%] font-medium text-[#4F4640]">
           Otkrijte kolekciju ručno kovanih noževa stvorenih za kuhare koji traže više od alata. Svaki model
@@ -179,8 +178,6 @@ export default async function Page({ params: paramsPromise }: Args) {
   );
 }
 
-
-
 const getImageURL = (image?: Media | Config["db"]["defaultIDType"] | null) => {
   const serverUrl = getServerSideURL();
 
@@ -195,7 +192,6 @@ const getImageURL = (image?: Media | Config["db"]["defaultIDType"] | null) => {
   return url;
 };
 
-
 export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
   const { slug = "home", locale } = await paramsPromise;
   const page = await queryPageBySlug({
@@ -203,32 +199,28 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
     locale,
   });
 
-  const meta = page?.meta
+  const meta = page?.meta;
 
   const ogImage = getImageURL(meta?.image);
 
-  const title = meta?.title
-    ? meta?.title + " | Karloban"
-    : "Karloban";
+  const title = meta?.title ? meta?.title + " | Karloban" : "Karloban";
 
   return {
-      description: meta?.description,
-      openGraph: mergeOpenGraph({
-        description: meta?.description ?? "",
-        images: ogImage
-          ? [
-              {
-                url: ogImage,
-              },
-            ]
-          : undefined,
-        title,
-        url: Array.isArray(page!.slug) ? page!.slug.join("/") : "/",
-      }),
+    description: meta?.description,
+    openGraph: mergeOpenGraph({
+      description: meta?.description ?? "",
+      images: ogImage
+        ? [
+            {
+              url: ogImage,
+            },
+          ]
+        : undefined,
       title,
-    };
-
-  
+      url: page?.slug ? (Array.isArray(page.slug) ? page.slug.join("/") : `/${page.slug}`) : "/",
+    }),
+    title,
+  };
 }
 
 const queryPageBySlug = cache(async ({ slug, locale }: { slug: string; locale: Locale }) => {
