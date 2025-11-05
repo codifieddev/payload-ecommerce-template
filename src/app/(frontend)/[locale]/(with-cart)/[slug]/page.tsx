@@ -129,7 +129,6 @@ export default async function Page({ params: paramsPromise }: Args) {
   setRequestLocale(locale);
 
   const { hero, layout, Code } = page;
-
   console.log(page);
 
   return (
@@ -143,13 +142,13 @@ export default async function Page({ params: paramsPromise }: Args) {
       {draft && <VisualEditingToolbar pageId={page?.id} pageSlug={slug} />}
       {draft && <VisualEditingClient pageId={page?.id} />}
 
-      {/* <RenderHero {...hero} /> */}
-      <Hero
+      <RenderHero {...hero} />
+      {/* <Hero
         title="Izuzetna oštrina nadomak ruke"
         subtitle="Autentični, 100% ručno kovani noževi. Izrađeni da nadžive generacije."
         cta={{ label: "Kupi nož" }}
         // bgImage="/assets/hero/hero-knife.jpg"
-      />
+      /> */}
 
       {/* <div dangerouslySetInnerHTML={{ __html: Code }} /> */}
 
@@ -170,10 +169,8 @@ export default async function Page({ params: paramsPromise }: Args) {
 
       <ProductTabsGrid categories={categories} />
 
-      {/* <RenderBlocks blocks={layout} /> */}
       <Testimonials />
-      {/* <RenderHero {...hero} /> */}
-      <RenderBlocks blocks={layout} pageId={page?.id} />
+      <RenderBlocks blocks={layout} />
     </article>
   );
 }
@@ -194,22 +191,36 @@ const getImageURL = (image?: Media | Config["db"]["defaultIDType"] | null) => {
 
 export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
   const { slug = "home", locale } = await paramsPromise;
-  const page = await queryPageBySlug({
-    slug,
-    locale,
-  });
+
+  let page;
+  try {
+    page = await queryPageBySlug({
+      slug,
+      locale,
+    });
+  } catch (error) {
+    console.error("Error fetching page for metadata:", error);
+    page = null;
+  }
 
   const meta = page?.meta;
+  const ogImage = getImageURL(meta?.image as Media | Config["db"]["defaultIDType"] | null);
+  const title = meta?.title ? meta?.title + " | Karloban" : "Karloban";
 
-  const ogImage = getImageURL(meta?.image);
-
-  const title = meta?.title ? meta?.title : "Default";
-  console.log(title)
+  // Generate URL based on slug parameter if page is not available
+  const pageUrl = page?.slug
+    ? Array.isArray(page.slug)
+      ? page.slug.join("/")
+      : `/${page.slug}`
+    : slug === "home"
+      ? "/"
+      : `/${slug}`;
 
   return {
-    description: meta?.description,
+    description: meta?.description || "Autentični, 100% ručno kovani noževi. Izrađeni da nadžive generacije.",
     openGraph: mergeOpenGraph({
-      description: meta?.description ?? "",
+      description:
+        meta?.description ?? "Autentični, 100% ručno kovani noževi. Izrađeni da nadžive generacije.",
       images: ogImage
         ? [
             {
@@ -218,7 +229,7 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
           ]
         : undefined,
       title,
-      url: page?.slug ? (Array.isArray(page.slug) ? page.slug.join("/") : `/${page.slug}`) : "/",
+      url: pageUrl,
     }),
     title,
   };

@@ -4,12 +4,13 @@ import { MediumImpactHero } from "@/components/heros/MediumImpact";
 
 import type { Page } from "@/payload-types";
 import { VideoModalHero } from "./VideoModal";
+import Hero from "@/frontendComponents/Hero";
 
 const heroes = {
   highImpact: HighImpactHero,
   lowImpact: LowImpactHero,
   mediumImpact: MediumImpactHero,
-  videoModal: VideoModalHero,
+  videoModal: Hero,
 };
 
 export const RenderHero = (props: Page["hero"]) => {
