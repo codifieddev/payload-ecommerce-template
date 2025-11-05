@@ -49,6 +49,7 @@ export const RenderBlocks = ({ blocks, pageId }: { blocks: Page["layout"][0][]; 
                   className="block-wrapper"
                 >
                 
+                 
                   <Block {...block} disableInnerContainer fieldPath={`layout.${index}`} />
                 </VisualEditingWrapper>
               );
