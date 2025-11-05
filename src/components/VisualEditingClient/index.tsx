@@ -79,25 +79,149 @@ export function VisualEditingClient({ pageId, collection = "pages" }: VisualEdit
         saveBtn.disabled = true;
 
         try {
-          // Use Next.js API route to avoid CORS issues
-          const response = await fetch("/api/update-content", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            credentials: "include",
-            body: JSON.stringify({
-              collection: blockData.collection,
-              docId: blockData.docId,
-              field: blockData.field,
-              value: newText,
-            }),
-          });
+          // Extract block information from the field path
+          // Expected format: layout.0.blocks.1.heading or similar
+          const fieldParts = blockData.field.split(".");
 
-          const result = await response.json();
+          // Parse the field path to extract layoutId, blockId, and blockType
+          let layoutId: string | undefined;
+          let blockId: string | undefined;
+          let blockType: string | undefined;
+          let actualField = blockData.field;
 
-          if (!response.ok || !result.success) {
-            throw new Error(String(result.error || "Save failed"));
+          // Get layout and block IDs from data attributes if available
+          const blockElement = element.closest('[data-visual-editing="true"]');
+          if (blockElement) {
+            layoutId = blockElement.getAttribute("data-layout-id") || undefined;
+            blockId = blockElement.getAttribute("data-block-id") || undefined;
+            blockType = blockElement.getAttribute("data-block-type") || undefined;
+
+            // Get the actual field name (without the layout/block path)
+            const fieldAttr = element.getAttribute("data-editable-field");
+            if (fieldAttr) {
+              actualField = fieldAttr;
+            }
           }
 
+          // Prepare the update request payload
+          const updatePayload: any = {
+            collection: blockData.collection,
+            docId: blockData.docId,
+            field: actualField,
+            value: newText,
+          };
+
+          // Add block-specific parameters if available
+          if (blockType && blockId && layoutId) {
+            updatePayload.blockType = blockType;
+            updatePayload.blockId = blockId;
+            updatePayload.layoutId = layoutId;
+          }
+
+          console.log("📤 Sending update request:", updatePayload);
+
+          // Step 1: Fetch the entire page with depth=0 to get IDs only
+          const fetchResponse = await fetch(
+            `/api/${blockData.collection}/${blockData.docId}?depth=0&locale=en`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              credentials: "include",
+            },
+          );
+
+          if (!fetchResponse.ok) {
+            throw new Error("Failed to fetch page data");
+          }
+
+          const pageData = await fetchResponse.json();
+          console.log("📄 Fetched page data:", pageData);
+
+          // Step 2: Clone the page data
+          const updatedData = JSON.parse(JSON.stringify(pageData));
+
+          // Step 3: Find layout and block based on their IDs and update the field
+          if (layoutId && blockId && blockType) {
+            // Find the layout block by ID
+            const layoutBlock = updatedData.layout?.find((lay: any) => lay.id === layoutId);
+
+            if (!layoutBlock) {
+              throw new Error(`Layout block not found with ID: ${layoutId}`);
+            }
+
+            console.log("✅ Found layout block:", layoutBlock);
+
+            // Find the nested block within the layout
+            const block = layoutBlock.blocks?.find((b: any) => b.id === blockId && b.blockType === blockType);
+
+            if (!block) {
+              throw new Error(`Block not found with ID: ${blockId} and type: ${blockType}`);
+            }
+
+            console.log("✅ Found target block:", block);
+
+            // Step 4: Update the respective field
+            const fieldParts = actualField.split(".");
+            let current = block;
+
+            // Navigate to the field and update it
+            for (let i = 0; i < fieldParts.length - 1; i++) {
+              const part = fieldParts[i];
+              if (!current[part]) {
+                current[part] = {};
+              }
+              current = current[part];
+            }
+
+            const lastPart = fieldParts[fieldParts.length - 1];
+            current[lastPart] = newText;
+
+            console.log(`✅ Updated field: ${actualField} = "${newText}"`);
+          } else {
+            // Handle regular field updates (non-block fields)
+            const fieldParts = actualField.split(".");
+            let current = updatedData;
+
+            for (let i = 0; i < fieldParts.length - 1; i++) {
+              const part = fieldParts[i];
+              if (!current[part]) {
+                current[part] = {};
+              }
+              current = current[part];
+            }
+
+            const lastPart = fieldParts[fieldParts.length - 1];
+            current[lastPart] = newText;
+          }
+
+          // Remove the 'id' field as it shouldn't be in the PATCH payload
+          delete updatedData.id;
+
+          console.log("📦 Prepared data for update:", updatedData);
+
+          // Step 5: Save the updated data back with query parameters
+          const saveResponse = await fetch(
+            `/api/${blockData.collection}/${blockData.docId}?draft=true&locale=en`,
+            {
+              method: "PATCH",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              credentials: "include",
+              body: JSON.stringify(updatedData),
+            },
+          );
+
+          const result = await saveResponse.json();
+
+          if (!saveResponse.ok) {
+            console.error("Save error:", result);
+            throw new Error(String(result.error || result.message || "Save failed"));
+          }
+
+          console.log("✅ Successfully saved:", result);
           showToast("✅ Content saved successfully!", "success");
           closeModal();
 

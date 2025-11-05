@@ -4,10 +4,18 @@ import configPromise from "@payload-config";
 
 export async function POST(req: NextRequest) {
   try {
+    // Parse request body
     const { collection, docId, field, value } = await req.json();
 
+    // Validate required fields
     if (!collection || !docId || !field || value === undefined) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+      return NextResponse.json(
+        { 
+          success: false,
+          error: "Missing required fields" 
+        }, 
+        { status: 400 }
+      );
     }
 
     const valuePreview =
@@ -23,11 +31,12 @@ export async function POST(req: NextRequest) {
     const payload = await getPayload({ config: configPromise });
 
     // Fetch the current document with all data
+    // Using depth: 0 to get relationship IDs instead of populated objects
     const currentDoc = await payload.findByID({
       collection,
       id: docId,
-      depth: 0, // Use depth 0 to get IDs instead of populated objects
-      overrideAccess: true, // Bypass access control to ensure we get the document
+      depth: 0,
+      overrideAccess: true,
     });
 
     if (!currentDoc) {
@@ -147,11 +156,14 @@ export async function POST(req: NextRequest) {
     );
 
     // Update the document with the entire page data
+    // Using Local API as recommended for Next.js server-side operations
     const updatedDoc = await payload.update({
       collection,
       id: docId,
       data: pageData,
-      overrideAccess: true, // Bypass access control to ensure the update succeeds
+      depth: 0, // Return IDs instead of populated objects
+      overrideAccess: true,
+      showHiddenFields: false,
     });
 
     console.log("✅ Update successful!");

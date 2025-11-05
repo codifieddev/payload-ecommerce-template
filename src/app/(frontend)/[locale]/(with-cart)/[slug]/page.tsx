@@ -151,9 +151,9 @@ export default async function Page({ params: paramsPromise }: Args) {
       /> */}
 
       {/* <div dangerouslySetInnerHTML={{ __html: Code }} /> */}
-
+{/* 
       <AboutKarloBan />
-      <AboutStrip />
+      <AboutStrip /> */}
       <section className="container mx-auto px-4 py-10">
         {/* Section Title */}
         <h3 className="mb-1 inline-block w-full border-b border-gray-200 pb-2 text-[16px] font-medium text-[#FF7020]">
