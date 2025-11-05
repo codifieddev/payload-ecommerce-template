@@ -126,7 +126,6 @@ export default async function Page({ params: paramsPromise }: Args) {
   setRequestLocale(locale);
 
   const { hero, layout, Code } = page;
-
   console.log(page);
 
   return (
@@ -137,15 +136,15 @@ export default async function Page({ params: paramsPromise }: Args) {
 
       {/* {draft && <LivePreviewListener />} */}
 
-      {/* <RenderHero {...hero} /> */}
-      <Hero
+      <RenderHero {...hero} />
+      {/* <Hero
         title="Izuzetna oštrina nadomak ruke"
         subtitle="Autentični, 100% ručno kovani noževi. Izrađeni da nadžive generacije."
         cta={{ label: "Kupi nož" }}
         // bgImage="/assets/hero/hero-knife.jpg"
-      />
+      /> */}
 
-      <div dangerouslySetInnerHTML={{ __html: Code }} />
+      {/* <div dangerouslySetInnerHTML={{ __html: Code }} /> */}
 
       <AboutKarloBan />
       <AboutStrip />
@@ -164,8 +163,8 @@ export default async function Page({ params: paramsPromise }: Args) {
 
       <ProductTabsGrid categories={categories} />
 
-      {/* <RenderBlocks blocks={layout} /> */}
       <Testimonials />
+      <RenderBlocks blocks={layout} />
     </article>
   );
 }

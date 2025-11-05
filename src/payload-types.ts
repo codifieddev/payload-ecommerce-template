@@ -283,52 +283,6 @@ export interface Page {
     | AccordionBlock
     | HotspotBlock
     | {
-        textType: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'paragraph' | 'blockquote' | 'code';
-        content: string;
-        textAlign?: ('left' | 'center' | 'right' | 'justify') | null;
-        textColor?: ('default' | 'primary' | 'secondary' | 'accent' | 'muted' | 'custom') | null;
-        customTextColor?: string | null;
-        fontSize?: ('xs' | 'sm' | 'default' | 'lg' | 'xl' | '2xl' | '3xl' | 'custom') | null;
-        customFontSize?: string | null;
-        fontWeight?: ('light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold') | null;
-        lineHeight?: ('tight' | 'normal' | 'relaxed' | 'loose') | null;
-        letterSpacing?: ('tighter' | 'tight' | 'normal' | 'wide' | 'wider' | 'widest') | null;
-        textTransform?: ('none' | 'uppercase' | 'lowercase' | 'capitalize') | null;
-        fontFamily?: ('default' | 'sans' | 'serif' | 'mono') | null;
-        backgroundColor?: ('transparent' | 'light' | 'dark' | 'primary' | 'secondary' | 'custom') | null;
-        customBackgroundColor?: string | null;
-        padding?: {
-          top?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-          bottom?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-          left?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-          right?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-        };
-        margin?: {
-          top?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-          bottom?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-        };
-        maxWidth?: ('full' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
-        /**
-         * Make the entire text block clickable
-         */
-        link?: {
-          enable?: boolean | null;
-          url?: string | null;
-          newTab?: boolean | null;
-          rel?: ('none' | 'nofollow' | 'noopener' | 'noreferrer' | 'noopener noreferrer') | null;
-          linkStyle?: ('default' | 'underline' | 'no-underline' | 'hover-underline') | null;
-          linkColor?: ('inherit' | 'primary' | 'secondary' | 'accent' | 'custom') | null;
-          customLinkColor?: string | null;
-        };
-        /**
-         * Add custom CSS classes for additional styling
-         */
-        className?: string | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'textBlock';
-      }
-    | {
         layoutType:
           | 'single-column'
           | 'two-columns'
@@ -419,85 +373,134 @@ export interface Page {
                * Optional label for this column
                */
               columnName?: string | null;
-              content?: {
-                root: {
-                  type: string;
-                  children: {
-                    type: string;
-                    version: number;
-                    [k: string]: unknown;
-                  }[];
-                  direction: ('ltr' | 'rtl') | null;
-                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                  indent: number;
-                  version: number;
-                };
-                [k: string]: unknown;
-              } | null;
+              content?:
+                | (
+                    | {
+                        textType: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'paragraph' | 'blockquote' | 'code';
+                        content: string;
+                        textAlign?: ('left' | 'center' | 'right' | 'justify') | null;
+                        textColor?: ('default' | 'primary' | 'secondary' | 'accent' | 'muted' | 'custom') | null;
+                        customTextColor?: string | null;
+                        fontSize?: ('xs' | 'sm' | 'default' | 'lg' | 'xl' | '2xl' | '3xl' | 'custom') | null;
+                        customFontSize?: string | null;
+                        fontWeight?: ('light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold') | null;
+                        lineHeight?: ('tight' | 'normal' | 'relaxed' | 'loose') | null;
+                        letterSpacing?: ('tighter' | 'tight' | 'normal' | 'wide' | 'wider' | 'widest') | null;
+                        textTransform?: ('none' | 'uppercase' | 'lowercase' | 'capitalize') | null;
+                        fontFamily?: ('default' | 'sans' | 'serif' | 'mono') | null;
+                        backgroundColor?:
+                          | ('transparent' | 'light' | 'dark' | 'primary' | 'secondary' | 'custom')
+                          | null;
+                        customBackgroundColor?: string | null;
+                        padding?: {
+                          top?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+                          bottom?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+                          left?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+                          right?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+                        };
+                        margin?: {
+                          top?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+                          bottom?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+                        };
+                        maxWidth?: ('full' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
+                        /**
+                         * Make the entire text block clickable
+                         */
+                        link?: {
+                          enable?: boolean | null;
+                          url?: string | null;
+                          newTab?: boolean | null;
+                          rel?: ('none' | 'nofollow' | 'noopener' | 'noreferrer' | 'noopener noreferrer') | null;
+                          linkStyle?: ('default' | 'underline' | 'no-underline' | 'hover-underline') | null;
+                          linkColor?: ('inherit' | 'primary' | 'secondary' | 'accent' | 'custom') | null;
+                          customLinkColor?: string | null;
+                        };
+                        /**
+                         * Add custom CSS classes for additional styling
+                         */
+                        className?: string | null;
+                        id?: string | null;
+                        blockName?: string | null;
+                        blockType: 'textBlock';
+                      }
+                    | {
+                        label: string;
+                        link: {
+                          type: 'external' | 'internal' | 'email' | 'phone' | 'anchor';
+                          url?: string | null;
+                          page?: (string | null) | Page;
+                          email?: string | null;
+                          phone?: string | null;
+                          anchor?: string | null;
+                          newTab?: boolean | null;
+                          rel?:
+                            | ('none' | 'nofollow' | 'noopener' | 'noreferrer' | 'noopener noreferrer' | 'sponsored')
+                            | null;
+                        };
+                        icon?: {
+                          enable?: boolean | null;
+                          /**
+                           * e.g., "arrow-right" or icon class from your icon library
+                           */
+                          iconName?: string | null;
+                          position?: ('left' | 'right') | null;
+                          iconSize?: ('sm' | 'md' | 'lg') | null;
+                        };
+                        variant:
+                          | 'primary'
+                          | 'secondary'
+                          | 'outline'
+                          | 'ghost'
+                          | 'link'
+                          | 'destructive'
+                          | 'success'
+                          | 'custom';
+                        customColors?: {
+                          backgroundColor?: string | null;
+                          textColor?: string | null;
+                          hoverBackgroundColor?: string | null;
+                          hoverTextColor?: string | null;
+                          borderColor?: string | null;
+                        };
+                        size?: ('xs' | 'sm' | 'md' | 'lg' | 'xl') | null;
+                        fullWidth?: boolean | null;
+                        alignment?: ('left' | 'center' | 'right') | null;
+                        borderRadius?: ('none' | 'sm' | 'md' | 'lg' | 'xl' | 'full') | null;
+                        shadow?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+                        fontWeight?: ('normal' | 'medium' | 'semibold' | 'bold') | null;
+                        textTransform?: ('none' | 'uppercase' | 'lowercase' | 'capitalize') | null;
+                        animation?:
+                          | ('none' | 'scale-up' | 'scale-down' | 'lift' | 'slide-right' | 'pulse' | 'bounce')
+                          | null;
+                        disabled?: boolean | null;
+                        /**
+                         * Accessibility label for screen readers (optional)
+                         */
+                        ariaLabel?: string | null;
+                        padding?: {
+                          horizontal?: ('default' | 'sm' | 'md' | 'lg' | 'xl') | null;
+                          vertical?: ('default' | 'sm' | 'md' | 'lg' | 'xl') | null;
+                        };
+                        margin?: {
+                          top?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+                          bottom?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+                        };
+                        /**
+                         * Add custom CSS classes for additional styling
+                         */
+                        className?: string | null;
+                        id?: string | null;
+                        blockName?: string | null;
+                        blockType: 'buttonBlock';
+                      }
+                  )[]
+                | null;
               id?: string | null;
             }[]
           | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'layoutBlock';
-      }
-    | {
-        label: string;
-        link: {
-          type: 'external' | 'internal' | 'email' | 'phone' | 'anchor';
-          url?: string | null;
-          page?: (string | null) | Page;
-          email?: string | null;
-          phone?: string | null;
-          anchor?: string | null;
-          newTab?: boolean | null;
-          rel?: ('none' | 'nofollow' | 'noopener' | 'noreferrer' | 'noopener noreferrer' | 'sponsored') | null;
-        };
-        icon?: {
-          enable?: boolean | null;
-          /**
-           * e.g., "arrow-right" or icon class from your icon library
-           */
-          iconName?: string | null;
-          position?: ('left' | 'right') | null;
-          iconSize?: ('sm' | 'md' | 'lg') | null;
-        };
-        variant: 'primary' | 'secondary' | 'outline' | 'ghost' | 'link' | 'destructive' | 'success' | 'custom';
-        customColors?: {
-          backgroundColor?: string | null;
-          textColor?: string | null;
-          hoverBackgroundColor?: string | null;
-          hoverTextColor?: string | null;
-          borderColor?: string | null;
-        };
-        size?: ('xs' | 'sm' | 'md' | 'lg' | 'xl') | null;
-        fullWidth?: boolean | null;
-        alignment?: ('left' | 'center' | 'right') | null;
-        borderRadius?: ('none' | 'sm' | 'md' | 'lg' | 'xl' | 'full') | null;
-        shadow?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-        fontWeight?: ('normal' | 'medium' | 'semibold' | 'bold') | null;
-        textTransform?: ('none' | 'uppercase' | 'lowercase' | 'capitalize') | null;
-        animation?: ('none' | 'scale-up' | 'scale-down' | 'lift' | 'slide-right' | 'pulse' | 'bounce') | null;
-        disabled?: boolean | null;
-        /**
-         * Accessibility label for screen readers (optional)
-         */
-        ariaLabel?: string | null;
-        padding?: {
-          horizontal?: ('default' | 'sm' | 'md' | 'lg' | 'xl') | null;
-          vertical?: ('default' | 'sm' | 'md' | 'lg' | 'xl') | null;
-        };
-        margin?: {
-          top?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-          bottom?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-        };
-        /**
-         * Add custom CSS classes for additional styling
-         */
-        className?: string | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'buttonBlock';
       }
   )[];
   Code?: string | null;
@@ -2116,53 +2119,6 @@ export interface PagesSelect<T extends boolean = true> {
         carousel?: T | CarouselBlockSelect<T>;
         accordion?: T | AccordionBlockSelect<T>;
         hotspotZone?: T | HotspotBlockSelect<T>;
-        textBlock?:
-          | T
-          | {
-              textType?: T;
-              content?: T;
-              textAlign?: T;
-              textColor?: T;
-              customTextColor?: T;
-              fontSize?: T;
-              customFontSize?: T;
-              fontWeight?: T;
-              lineHeight?: T;
-              letterSpacing?: T;
-              textTransform?: T;
-              fontFamily?: T;
-              backgroundColor?: T;
-              customBackgroundColor?: T;
-              padding?:
-                | T
-                | {
-                    top?: T;
-                    bottom?: T;
-                    left?: T;
-                    right?: T;
-                  };
-              margin?:
-                | T
-                | {
-                    top?: T;
-                    bottom?: T;
-                  };
-              maxWidth?: T;
-              link?:
-                | T
-                | {
-                    enable?: T;
-                    url?: T;
-                    newTab?: T;
-                    rel?: T;
-                    linkStyle?: T;
-                    linkColor?: T;
-                    customLinkColor?: T;
-                  };
-              className?: T;
-              id?: T;
-              blockName?: T;
-            };
         layoutBlock?:
           | T
           | {
@@ -2235,69 +2191,119 @@ export interface PagesSelect<T extends boolean = true> {
                 | T
                 | {
                     columnName?: T;
-                    content?: T;
+                    content?:
+                      | T
+                      | {
+                          textBlock?:
+                            | T
+                            | {
+                                textType?: T;
+                                content?: T;
+                                textAlign?: T;
+                                textColor?: T;
+                                customTextColor?: T;
+                                fontSize?: T;
+                                customFontSize?: T;
+                                fontWeight?: T;
+                                lineHeight?: T;
+                                letterSpacing?: T;
+                                textTransform?: T;
+                                fontFamily?: T;
+                                backgroundColor?: T;
+                                customBackgroundColor?: T;
+                                padding?:
+                                  | T
+                                  | {
+                                      top?: T;
+                                      bottom?: T;
+                                      left?: T;
+                                      right?: T;
+                                    };
+                                margin?:
+                                  | T
+                                  | {
+                                      top?: T;
+                                      bottom?: T;
+                                    };
+                                maxWidth?: T;
+                                link?:
+                                  | T
+                                  | {
+                                      enable?: T;
+                                      url?: T;
+                                      newTab?: T;
+                                      rel?: T;
+                                      linkStyle?: T;
+                                      linkColor?: T;
+                                      customLinkColor?: T;
+                                    };
+                                className?: T;
+                                id?: T;
+                                blockName?: T;
+                              };
+                          buttonBlock?:
+                            | T
+                            | {
+                                label?: T;
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      url?: T;
+                                      page?: T;
+                                      email?: T;
+                                      phone?: T;
+                                      anchor?: T;
+                                      newTab?: T;
+                                      rel?: T;
+                                    };
+                                icon?:
+                                  | T
+                                  | {
+                                      enable?: T;
+                                      iconName?: T;
+                                      position?: T;
+                                      iconSize?: T;
+                                    };
+                                variant?: T;
+                                customColors?:
+                                  | T
+                                  | {
+                                      backgroundColor?: T;
+                                      textColor?: T;
+                                      hoverBackgroundColor?: T;
+                                      hoverTextColor?: T;
+                                      borderColor?: T;
+                                    };
+                                size?: T;
+                                fullWidth?: T;
+                                alignment?: T;
+                                borderRadius?: T;
+                                shadow?: T;
+                                fontWeight?: T;
+                                textTransform?: T;
+                                animation?: T;
+                                disabled?: T;
+                                ariaLabel?: T;
+                                padding?:
+                                  | T
+                                  | {
+                                      horizontal?: T;
+                                      vertical?: T;
+                                    };
+                                margin?:
+                                  | T
+                                  | {
+                                      top?: T;
+                                      bottom?: T;
+                                    };
+                                className?: T;
+                                id?: T;
+                                blockName?: T;
+                              };
+                        };
                     id?: T;
                   };
-              id?: T;
-              blockName?: T;
-            };
-        buttonBlock?:
-          | T
-          | {
-              label?: T;
-              link?:
-                | T
-                | {
-                    type?: T;
-                    url?: T;
-                    page?: T;
-                    email?: T;
-                    phone?: T;
-                    anchor?: T;
-                    newTab?: T;
-                    rel?: T;
-                  };
-              icon?:
-                | T
-                | {
-                    enable?: T;
-                    iconName?: T;
-                    position?: T;
-                    iconSize?: T;
-                  };
-              variant?: T;
-              customColors?:
-                | T
-                | {
-                    backgroundColor?: T;
-                    textColor?: T;
-                    hoverBackgroundColor?: T;
-                    hoverTextColor?: T;
-                    borderColor?: T;
-                  };
-              size?: T;
-              fullWidth?: T;
-              alignment?: T;
-              borderRadius?: T;
-              shadow?: T;
-              fontWeight?: T;
-              textTransform?: T;
-              animation?: T;
-              disabled?: T;
-              ariaLabel?: T;
-              padding?:
-                | T
-                | {
-                    horizontal?: T;
-                    vertical?: T;
-                  };
-              margin?:
-                | T
-                | {
-                    top?: T;
-                    bottom?: T;
-                  };
-              className?: T;
               id?: T;
               blockName?: T;
             };

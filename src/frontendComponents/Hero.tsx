@@ -5,10 +5,11 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Play } from "lucide-react";
 import { Dialog, DialogContent, DialogOverlay } from "@/components/ui/dialog";
-// import ReactPlayer from "react-player";
+import ReactPlayer from "react-player";
 
 // import bgImages from "../../../public/assets/hero/hero-img.png";
 import { fadeInUp } from "./anim";
+import { Page } from "@/payload-types";
 
 // ✅ Public demo background + fallback
 const bgImages =
@@ -23,12 +24,9 @@ type HeroProps = {
   videoUrl?: string;
 };
 
-export default function Hero({
-  title = "Izuzetna oštrina nadomak ruke",
-  subtitle = "Autentični, 100% ručno kovani noževi, izrađeni da nadžive generacije.",
-  cta = { label: "Kuharski Noževi" },
-  videoUrl = "https://www.w3schools.com/html/mov_bbb.mp4", // ✅ sample video
-}: HeroProps) {
+export default function Hero(props: Page["hero"]) {
+  const { links, video_backgroundColor, video_description, video_heading, video_subheading, video_url } =
+    props;
   const [open, setOpen] = useState(false);
   const [videoError, setVideoError] = useState(false);
 
@@ -37,7 +35,9 @@ export default function Hero({
       {/* 🔹 Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center transition-all duration-700"
-        style={{ backgroundImage: `url(${bgImages})` }}
+        style={{
+          backgroundColor: video_backgroundColor || "#000000",
+        }}
         aria-hidden
       />
       <div className="absolute inset-0 bg-black/60" />
@@ -58,35 +58,34 @@ export default function Hero({
         </motion.button>
 
         {/* 🔹 Title */}
-        <motion.h1
-          variants={fadeInUp}
-          initial="hidden"
-          animate="show"
-          className="text-4xl leading-tight font-semibold text-white sm:text-5xl lg:text-[60px]"
-        >
-          {title}
-        </motion.h1>
+        {video_heading && (
+          <motion.h1
+            variants={fadeInUp}
+            initial="hidden"
+            animate="show"
+            className="text-4xl leading-tight font-semibold text-white sm:text-5xl lg:text-[60px]"
+          >
+            {video_heading}
+          </motion.h1>
+        )}
 
         {/* 🔹 Subtitle */}
-        {subtitle && (
+        {video_subheading && (
           <motion.p
             variants={fadeInUp}
             initial="hidden"
             animate="show"
             className="mt-4 max-w-2xl text-base font-medium text-white/90 italic"
           >
-            {subtitle}
+            {video_subheading}
           </motion.p>
         )}
 
         {/* 🔹 CTA Button */}
-        {cta && (
+        {links && (
           <motion.div variants={fadeInUp} initial="hidden" animate="show" className="mt-6">
-            <Button
-              onClick={cta.onClick}
-              className="h-auto rounded-full bg-orange-500 px-6 py-3 text-white shadow-md hover:bg-orange-600"
-            >
-              {cta.label}
+            <Button className="h-auto rounded-full bg-orange-500 px-6 py-3 text-white shadow-md hover:bg-orange-600">
+              {"links"}
             </Button>
           </motion.div>
         )}
@@ -98,12 +97,10 @@ export default function Hero({
         <DialogContent className="relative z-50 max-w-3xl overflow-hidden rounded-xl bg-black p-0">
           <div className="relative aspect-video bg-black">
             {videoError ? (
-              <img src={fallbackImg} alt="Fallback" className="h-full w-full object-cover" />
+              <img src={video_backgroundColor!} alt="Fallback" className="h-full w-full object-cover" />
             ) : (
               <>
-                hi
-                {/* <ReactPlayer
-                  // url={videoUrl}
+                <ReactPlayer
                   width="100%"
                   height="100%"
                   controls
@@ -112,7 +109,8 @@ export default function Hero({
                   loop
                   onError={() => setVideoError(true)}
                   className="absolute top-0 left-0"
-                /> */}
+                  oEmbedUrl={video_url}
+                />
               </>
             )}
           </div>

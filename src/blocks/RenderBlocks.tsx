@@ -9,6 +9,7 @@ import { AccordionBlock } from "./Accordion/Component";
 import { CarouselBlock } from "./Carousel/Component";
 
 import type { Page } from "@/payload-types";
+import LayoutBlockRenderer from "./Container/component";
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -20,10 +21,12 @@ const blockComponents = {
   mediaBlock: MediaBlock,
   accordion: AccordionBlock,
   hotspotZone: HotspotBlock,
+  layoutBlock: LayoutBlockRenderer,
 };
 
 export const RenderBlocks = ({ blocks }: { blocks: Page["layout"][0][] }) => {
   const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0;
+  console.log(blocks);
 
   if (hasBlocks) {
     return (
@@ -35,9 +38,16 @@ export const RenderBlocks = ({ blocks }: { blocks: Page["layout"][0][] }) => {
             const Block = blockComponents[blockType];
 
             if (Block) {
+              // LayoutBlockRenderer expects a 'block' prop, others expect spread props
+              if (blockType === "layoutBlock") {
+                return (
+                  <div key={index}>
+                    <Block block={block} />
+                  </div>
+                );
+              }
               return (
                 <div key={index}>
-                  {/* @ts-expect-error - There can type be error, payload team did it like that */}
                   <Block {...block} disableInnerContainer />
                 </div>
               );
