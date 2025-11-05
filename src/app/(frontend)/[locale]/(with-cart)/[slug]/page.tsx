@@ -129,7 +129,6 @@ export default async function Page({ params: paramsPromise }: Args) {
   setRequestLocale(locale);
 
   const { hero, layout, Code } = page;
-
   console.log(page);
 
   return (
@@ -143,13 +142,13 @@ export default async function Page({ params: paramsPromise }: Args) {
       {draft && <VisualEditingToolbar pageId={page?.id} pageSlug={slug} />}
       {draft && <VisualEditingClient pageId={page?.id} />}
 
-      {/* <RenderHero {...hero} /> */}
-      <Hero
+      <RenderHero {...hero} />
+      {/* <Hero
         title="Izuzetna oštrina nadomak ruke"
         subtitle="Autentični, 100% ručno kovani noževi. Izrađeni da nadžive generacije."
         cta={{ label: "Kupi nož" }}
         // bgImage="/assets/hero/hero-knife.jpg"
-      />
+      /> */}
 
       {/* <div dangerouslySetInnerHTML={{ __html: Code }} /> */}
 
@@ -170,10 +169,8 @@ export default async function Page({ params: paramsPromise }: Args) {
 
       <ProductTabsGrid categories={categories} />
 
-      {/* <RenderBlocks blocks={layout} /> */}
       <Testimonials />
-      {/* <RenderHero {...hero} /> */}
-      <RenderBlocks blocks={layout} pageId={page?.id} />
+      <RenderBlocks blocks={layout} />
     </article>
   );
 }

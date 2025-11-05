@@ -57,6 +57,7 @@ const access: any = ({ req }) => {
 
 export const Pages: CollectionConfig<"pages"> = {
   slug: "pages",
+
   access: {
     admin: superAdminOnlyAdmin,
     create: superAdminOnly,
@@ -114,7 +115,6 @@ export const Pages: CollectionConfig<"pages"> = {
           fields: [hero],
           label: "Hero",
         },
-
         {
           fields: [
             {
@@ -132,7 +132,6 @@ export const Pages: CollectionConfig<"pages"> = {
                 AboutPage,
                 TextBlock,
                 LayoutBlock,
-                ButtonBlock,
               ],
               required: true,
               admin: {
