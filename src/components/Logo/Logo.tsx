@@ -22,7 +22,7 @@ export const Logo = (props: Props) => {
       fetchPriority={priority}
       decoding="async"
       className={clsx("-my-7 h-[88px] w-full max-w-37.5", className)}
-      src="/mandala.svg"
+      src="/assets/Image/logo.svg"
     />
   );
 };

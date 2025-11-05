@@ -76,7 +76,7 @@ const ProductPage = async ({
                 returns="We want you to be happy with your tools. If you're not, for any reason, you're welcome to return them within 14 days of the original purchase date. Returned items must be in new, unused condition. Due to the nature of handmade & one-of-a-kind objects, we reserve the right to charge up to 15% in restocking fees. If you have any questions, contact us anytime."
               />
 
-              <RecommendedList
+              {/* <RecommendedList
                 items={[
                   {
                     id: "r1",
@@ -95,7 +95,7 @@ const ProductPage = async ({
                       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
                   },
                 ]}
-              />
+              /> */}
             </div>
           </div>
         </div>

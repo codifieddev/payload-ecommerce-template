@@ -4,8 +4,11 @@ import { getPayload } from "payload";
 import React, { cache } from "react";
 
 import { RenderBlocks } from "@/blocks/RenderBlocks";
+import { LivePreviewListener } from "@/components/LivePreviewListener";
 import { PayloadRedirects } from "@/components/PayloadRedirects";
 import { RenderHero } from "@/components/heros/RenderHero";
+import { VisualEditingToolbar } from "@/components/VisualEditingToolbar";
+import { VisualEditingClient } from "@/components/VisualEditingClient";
 import { type Locale } from "@/i18n/config";
 import { routing } from "@/i18n/routing";
 import { generateMeta } from "@/utilities/generateMeta";
@@ -20,6 +23,9 @@ import AboutKarloBan from "@/frontendComponents/sections/AboutKarloBan";
 import AboutStrip from "@/frontendComponents/sections/AboutStrip";
 import Testimonials from "@/frontendComponents/sections/Testimonials";
 import ProductTabsGrid from "@/frontendComponents/sections/ProductTabsGrid";
+import { mergeOpenGraph } from "@/utilities/mergeOpenGraph";
+import { Config, Media } from "@/payload-types";
+import { getServerSideURL } from "@/utilities/getURL";
 
 const pettyProducts: any = [
   { id: "p1", name: "Petty 173mm", priceEUR: 220, image: "/assets/products/product-img.png", size: "173mm" },
@@ -85,9 +91,6 @@ export async function generateStaticParams() {
         slug,
       }));
   });
-
-  console.log("Generated static params:", params); // optional debug
-
   return params;
 }
 
@@ -99,7 +102,7 @@ type Args = {
 };
 
 export default async function Page({ params: paramsPromise }: Args) {
-  // const { isEnabled: draft } = await draftMode();
+  const { isEnabled: draft } = await draftMode();
   const header = await headers();
   const domain = header.get("x-tenant-domain") || header.get("host") || "";
 
@@ -131,10 +134,13 @@ export default async function Page({ params: paramsPromise }: Args) {
   return (
     <article className="pt-16 pb-24">
       {/* <PageClient /> */}
+      <PageClient />
       {/* Allows redirects for valid pages too */}
       {!page && slug !== "home" && <PayloadRedirects locale={locale} url={url} />}
 
-      {/* {draft && <LivePreviewListener />} */}
+      {draft && <LivePreviewListener />}
+      {draft && <VisualEditingToolbar pageId={page?.id} pageSlug={slug} />}
+      {draft && <VisualEditingClient pageId={page?.id} />}
 
       <RenderHero {...hero} />
       {/* <Hero
@@ -169,14 +175,64 @@ export default async function Page({ params: paramsPromise }: Args) {
   );
 }
 
+const getImageURL = (image?: Media | Config["db"]["defaultIDType"] | null) => {
+  const serverUrl = getServerSideURL();
+
+  let url = serverUrl + "/website-template-OG.webp";
+
+  if (image && typeof image === "object" && "url" in image) {
+    const ogUrl = image.sizes?.og?.url;
+
+    url = ogUrl ? serverUrl + ogUrl : serverUrl + image.url;
+  }
+
+  return url;
+};
+
 export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
   const { slug = "home", locale } = await paramsPromise;
-  const page = await queryPageBySlug({
-    slug,
-    locale,
-  });
 
-  return generateMeta({ doc: page! });
+  let page;
+  try {
+    page = await queryPageBySlug({
+      slug,
+      locale,
+    });
+  } catch (error) {
+    console.error("Error fetching page for metadata:", error);
+    page = null;
+  }
+
+  const meta = page?.meta;
+  const ogImage = getImageURL(meta?.image as Media | Config["db"]["defaultIDType"] | null);
+  const title = meta?.title ? meta?.title + " | Karloban" : "Karloban";
+
+  // Generate URL based on slug parameter if page is not available
+  const pageUrl = page?.slug
+    ? Array.isArray(page.slug)
+      ? page.slug.join("/")
+      : `/${page.slug}`
+    : slug === "home"
+      ? "/"
+      : `/${slug}`;
+
+  return {
+    description: meta?.description || "Autentični, 100% ručno kovani noževi. Izrađeni da nadžive generacije.",
+    openGraph: mergeOpenGraph({
+      description:
+        meta?.description ?? "Autentični, 100% ručno kovani noževi. Izrađeni da nadžive generacije.",
+      images: ogImage
+        ? [
+            {
+              url: ogImage,
+            },
+          ]
+        : undefined,
+      title,
+      url: pageUrl,
+    }),
+    title,
+  };
 }
 
 const queryPageBySlug = cache(async ({ slug, locale }: { slug: string; locale: Locale }) => {

@@ -35,6 +35,8 @@ export const SlideOver = () => {
 
   const { cart, updateCart, setCart, removeFromCart } = useCart();
 
+  
+
   const [cartProducts, setCartProducts] = useState<ProductWithFilledVariants[]>([]);
   const [total, setTotal] = useState<
     {

@@ -282,6 +282,7 @@ export interface Page {
     | CarouselBlock
     | AccordionBlock
     | HotspotBlock
+    | AboutPageBlock
     | {
         layoutType:
           | 'single-column'
@@ -1447,6 +1448,804 @@ export interface Product {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutPageBlock".
+ */
+export interface AboutPageBlock {
+  blocks?:
+    | (
+        | StoryBlock
+        | MissionVisionBlock
+        | ValuesBlock
+        | TeamBlock
+        | TimelineBlock
+        | StatsBlock
+        | CultureBlock
+        | CTABlock
+      )[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'aboutPage';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StoryBlock".
+ */
+export interface StoryBlock {
+  heading: string;
+  subheading?: string | null;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  image?: (string | null) | Media;
+  imagePosition?: ('left' | 'right') | null;
+  alignment?: ('center' | 'left' | 'right' | 'full') | null;
+  background?: string | null;
+  paddingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
+  paddingTop?: ('none' | 'small' | 'medium' | 'large') | null;
+  spacingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
+  spacingTop?: ('none' | 'small' | 'medium' | 'large') | null;
+  radius?: boolean | null;
+  specifiedRadius?: boolean | null;
+  radiusAll?:
+    | (
+        | 'rounded-none'
+        | 'rounded-sm'
+        | 'rounded-md'
+        | 'rounded-lg'
+        | 'rounded-xl'
+        | 'rounded-2xl'
+        | 'rounded-3xl'
+        | 'rounded-full'
+      )
+    | null;
+  radiusTopLeft?:
+    | (
+        | 'rounded-tl-none'
+        | 'rounded-tl-sm'
+        | 'rounded-tl-md'
+        | 'rounded-tl-lg'
+        | 'rounded-tl-xl'
+        | 'rounded-tl-2xl'
+        | 'rounded-tl-3xl'
+        | 'rounded-tl-full'
+      )
+    | null;
+  radiusTopRight?:
+    | (
+        | 'rounded-tr-none'
+        | 'rounded-tr-sm'
+        | 'rounded-tr-md'
+        | 'rounded-tr-lg'
+        | 'rounded-tr-xl'
+        | 'rounded-tr-2xl'
+        | 'rounded-tr-3xl'
+        | 'rounded-tr-full'
+      )
+    | null;
+  radiusBottomLeft?:
+    | (
+        | 'rounded-bl-none'
+        | 'rounded-bl-sm'
+        | 'rounded-bl-md'
+        | 'rounded-bl-lg'
+        | 'rounded-bl-xl'
+        | 'rounded-bl-2xl'
+        | 'rounded-bl-3xl'
+        | 'rounded-bl-full'
+      )
+    | null;
+  radiusBottomRight?:
+    | (
+        | 'rounded-br-none'
+        | 'rounded-br-sm'
+        | 'rounded-br-md'
+        | 'rounded-br-lg'
+        | 'rounded-br-xl'
+        | 'rounded-br-2xl'
+        | 'rounded-br-3xl'
+        | 'rounded-br-full'
+      )
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'story';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MissionVisionBlock".
+ */
+export interface MissionVisionBlock {
+  heading?: string | null;
+  mission: {
+    title: string;
+    content: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    icon?: (string | null) | Media;
+  };
+  vision: {
+    title: string;
+    content: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    icon?: (string | null) | Media;
+  };
+  alignment?: ('center' | 'left' | 'right' | 'full') | null;
+  background?: string | null;
+  paddingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
+  paddingTop?: ('none' | 'small' | 'medium' | 'large') | null;
+  spacingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
+  spacingTop?: ('none' | 'small' | 'medium' | 'large') | null;
+  radius?: boolean | null;
+  specifiedRadius?: boolean | null;
+  radiusAll?:
+    | (
+        | 'rounded-none'
+        | 'rounded-sm'
+        | 'rounded-md'
+        | 'rounded-lg'
+        | 'rounded-xl'
+        | 'rounded-2xl'
+        | 'rounded-3xl'
+        | 'rounded-full'
+      )
+    | null;
+  radiusTopLeft?:
+    | (
+        | 'rounded-tl-none'
+        | 'rounded-tl-sm'
+        | 'rounded-tl-md'
+        | 'rounded-tl-lg'
+        | 'rounded-tl-xl'
+        | 'rounded-tl-2xl'
+        | 'rounded-tl-3xl'
+        | 'rounded-tl-full'
+      )
+    | null;
+  radiusTopRight?:
+    | (
+        | 'rounded-tr-none'
+        | 'rounded-tr-sm'
+        | 'rounded-tr-md'
+        | 'rounded-tr-lg'
+        | 'rounded-tr-xl'
+        | 'rounded-tr-2xl'
+        | 'rounded-tr-3xl'
+        | 'rounded-tr-full'
+      )
+    | null;
+  radiusBottomLeft?:
+    | (
+        | 'rounded-bl-none'
+        | 'rounded-bl-sm'
+        | 'rounded-bl-md'
+        | 'rounded-bl-lg'
+        | 'rounded-bl-xl'
+        | 'rounded-bl-2xl'
+        | 'rounded-bl-3xl'
+        | 'rounded-bl-full'
+      )
+    | null;
+  radiusBottomRight?:
+    | (
+        | 'rounded-br-none'
+        | 'rounded-br-sm'
+        | 'rounded-br-md'
+        | 'rounded-br-lg'
+        | 'rounded-br-xl'
+        | 'rounded-br-2xl'
+        | 'rounded-br-3xl'
+        | 'rounded-br-full'
+      )
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'missionVision';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ValuesBlock".
+ */
+export interface ValuesBlock {
+  heading: string;
+  subheading?: string | null;
+  values?:
+    | {
+        title: string;
+        description: string;
+        icon?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  layout?: ('grid-2' | 'grid-3' | 'grid-4' | 'list') | null;
+  alignment?: ('center' | 'left' | 'right' | 'full') | null;
+  background?: string | null;
+  paddingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
+  paddingTop?: ('none' | 'small' | 'medium' | 'large') | null;
+  spacingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
+  spacingTop?: ('none' | 'small' | 'medium' | 'large') | null;
+  radius?: boolean | null;
+  specifiedRadius?: boolean | null;
+  radiusAll?:
+    | (
+        | 'rounded-none'
+        | 'rounded-sm'
+        | 'rounded-md'
+        | 'rounded-lg'
+        | 'rounded-xl'
+        | 'rounded-2xl'
+        | 'rounded-3xl'
+        | 'rounded-full'
+      )
+    | null;
+  radiusTopLeft?:
+    | (
+        | 'rounded-tl-none'
+        | 'rounded-tl-sm'
+        | 'rounded-tl-md'
+        | 'rounded-tl-lg'
+        | 'rounded-tl-xl'
+        | 'rounded-tl-2xl'
+        | 'rounded-tl-3xl'
+        | 'rounded-tl-full'
+      )
+    | null;
+  radiusTopRight?:
+    | (
+        | 'rounded-tr-none'
+        | 'rounded-tr-sm'
+        | 'rounded-tr-md'
+        | 'rounded-tr-lg'
+        | 'rounded-tr-xl'
+        | 'rounded-tr-2xl'
+        | 'rounded-tr-3xl'
+        | 'rounded-tr-full'
+      )
+    | null;
+  radiusBottomLeft?:
+    | (
+        | 'rounded-bl-none'
+        | 'rounded-bl-sm'
+        | 'rounded-bl-md'
+        | 'rounded-bl-lg'
+        | 'rounded-bl-xl'
+        | 'rounded-bl-2xl'
+        | 'rounded-bl-3xl'
+        | 'rounded-bl-full'
+      )
+    | null;
+  radiusBottomRight?:
+    | (
+        | 'rounded-br-none'
+        | 'rounded-br-sm'
+        | 'rounded-br-md'
+        | 'rounded-br-lg'
+        | 'rounded-br-xl'
+        | 'rounded-br-2xl'
+        | 'rounded-br-3xl'
+        | 'rounded-br-full'
+      )
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'values';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TeamBlock".
+ */
+export interface TeamBlock {
+  heading: string;
+  subheading?: string | null;
+  teamMembers?:
+    | {
+        name: string;
+        position: string;
+        bio?: string | null;
+        image: string | Media;
+        socials?: {
+          linkedin?: string | null;
+          twitter?: string | null;
+          email?: string | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  layout?: ('grid-2' | 'grid-3' | 'grid-4') | null;
+  alignment?: ('center' | 'left' | 'right' | 'full') | null;
+  background?: string | null;
+  paddingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
+  paddingTop?: ('none' | 'small' | 'medium' | 'large') | null;
+  spacingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
+  spacingTop?: ('none' | 'small' | 'medium' | 'large') | null;
+  radius?: boolean | null;
+  specifiedRadius?: boolean | null;
+  radiusAll?:
+    | (
+        | 'rounded-none'
+        | 'rounded-sm'
+        | 'rounded-md'
+        | 'rounded-lg'
+        | 'rounded-xl'
+        | 'rounded-2xl'
+        | 'rounded-3xl'
+        | 'rounded-full'
+      )
+    | null;
+  radiusTopLeft?:
+    | (
+        | 'rounded-tl-none'
+        | 'rounded-tl-sm'
+        | 'rounded-tl-md'
+        | 'rounded-tl-lg'
+        | 'rounded-tl-xl'
+        | 'rounded-tl-2xl'
+        | 'rounded-tl-3xl'
+        | 'rounded-tl-full'
+      )
+    | null;
+  radiusTopRight?:
+    | (
+        | 'rounded-tr-none'
+        | 'rounded-tr-sm'
+        | 'rounded-tr-md'
+        | 'rounded-tr-lg'
+        | 'rounded-tr-xl'
+        | 'rounded-tr-2xl'
+        | 'rounded-tr-3xl'
+        | 'rounded-tr-full'
+      )
+    | null;
+  radiusBottomLeft?:
+    | (
+        | 'rounded-bl-none'
+        | 'rounded-bl-sm'
+        | 'rounded-bl-md'
+        | 'rounded-bl-lg'
+        | 'rounded-bl-xl'
+        | 'rounded-bl-2xl'
+        | 'rounded-bl-3xl'
+        | 'rounded-bl-full'
+      )
+    | null;
+  radiusBottomRight?:
+    | (
+        | 'rounded-br-none'
+        | 'rounded-br-sm'
+        | 'rounded-br-md'
+        | 'rounded-br-lg'
+        | 'rounded-br-xl'
+        | 'rounded-br-2xl'
+        | 'rounded-br-3xl'
+        | 'rounded-br-full'
+      )
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'team';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TimelineBlock".
+ */
+export interface TimelineBlock {
+  heading: string;
+  subheading?: string | null;
+  milestones?:
+    | {
+        year: string;
+        title: string;
+        description: string;
+        image?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  style?: ('vertical' | 'horizontal' | 'cards') | null;
+  alignment?: ('center' | 'left' | 'right' | 'full') | null;
+  background?: string | null;
+  paddingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
+  paddingTop?: ('none' | 'small' | 'medium' | 'large') | null;
+  spacingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
+  spacingTop?: ('none' | 'small' | 'medium' | 'large') | null;
+  radius?: boolean | null;
+  specifiedRadius?: boolean | null;
+  radiusAll?:
+    | (
+        | 'rounded-none'
+        | 'rounded-sm'
+        | 'rounded-md'
+        | 'rounded-lg'
+        | 'rounded-xl'
+        | 'rounded-2xl'
+        | 'rounded-3xl'
+        | 'rounded-full'
+      )
+    | null;
+  radiusTopLeft?:
+    | (
+        | 'rounded-tl-none'
+        | 'rounded-tl-sm'
+        | 'rounded-tl-md'
+        | 'rounded-tl-lg'
+        | 'rounded-tl-xl'
+        | 'rounded-tl-2xl'
+        | 'rounded-tl-3xl'
+        | 'rounded-tl-full'
+      )
+    | null;
+  radiusTopRight?:
+    | (
+        | 'rounded-tr-none'
+        | 'rounded-tr-sm'
+        | 'rounded-tr-md'
+        | 'rounded-tr-lg'
+        | 'rounded-tr-xl'
+        | 'rounded-tr-2xl'
+        | 'rounded-tr-3xl'
+        | 'rounded-tr-full'
+      )
+    | null;
+  radiusBottomLeft?:
+    | (
+        | 'rounded-bl-none'
+        | 'rounded-bl-sm'
+        | 'rounded-bl-md'
+        | 'rounded-bl-lg'
+        | 'rounded-bl-xl'
+        | 'rounded-bl-2xl'
+        | 'rounded-bl-3xl'
+        | 'rounded-bl-full'
+      )
+    | null;
+  radiusBottomRight?:
+    | (
+        | 'rounded-br-none'
+        | 'rounded-br-sm'
+        | 'rounded-br-md'
+        | 'rounded-br-lg'
+        | 'rounded-br-xl'
+        | 'rounded-br-2xl'
+        | 'rounded-br-3xl'
+        | 'rounded-br-full'
+      )
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'timeline';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StatsBlock".
+ */
+export interface StatsBlock {
+  heading?: string | null;
+  subheading?: string | null;
+  statistics?:
+    | {
+        /**
+         * e.g., 500+, 10M, 99%
+         */
+        number: string;
+        /**
+         * e.g., Happy Clients, Products Sold
+         */
+        label: string;
+        icon?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  layout?: ('grid-2' | 'grid-3' | 'grid-4' | 'inline') | null;
+  alignment?: ('center' | 'left' | 'right' | 'full') | null;
+  background?: string | null;
+  paddingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
+  paddingTop?: ('none' | 'small' | 'medium' | 'large') | null;
+  spacingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
+  spacingTop?: ('none' | 'small' | 'medium' | 'large') | null;
+  radius?: boolean | null;
+  specifiedRadius?: boolean | null;
+  radiusAll?:
+    | (
+        | 'rounded-none'
+        | 'rounded-sm'
+        | 'rounded-md'
+        | 'rounded-lg'
+        | 'rounded-xl'
+        | 'rounded-2xl'
+        | 'rounded-3xl'
+        | 'rounded-full'
+      )
+    | null;
+  radiusTopLeft?:
+    | (
+        | 'rounded-tl-none'
+        | 'rounded-tl-sm'
+        | 'rounded-tl-md'
+        | 'rounded-tl-lg'
+        | 'rounded-tl-xl'
+        | 'rounded-tl-2xl'
+        | 'rounded-tl-3xl'
+        | 'rounded-tl-full'
+      )
+    | null;
+  radiusTopRight?:
+    | (
+        | 'rounded-tr-none'
+        | 'rounded-tr-sm'
+        | 'rounded-tr-md'
+        | 'rounded-tr-lg'
+        | 'rounded-tr-xl'
+        | 'rounded-tr-2xl'
+        | 'rounded-tr-3xl'
+        | 'rounded-tr-full'
+      )
+    | null;
+  radiusBottomLeft?:
+    | (
+        | 'rounded-bl-none'
+        | 'rounded-bl-sm'
+        | 'rounded-bl-md'
+        | 'rounded-bl-lg'
+        | 'rounded-bl-xl'
+        | 'rounded-bl-2xl'
+        | 'rounded-bl-3xl'
+        | 'rounded-bl-full'
+      )
+    | null;
+  radiusBottomRight?:
+    | (
+        | 'rounded-br-none'
+        | 'rounded-br-sm'
+        | 'rounded-br-md'
+        | 'rounded-br-lg'
+        | 'rounded-br-xl'
+        | 'rounded-br-2xl'
+        | 'rounded-br-3xl'
+        | 'rounded-br-full'
+      )
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'stats';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CultureBlock".
+ */
+export interface CultureBlock {
+  heading: string;
+  subheading?: string | null;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  images?:
+    | {
+        image: string | Media;
+        caption?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  highlights?:
+    | {
+        title: string;
+        description?: string | null;
+        icon?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  alignment?: ('center' | 'left' | 'right' | 'full') | null;
+  background?: string | null;
+  paddingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
+  paddingTop?: ('none' | 'small' | 'medium' | 'large') | null;
+  spacingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
+  spacingTop?: ('none' | 'small' | 'medium' | 'large') | null;
+  radius?: boolean | null;
+  specifiedRadius?: boolean | null;
+  radiusAll?:
+    | (
+        | 'rounded-none'
+        | 'rounded-sm'
+        | 'rounded-md'
+        | 'rounded-lg'
+        | 'rounded-xl'
+        | 'rounded-2xl'
+        | 'rounded-3xl'
+        | 'rounded-full'
+      )
+    | null;
+  radiusTopLeft?:
+    | (
+        | 'rounded-tl-none'
+        | 'rounded-tl-sm'
+        | 'rounded-tl-md'
+        | 'rounded-tl-lg'
+        | 'rounded-tl-xl'
+        | 'rounded-tl-2xl'
+        | 'rounded-tl-3xl'
+        | 'rounded-tl-full'
+      )
+    | null;
+  radiusTopRight?:
+    | (
+        | 'rounded-tr-none'
+        | 'rounded-tr-sm'
+        | 'rounded-tr-md'
+        | 'rounded-tr-lg'
+        | 'rounded-tr-xl'
+        | 'rounded-tr-2xl'
+        | 'rounded-tr-3xl'
+        | 'rounded-tr-full'
+      )
+    | null;
+  radiusBottomLeft?:
+    | (
+        | 'rounded-bl-none'
+        | 'rounded-bl-sm'
+        | 'rounded-bl-md'
+        | 'rounded-bl-lg'
+        | 'rounded-bl-xl'
+        | 'rounded-bl-2xl'
+        | 'rounded-bl-3xl'
+        | 'rounded-bl-full'
+      )
+    | null;
+  radiusBottomRight?:
+    | (
+        | 'rounded-br-none'
+        | 'rounded-br-sm'
+        | 'rounded-br-md'
+        | 'rounded-br-lg'
+        | 'rounded-br-xl'
+        | 'rounded-br-2xl'
+        | 'rounded-br-3xl'
+        | 'rounded-br-full'
+      )
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'culture';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CTABlock".
+ */
+export interface CTABlock {
+  heading: string;
+  subheading?: string | null;
+  content?: string | null;
+  buttons?:
+    | {
+        text: string;
+        url: string;
+        style?: ('primary' | 'secondary' | 'outline') | null;
+        openInNewTab?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  style?: ('centered' | 'left' | 'split') | null;
+  backgroundImage?: (string | null) | Media;
+  alignment?: ('center' | 'left' | 'right' | 'full') | null;
+  background?: string | null;
+  paddingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
+  paddingTop?: ('none' | 'small' | 'medium' | 'large') | null;
+  spacingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
+  spacingTop?: ('none' | 'small' | 'medium' | 'large') | null;
+  radius?: boolean | null;
+  specifiedRadius?: boolean | null;
+  radiusAll?:
+    | (
+        | 'rounded-none'
+        | 'rounded-sm'
+        | 'rounded-md'
+        | 'rounded-lg'
+        | 'rounded-xl'
+        | 'rounded-2xl'
+        | 'rounded-3xl'
+        | 'rounded-full'
+      )
+    | null;
+  radiusTopLeft?:
+    | (
+        | 'rounded-tl-none'
+        | 'rounded-tl-sm'
+        | 'rounded-tl-md'
+        | 'rounded-tl-lg'
+        | 'rounded-tl-xl'
+        | 'rounded-tl-2xl'
+        | 'rounded-tl-3xl'
+        | 'rounded-tl-full'
+      )
+    | null;
+  radiusTopRight?:
+    | (
+        | 'rounded-tr-none'
+        | 'rounded-tr-sm'
+        | 'rounded-tr-md'
+        | 'rounded-tr-lg'
+        | 'rounded-tr-xl'
+        | 'rounded-tr-2xl'
+        | 'rounded-tr-3xl'
+        | 'rounded-tr-full'
+      )
+    | null;
+  radiusBottomLeft?:
+    | (
+        | 'rounded-bl-none'
+        | 'rounded-bl-sm'
+        | 'rounded-bl-md'
+        | 'rounded-bl-lg'
+        | 'rounded-bl-xl'
+        | 'rounded-bl-2xl'
+        | 'rounded-bl-3xl'
+        | 'rounded-bl-full'
+      )
+    | null;
+  radiusBottomRight?:
+    | (
+        | 'rounded-br-none'
+        | 'rounded-br-sm'
+        | 'rounded-br-md'
+        | 'rounded-br-lg'
+        | 'rounded-br-xl'
+        | 'rounded-br-2xl'
+        | 'rounded-br-3xl'
+        | 'rounded-br-full'
+      )
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'cta';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "websites".
  */
 export interface Website {
@@ -2119,6 +2918,54 @@ export interface PagesSelect<T extends boolean = true> {
         carousel?: T | CarouselBlockSelect<T>;
         accordion?: T | AccordionBlockSelect<T>;
         hotspotZone?: T | HotspotBlockSelect<T>;
+        aboutPage?: T | AboutPageBlockSelect<T>;
+        textBlock?:
+          | T
+          | {
+              textType?: T;
+              content?: T;
+              textAlign?: T;
+              textColor?: T;
+              customTextColor?: T;
+              fontSize?: T;
+              customFontSize?: T;
+              fontWeight?: T;
+              lineHeight?: T;
+              letterSpacing?: T;
+              textTransform?: T;
+              fontFamily?: T;
+              backgroundColor?: T;
+              customBackgroundColor?: T;
+              padding?:
+                | T
+                | {
+                    top?: T;
+                    bottom?: T;
+                    left?: T;
+                    right?: T;
+                  };
+              margin?:
+                | T
+                | {
+                    top?: T;
+                    bottom?: T;
+                  };
+              maxWidth?: T;
+              link?:
+                | T
+                | {
+                    enable?: T;
+                    url?: T;
+                    newTab?: T;
+                    rel?: T;
+                    linkStyle?: T;
+                    linkColor?: T;
+                    customLinkColor?: T;
+                  };
+              className?: T;
+              id?: T;
+              blockName?: T;
+            };
         layoutBlock?:
           | T
           | {
@@ -2503,6 +3350,299 @@ export interface HotspotBlockSelect<T extends boolean = true> {
   spacingTop?: T;
   paddingBottom?: T;
   paddingTop?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutPageBlock_select".
+ */
+export interface AboutPageBlockSelect<T extends boolean = true> {
+  blocks?:
+    | T
+    | {
+        story?: T | StoryBlockSelect<T>;
+        missionVision?: T | MissionVisionBlockSelect<T>;
+        values?: T | ValuesBlockSelect<T>;
+        team?: T | TeamBlockSelect<T>;
+        timeline?: T | TimelineBlockSelect<T>;
+        stats?: T | StatsBlockSelect<T>;
+        culture?: T | CultureBlockSelect<T>;
+        cta?: T | CTABlockSelect<T>;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StoryBlock_select".
+ */
+export interface StoryBlockSelect<T extends boolean = true> {
+  heading?: T;
+  subheading?: T;
+  content?: T;
+  image?: T;
+  imagePosition?: T;
+  alignment?: T;
+  background?: T;
+  paddingBottom?: T;
+  paddingTop?: T;
+  spacingBottom?: T;
+  spacingTop?: T;
+  radius?: T;
+  specifiedRadius?: T;
+  radiusAll?: T;
+  radiusTopLeft?: T;
+  radiusTopRight?: T;
+  radiusBottomLeft?: T;
+  radiusBottomRight?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MissionVisionBlock_select".
+ */
+export interface MissionVisionBlockSelect<T extends boolean = true> {
+  heading?: T;
+  mission?:
+    | T
+    | {
+        title?: T;
+        content?: T;
+        icon?: T;
+      };
+  vision?:
+    | T
+    | {
+        title?: T;
+        content?: T;
+        icon?: T;
+      };
+  alignment?: T;
+  background?: T;
+  paddingBottom?: T;
+  paddingTop?: T;
+  spacingBottom?: T;
+  spacingTop?: T;
+  radius?: T;
+  specifiedRadius?: T;
+  radiusAll?: T;
+  radiusTopLeft?: T;
+  radiusTopRight?: T;
+  radiusBottomLeft?: T;
+  radiusBottomRight?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ValuesBlock_select".
+ */
+export interface ValuesBlockSelect<T extends boolean = true> {
+  heading?: T;
+  subheading?: T;
+  values?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        id?: T;
+      };
+  layout?: T;
+  alignment?: T;
+  background?: T;
+  paddingBottom?: T;
+  paddingTop?: T;
+  spacingBottom?: T;
+  spacingTop?: T;
+  radius?: T;
+  specifiedRadius?: T;
+  radiusAll?: T;
+  radiusTopLeft?: T;
+  radiusTopRight?: T;
+  radiusBottomLeft?: T;
+  radiusBottomRight?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TeamBlock_select".
+ */
+export interface TeamBlockSelect<T extends boolean = true> {
+  heading?: T;
+  subheading?: T;
+  teamMembers?:
+    | T
+    | {
+        name?: T;
+        position?: T;
+        bio?: T;
+        image?: T;
+        socials?:
+          | T
+          | {
+              linkedin?: T;
+              twitter?: T;
+              email?: T;
+            };
+        id?: T;
+      };
+  layout?: T;
+  alignment?: T;
+  background?: T;
+  paddingBottom?: T;
+  paddingTop?: T;
+  spacingBottom?: T;
+  spacingTop?: T;
+  radius?: T;
+  specifiedRadius?: T;
+  radiusAll?: T;
+  radiusTopLeft?: T;
+  radiusTopRight?: T;
+  radiusBottomLeft?: T;
+  radiusBottomRight?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TimelineBlock_select".
+ */
+export interface TimelineBlockSelect<T extends boolean = true> {
+  heading?: T;
+  subheading?: T;
+  milestones?:
+    | T
+    | {
+        year?: T;
+        title?: T;
+        description?: T;
+        image?: T;
+        id?: T;
+      };
+  style?: T;
+  alignment?: T;
+  background?: T;
+  paddingBottom?: T;
+  paddingTop?: T;
+  spacingBottom?: T;
+  spacingTop?: T;
+  radius?: T;
+  specifiedRadius?: T;
+  radiusAll?: T;
+  radiusTopLeft?: T;
+  radiusTopRight?: T;
+  radiusBottomLeft?: T;
+  radiusBottomRight?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StatsBlock_select".
+ */
+export interface StatsBlockSelect<T extends boolean = true> {
+  heading?: T;
+  subheading?: T;
+  statistics?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+        icon?: T;
+        id?: T;
+      };
+  layout?: T;
+  alignment?: T;
+  background?: T;
+  paddingBottom?: T;
+  paddingTop?: T;
+  spacingBottom?: T;
+  spacingTop?: T;
+  radius?: T;
+  specifiedRadius?: T;
+  radiusAll?: T;
+  radiusTopLeft?: T;
+  radiusTopRight?: T;
+  radiusBottomLeft?: T;
+  radiusBottomRight?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CultureBlock_select".
+ */
+export interface CultureBlockSelect<T extends boolean = true> {
+  heading?: T;
+  subheading?: T;
+  content?: T;
+  images?:
+    | T
+    | {
+        image?: T;
+        caption?: T;
+        id?: T;
+      };
+  highlights?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        id?: T;
+      };
+  alignment?: T;
+  background?: T;
+  paddingBottom?: T;
+  paddingTop?: T;
+  spacingBottom?: T;
+  spacingTop?: T;
+  radius?: T;
+  specifiedRadius?: T;
+  radiusAll?: T;
+  radiusTopLeft?: T;
+  radiusTopRight?: T;
+  radiusBottomLeft?: T;
+  radiusBottomRight?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CTABlock_select".
+ */
+export interface CTABlockSelect<T extends boolean = true> {
+  heading?: T;
+  subheading?: T;
+  content?: T;
+  buttons?:
+    | T
+    | {
+        text?: T;
+        url?: T;
+        style?: T;
+        openInNewTab?: T;
+        id?: T;
+      };
+  style?: T;
+  backgroundImage?: T;
+  alignment?: T;
+  background?: T;
+  paddingBottom?: T;
+  paddingTop?: T;
+  spacingBottom?: T;
+  spacingTop?: T;
+  radius?: T;
+  specifiedRadius?: T;
+  radiusAll?: T;
+  radiusTopLeft?: T;
+  radiusTopRight?: T;
+  radiusBottomLeft?: T;
+  radiusBottomRight?: T;
   id?: T;
   blockName?: T;
 }

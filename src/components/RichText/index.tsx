@@ -1,4 +1,3 @@
-/* eslint-disable */
 import {
   type DefaultNodeTypes,
   type SerializedBlockNode,
@@ -72,18 +71,26 @@ type Props = {
 
 export default function RichText(props: Props) {
   const { className, enableProse = true, enableGutter = false, ...rest } = props;
+
   return (
-    <RichTextWithoutBlocks
-      converters={jsxConverters}
-      className={cn(
-        {
-          container: enableGutter,
-          "max-w-none": !enableGutter,
-          "prose mx-auto md:prose-md dark:prose-invert": enableProse,
-        },
-        className,
-      )}
-      {...rest}
-    />
+    <div
+      className="visual-editing-text-wrapper"
+      data-visual-editing="true"
+      data-block-type="richText"
+      data-inline-editable="true"
+    >
+      <RichTextWithoutBlocks
+        converters={jsxConverters}
+        className={cn(
+          {
+            container: enableGutter,
+            "max-w-none": !enableGutter,
+            "prose md:prose-md dark:prose-invert mx-auto": enableProse,
+          },
+          className,
+        )}
+        {...rest}
+      />
+    </div>
   );
 }

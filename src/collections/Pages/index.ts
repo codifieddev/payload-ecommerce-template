@@ -25,6 +25,7 @@ import { generatePreviewPath } from "@/utilities/generatePreviewPath";
 import { revalidateDelete, revalidatePage } from "./hooks/revalidatePage";
 
 import type { Access, CollectionConfig } from "payload";
+import { AboutPage } from "@/blocks/About/config";
 import { TextBlock } from "@/blocks/Heading";
 import { LayoutBlock } from "@/blocks/Container";
 import { ButtonBlock } from "@/blocks/Button";
@@ -128,6 +129,8 @@ export const Pages: CollectionConfig<"pages"> = {
                 Carousel,
                 Accordion,
                 Hotspot,
+                AboutPage,
+                TextBlock,
                 LayoutBlock,
               ],
               required: true,

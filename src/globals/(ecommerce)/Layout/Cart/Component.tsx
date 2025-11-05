@@ -1,3 +1,5 @@
+
+
 import { getLocale } from "next-intl/server";
 import { type ReactNode } from "react";
 
