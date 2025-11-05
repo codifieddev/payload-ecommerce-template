@@ -51,6 +51,7 @@ export const RenderBlocks = ({ blocks, pageId }: { blocks: Page["layout"][0][]; 
                 );
               }
               return (
+                <>
                 <div key={index}>
                   <Block {...block} disableInnerContainer />
                 </div>
@@ -66,7 +67,7 @@ export const RenderBlocks = ({ blocks, pageId }: { blocks: Page["layout"][0][]; 
                  
                   <Block {...block} disableInnerContainer fieldPath={`layout.${index}`} />
                 </VisualEditingWrapper>
-              );
+                </>              );
             }
           }
           return null;

@@ -284,6 +284,52 @@ export interface Page {
     | HotspotBlock
     | AboutPageBlock
     | {
+        textType: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'paragraph' | 'blockquote' | 'code';
+        content: string;
+        textAlign?: ('left' | 'center' | 'right' | 'justify') | null;
+        textColor?: ('default' | 'primary' | 'secondary' | 'accent' | 'muted' | 'custom') | null;
+        customTextColor?: string | null;
+        fontSize?: ('xs' | 'sm' | 'default' | 'lg' | 'xl' | '2xl' | '3xl' | 'custom') | null;
+        customFontSize?: string | null;
+        fontWeight?: ('light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold') | null;
+        lineHeight?: ('tight' | 'normal' | 'relaxed' | 'loose') | null;
+        letterSpacing?: ('tighter' | 'tight' | 'normal' | 'wide' | 'wider' | 'widest') | null;
+        textTransform?: ('none' | 'uppercase' | 'lowercase' | 'capitalize') | null;
+        fontFamily?: ('default' | 'sans' | 'serif' | 'mono') | null;
+        backgroundColor?: ('transparent' | 'light' | 'dark' | 'primary' | 'secondary' | 'custom') | null;
+        customBackgroundColor?: string | null;
+        padding?: {
+          top?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+          bottom?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+          left?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+          right?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+        };
+        margin?: {
+          top?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+          bottom?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+        };
+        maxWidth?: ('full' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
+        /**
+         * Make the entire text block clickable
+         */
+        link?: {
+          enable?: boolean | null;
+          url?: string | null;
+          newTab?: boolean | null;
+          rel?: ('none' | 'nofollow' | 'noopener' | 'noreferrer' | 'noopener noreferrer') | null;
+          linkStyle?: ('default' | 'underline' | 'no-underline' | 'hover-underline') | null;
+          linkColor?: ('inherit' | 'primary' | 'secondary' | 'accent' | 'custom') | null;
+          customLinkColor?: string | null;
+        };
+        /**
+         * Add custom CSS classes for additional styling
+         */
+        className?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'textBlock';
+      }
+    | {
         layoutType:
           | 'single-column'
           | 'two-columns'
