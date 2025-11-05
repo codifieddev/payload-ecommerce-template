@@ -733,7 +733,7 @@ export interface Category {
 export interface Administrator {
   id: string;
   name?: string | null;
-  role?: ('admin' | 'superadmin' | 'tenants' | 'clients') | null;
+  role?: ('admin' | 'superadmin' | 'tenants' | 'clients' | 'designer' | 'editor' | 'franchise' | 'guest') | null;
   createdBy?: (string | null) | Administrator;
   updatedAt: string;
   createdAt: string;
