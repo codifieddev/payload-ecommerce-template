@@ -46,7 +46,7 @@ export const Administrators: CollectionConfig = {
     update: authenticated,
   },
   admin: {
-    defaultColumns: ["name", "email", "role", "createdBy"],
+    defaultColumns: ["name", "email", "role", "mongodbActions", "createdBy"],
     useAsTitle: "name",
     group: {
       en: "Administration",
@@ -107,6 +107,16 @@ export const Administrators: CollectionConfig = {
     //   },
     //   unique: true,
     // },
+    {
+      name: "mongodbActions",
+      type: "ui",
+      label: "MongoDB Actions",
+      admin: {
+        components: {
+          Cell: "@/components/MongoDBButtonCell/MongoDBButtonCell#default",
+        },
+      },
+    },
     {
       name: "createdBy",
       type: "relationship",
