@@ -26,7 +26,6 @@ import { uuidv4 } from "zod";
 //   return false;
 // };
 
-
 // Read access: determines who can see which administrators
 const readAccess: Access = async ({ req }) => {
   const user = req.user;
@@ -53,7 +52,7 @@ const readAccess: Access = async ({ req }) => {
           },
         },
       ],
-    };
+    } as any;
   }
 
   // Admin can see only their created users (and themselves)
@@ -71,10 +70,9 @@ const readAccess: Access = async ({ req }) => {
           },
         },
       ],
-    };
+    } as any;
   }
 
- 
   if (role === "clients") {
     return {
       or: [
@@ -89,13 +87,11 @@ const readAccess: Access = async ({ req }) => {
           },
         },
       ],
-    };
+    } as any;
   }
 
- 
   return false;
 };
-
 
 export const Administrators: CollectionConfig = {
   slug: "administrators",
@@ -139,10 +135,10 @@ export const Administrators: CollectionConfig = {
         { label: "Super Admin", value: "superadmin" },
         { label: "Tenants", value: "tenants" },
         { label: "Clients", value: "clients" },
-          { label: "Designer", value: "designer" },
-            { label: "Editor", value: "editor" },
-            { label: "Franchise", value: "franchise" },
-              { label: "Guest", value: "guest" },
+        { label: "Designer", value: "designer" },
+        { label: "Editor", value: "editor" },
+        { label: "Franchise", value: "franchise" },
+        { label: "Guest", value: "guest" },
       ],
       admin: {
         position: "sidebar",

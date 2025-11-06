@@ -4,8 +4,9 @@
 // This will help us debug the 401 authentication issue
 
 const PROJECT_ID = "68c16409996759167fd1d3bc";
-const PUBLIC_KEY = "vkvsvvxw"; 
-const PRIVATE_KEY = "d9d62c65-e3d0-4605-b1d2-b36d5ca04c81";async function testAtlasAPI() {
+const PUBLIC_KEY = "vkvsvvxw";
+const PRIVATE_KEY = "d9d62c65-e3d0-4605-b1d2-b36d5ca04c81";
+async function testAtlasAPI() {
   console.log("🧪 Testing MongoDB Atlas API Credentials...\n");
 
   console.log("Credentials being used:");

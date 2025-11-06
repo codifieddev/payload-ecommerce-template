@@ -9,14 +9,35 @@ import {
 import { authenticated } from "@/access/authenticated";
 import { authenticatedOrPublished } from "@/access/authenticatedOrPublished";
 import { superAdminOnly, superAdminOnlyAdmin } from "@/access/roleBasedAccess";
-import { Hotspot } from "@/blocks/(ecommerce)/Hotspot/config";
-import { Accordion } from "@/blocks/Accordion/config";
-import { Archive } from "@/blocks/ArchiveBlock/config";
-import { CallToAction } from "@/blocks/CallToAction/config";
-import { Carousel } from "@/blocks/Carousel/config";
-import { Content } from "@/blocks/Content/config";
-import { FormBlock } from "@/blocks/Form/config";
-import { MediaBlock } from "@/blocks/MediaBlock/config";
+// Commented out existing blocks - now using sections instead
+// import { Hotspot } from "@/blocks/(ecommerce)/Hotspot/config";
+// import { Accordion } from "@/blocks/Accordion/config";
+// import { Archive } from "@/blocks/ArchiveBlock/config";
+// import { CallToAction } from "@/blocks/CallToAction/config";
+// import { Carousel } from "@/blocks/Carousel/config";
+// import { Content } from "@/blocks/Content/config";
+// import { FormBlock } from "@/blocks/Form/config";
+// import { MediaBlock } from "@/blocks/MediaBlock/config";
+
+// Import section blocks instead
+import {
+  TwoEqualColumnsSection,
+  ThreeEqualColumnsSection,
+  FourEqualColumnsSection,
+  TwoThirdsOneThirdSection,
+  OneThirdTwoThirdsSection,
+  OneQuarterThreeQuartersSection,
+  ThreeQuartersOneQuarterSection,
+  TwoRowsTwoColumnsSection,
+  TwoRowsThreeColumnsSection,
+  ThreeRowsTwoColumnsSection,
+  ThreeRowsThreeColumnsSection,
+  SidebarMainLayoutSection,
+  MainSidebarLayoutSection,
+  HeaderTwoColumnsLayoutSection,
+  HeaderThreeColumnsLayoutSection,
+  MasonryLayoutSection,
+} from "@/section/blocks";
 import { hero } from "@/components/heros/config";
 import { slugField } from "@/fields/slug";
 import { populatePublishedAt } from "@/hooks/populatePublishedAt";
@@ -118,17 +139,35 @@ export const Pages: CollectionConfig<"pages"> = {
         {
           fields: [
             {
-              name: "layout",
+              name: "section",
               type: "blocks",
               blocks: [
-                CallToAction,
-                Content,
-                MediaBlock,
-                Archive,
-                FormBlock,
-                Carousel,
-                Accordion,
-                Hotspot,
+                // Section Layout Blocks
+                TwoEqualColumnsSection,
+                ThreeEqualColumnsSection,
+                FourEqualColumnsSection,
+                TwoThirdsOneThirdSection,
+                OneThirdTwoThirdsSection,
+                OneQuarterThreeQuartersSection,
+                ThreeQuartersOneQuarterSection,
+                TwoRowsTwoColumnsSection,
+                TwoRowsThreeColumnsSection,
+                ThreeRowsTwoColumnsSection,
+                ThreeRowsThreeColumnsSection,
+                SidebarMainLayoutSection,
+                MainSidebarLayoutSection,
+                HeaderTwoColumnsLayoutSection,
+                HeaderThreeColumnsLayoutSection,
+                MasonryLayoutSection,
+                // Keep some original blocks if needed (uncomment as required)
+                // CallToAction,
+                // Content,
+                // MediaBlock,
+                // Archive,
+                // FormBlock,
+                // Carousel,
+                // Accordion,
+                // Hotspot,
                 AboutPage,
                 TextBlock,
                 LayoutBlock,

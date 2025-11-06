@@ -273,15 +273,539 @@ export interface Page {
     single_backgroundColor?: string | null;
     single_backgroundImage?: (string | null) | Media;
   };
-  layout: (
-    | CallToActionBlock
-    | ContentBlock
-    | MediaBlock
-    | ArchiveBlock
-    | FormBlock
-    | CarouselBlock
-    | AccordionBlock
-    | HotspotBlock
+  section: (
+    | {
+        /**
+         * Add one block for the left column content
+         */
+        leftColumn: (
+          | CallToActionBlock
+          | ContentBlock
+          | MediaBlock
+          | ArchiveBlock
+          | FormBlock
+          | CarouselBlock
+          | AccordionBlock
+        )[];
+        /**
+         * Add one block for the right column content
+         */
+        rightColumn: (
+          | CallToActionBlock
+          | ContentBlock
+          | MediaBlock
+          | ArchiveBlock
+          | FormBlock
+          | CarouselBlock
+          | AccordionBlock
+        )[];
+        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
+        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+        gap?: ('sm' | 'md' | 'lg') | null;
+        className?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'twoEqualColumns';
+      }
+    | {
+        /**
+         * Add one block for the left column content
+         */
+        leftColumn: (
+          | CallToActionBlock
+          | ContentBlock
+          | MediaBlock
+          | ArchiveBlock
+          | FormBlock
+          | CarouselBlock
+          | AccordionBlock
+        )[];
+        /**
+         * Add one block for the center column content
+         */
+        centerColumn: (
+          | CallToActionBlock
+          | ContentBlock
+          | MediaBlock
+          | ArchiveBlock
+          | FormBlock
+          | CarouselBlock
+          | AccordionBlock
+        )[];
+        /**
+         * Add one block for the right column content
+         */
+        rightColumn: (
+          | CallToActionBlock
+          | ContentBlock
+          | MediaBlock
+          | ArchiveBlock
+          | FormBlock
+          | CarouselBlock
+          | AccordionBlock
+        )[];
+        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
+        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+        gap?: ('sm' | 'md' | 'lg') | null;
+        className?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'threeEqualColumns';
+      }
+    | {
+        columns?:
+          | {
+              content: (
+                | CallToActionBlock
+                | ContentBlock
+                | MediaBlock
+                | ArchiveBlock
+                | FormBlock
+                | CarouselBlock
+                | AccordionBlock
+              )[];
+              id?: string | null;
+            }[]
+          | null;
+        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
+        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+        gap?: ('sm' | 'md' | 'lg') | null;
+        className?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'fourEqualColumns';
+      }
+    | {
+        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
+        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+        gap?: ('sm' | 'md' | 'lg') | null;
+        /**
+         * Add one block for the main content
+         */
+        leftColumn: (
+          | CallToActionBlock
+          | ContentBlock
+          | MediaBlock
+          | ArchiveBlock
+          | FormBlock
+          | CarouselBlock
+          | AccordionBlock
+        )[];
+        /**
+         * Add one block for the sidebar content
+         */
+        rightColumn: (
+          | CallToActionBlock
+          | ContentBlock
+          | MediaBlock
+          | ArchiveBlock
+          | FormBlock
+          | CarouselBlock
+          | AccordionBlock
+        )[];
+        className?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'twoThirdsOneThird';
+      }
+    | {
+        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
+        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+        gap?: ('sm' | 'md' | 'lg') | null;
+        /**
+         * Add one block for the sidebar content
+         */
+        leftColumn: (
+          | CallToActionBlock
+          | ContentBlock
+          | MediaBlock
+          | ArchiveBlock
+          | FormBlock
+          | CarouselBlock
+          | AccordionBlock
+        )[];
+        /**
+         * Add one block for the main content
+         */
+        rightColumn: (
+          | CallToActionBlock
+          | ContentBlock
+          | MediaBlock
+          | ArchiveBlock
+          | FormBlock
+          | CarouselBlock
+          | AccordionBlock
+        )[];
+        className?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'oneThirdTwoThirds';
+      }
+    | {
+        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
+        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+        gap?: ('sm' | 'md' | 'lg') | null;
+        /**
+         * Add one block for the sidebar content
+         */
+        leftColumn: (
+          | CallToActionBlock
+          | ContentBlock
+          | MediaBlock
+          | ArchiveBlock
+          | FormBlock
+          | CarouselBlock
+          | AccordionBlock
+        )[];
+        /**
+         * Add one block for the main content
+         */
+        rightColumn: (
+          | CallToActionBlock
+          | ContentBlock
+          | MediaBlock
+          | ArchiveBlock
+          | FormBlock
+          | CarouselBlock
+          | AccordionBlock
+        )[];
+        className?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'oneQuarterThreeQuarters';
+      }
+    | {
+        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
+        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+        gap?: ('sm' | 'md' | 'lg') | null;
+        /**
+         * Add one block for the main content
+         */
+        leftColumn: (
+          | CallToActionBlock
+          | ContentBlock
+          | MediaBlock
+          | ArchiveBlock
+          | FormBlock
+          | CarouselBlock
+          | AccordionBlock
+        )[];
+        /**
+         * Add one block for the sidebar content
+         */
+        rightColumn: (
+          | CallToActionBlock
+          | ContentBlock
+          | MediaBlock
+          | ArchiveBlock
+          | FormBlock
+          | CarouselBlock
+          | AccordionBlock
+        )[];
+        className?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'threeQuartersOneQuarter';
+      }
+    | {
+        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
+        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+        gap?: ('sm' | 'md' | 'lg') | null;
+        rows?:
+          | {
+              columns?:
+                | {
+                    /**
+                     * Add one block for this cell
+                     */
+                    blocks: (
+                      | CallToActionBlock
+                      | ContentBlock
+                      | MediaBlock
+                      | ArchiveBlock
+                      | FormBlock
+                      | CarouselBlock
+                      | AccordionBlock
+                    )[];
+                    id?: string | null;
+                  }[]
+                | null;
+              id?: string | null;
+            }[]
+          | null;
+        className?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'twoRowsTwoColumns';
+      }
+    | {
+        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
+        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+        gap?: ('sm' | 'md' | 'lg') | null;
+        rows?:
+          | {
+              columns?:
+                | {
+                    /**
+                     * Add one block for this cell
+                     */
+                    blocks: (
+                      | CallToActionBlock
+                      | ContentBlock
+                      | MediaBlock
+                      | ArchiveBlock
+                      | FormBlock
+                      | CarouselBlock
+                      | AccordionBlock
+                    )[];
+                    id?: string | null;
+                  }[]
+                | null;
+              id?: string | null;
+            }[]
+          | null;
+        className?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'twoRowsThreeColumns';
+      }
+    | {
+        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
+        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+        gap?: ('sm' | 'md' | 'lg') | null;
+        rows?:
+          | {
+              columns?:
+                | {
+                    /**
+                     * Add one block for this cell
+                     */
+                    blocks: (
+                      | CallToActionBlock
+                      | ContentBlock
+                      | MediaBlock
+                      | ArchiveBlock
+                      | FormBlock
+                      | CarouselBlock
+                      | AccordionBlock
+                    )[];
+                    id?: string | null;
+                  }[]
+                | null;
+              id?: string | null;
+            }[]
+          | null;
+        className?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'threeRowsTwoColumns';
+      }
+    | {
+        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
+        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+        gap?: ('sm' | 'md' | 'lg') | null;
+        rows?:
+          | {
+              columns?:
+                | {
+                    /**
+                     * Add one block for this cell
+                     */
+                    blocks: (
+                      | CallToActionBlock
+                      | ContentBlock
+                      | MediaBlock
+                      | ArchiveBlock
+                      | FormBlock
+                      | CarouselBlock
+                      | AccordionBlock
+                    )[];
+                    id?: string | null;
+                  }[]
+                | null;
+              id?: string | null;
+            }[]
+          | null;
+        className?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'threeRowsThreeColumns';
+      }
+    | {
+        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
+        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+        gap?: ('sm' | 'md' | 'lg') | null;
+        /**
+         * Add one block for the sidebar content
+         */
+        sidebar: (
+          | CallToActionBlock
+          | ContentBlock
+          | MediaBlock
+          | ArchiveBlock
+          | FormBlock
+          | CarouselBlock
+          | AccordionBlock
+        )[];
+        /**
+         * Add one block for the main content area
+         */
+        mainContent: (
+          | CallToActionBlock
+          | ContentBlock
+          | MediaBlock
+          | ArchiveBlock
+          | FormBlock
+          | CarouselBlock
+          | AccordionBlock
+        )[];
+        className?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'sidebarMainLayout';
+      }
+    | {
+        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
+        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+        gap?: ('sm' | 'md' | 'lg') | null;
+        /**
+         * Add one block for the main content area
+         */
+        mainContent: (
+          | CallToActionBlock
+          | ContentBlock
+          | MediaBlock
+          | ArchiveBlock
+          | FormBlock
+          | CarouselBlock
+          | AccordionBlock
+        )[];
+        /**
+         * Add one block for the sidebar content
+         */
+        sidebar: (
+          | CallToActionBlock
+          | ContentBlock
+          | MediaBlock
+          | ArchiveBlock
+          | FormBlock
+          | CarouselBlock
+          | AccordionBlock
+        )[];
+        className?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'mainSidebarLayout';
+      }
+    | {
+        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
+        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+        gap?: ('sm' | 'md' | 'lg') | null;
+        /**
+         * Add one block for the header content
+         */
+        header: (
+          | CallToActionBlock
+          | ContentBlock
+          | MediaBlock
+          | ArchiveBlock
+          | FormBlock
+          | CarouselBlock
+          | AccordionBlock
+        )[];
+        /**
+         * Add one block for the left column content
+         */
+        leftColumn: (
+          | CallToActionBlock
+          | ContentBlock
+          | MediaBlock
+          | ArchiveBlock
+          | FormBlock
+          | CarouselBlock
+          | AccordionBlock
+        )[];
+        /**
+         * Add one block for the right column content
+         */
+        rightColumn: (
+          | CallToActionBlock
+          | ContentBlock
+          | MediaBlock
+          | ArchiveBlock
+          | FormBlock
+          | CarouselBlock
+          | AccordionBlock
+        )[];
+        className?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'headerTwoColumnsLayout';
+      }
+    | {
+        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
+        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+        gap?: ('sm' | 'md' | 'lg') | null;
+        /**
+         * Add one block for the header content
+         */
+        header: (
+          | CallToActionBlock
+          | ContentBlock
+          | MediaBlock
+          | ArchiveBlock
+          | FormBlock
+          | CarouselBlock
+          | AccordionBlock
+        )[];
+        columns?:
+          | {
+              /**
+               * Add one block for this column
+               */
+              blocks: (
+                | CallToActionBlock
+                | ContentBlock
+                | MediaBlock
+                | ArchiveBlock
+                | FormBlock
+                | CarouselBlock
+                | AccordionBlock
+              )[];
+              id?: string | null;
+            }[]
+          | null;
+        className?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'headerThreeColumnsLayout';
+      }
+    | {
+        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
+        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+        gap?: ('sm' | 'md' | 'lg') | null;
+        items?:
+          | {
+              /**
+               * Add one block for this masonry item
+               */
+              blocks: (
+                | CallToActionBlock
+                | ContentBlock
+                | MediaBlock
+                | ArchiveBlock
+                | FormBlock
+                | CarouselBlock
+                | AccordionBlock
+              )[];
+              id?: string | null;
+            }[]
+          | null;
+        className?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'masonryLayout';
+      }
     | AboutPageBlock
     | {
         textType: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'paragraph' | 'blockquote' | 'code';
@@ -1277,220 +1801,6 @@ export interface AccordionBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'accordion';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "hotspotBlock".
- */
-export interface HotspotBlock {
-  title?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  type: 'category' | 'subcategory' | 'manual';
-  appearance: 'default' | 'slider' | 'sliderLoop';
-  category?: (string | null) | ProductCategory;
-  subcategory?: (string | null) | ProductSubCategory;
-  /**
-   * Sort is applied only when type is set to 'category' or 'subcategory', in manual mode you can manually sort products in the list
-   */
-  sort?:
-    | (
-        | '-bought'
-        | '-createdAt'
-        | 'createdAt'
-        | 'variants.pricing[0].value,pricing.value'
-        | '-variants.pricing[0].value,-pricing.value'
-      )
-    | null;
-  /**
-   * Products order will be the same as the order of selection
-   */
-  products?: (string | Product)[] | null;
-  limit?: number | null;
-  spacingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
-  spacingTop?: ('none' | 'small' | 'medium' | 'large') | null;
-  paddingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
-  paddingTop?: ('none' | 'small' | 'medium' | 'large') | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'hotspotZone';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "productCategories".
- */
-export interface ProductCategory {
-  id: string;
-  title: string;
-  slug?: string | null;
-  slugLock?: boolean | null;
-  subcategories?: {
-    docs?: (string | ProductSubCategory)[];
-    hasNextPage?: boolean;
-    totalDocs?: number;
-  };
-  products?: {
-    docs?: (string | Product)[];
-    hasNextPage?: boolean;
-    totalDocs?: number;
-  };
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "productSubCategories".
- */
-export interface ProductSubCategory {
-  id: string;
-  category: string | ProductCategory;
-  title: string;
-  slug?: string | null;
-  slugLock?: boolean | null;
-  products?: {
-    docs?: (string | Product)[];
-    hasNextPage?: boolean;
-    totalDocs?: number;
-  };
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "products".
- */
-export interface Product {
-  id: string;
-  title: string;
-  slug?: string | null;
-  slugLock?: boolean | null;
-  description?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  /**
-   * If you have variants, first image will be variant image.
-   */
-  images: (string | Media)[];
-  details?:
-    | {
-        title: string;
-        content: {
-          root: {
-            type: string;
-            children: {
-              type: string;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  enableVariants?: boolean | null;
-  /**
-   * If false, price is in Product Details
-   */
-  enableVariantPrices?: boolean | null;
-  /**
-   * If false, weight is in Product Details
-   */
-  enableVariantWeights?: boolean | null;
-  variantsType?: ('sizes' | 'colors' | 'colorsAndSizes') | null;
-  colors?:
-    | {
-        label: string;
-        slug: string;
-        colorValue?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  sizes?:
-    | {
-        label: string;
-        slug: string;
-        id?: string | null;
-      }[]
-    | null;
-  variants?:
-    | {
-        size?: string | null;
-        color?: string | null;
-        variantSlug?: string | null;
-        image?: (string | null) | Media;
-        /**
-         * Define stock for this variant. A stock of 0 disables checkout for this variant.
-         */
-        stock: number;
-        /**
-         * Define weight for this variant.
-         */
-        weight?: number | null;
-        pricing?:
-          | {
-              value: number;
-              currency: string;
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-      }[]
-    | null;
-  categoriesArr?:
-    | {
-        category: string | ProductCategory;
-        subcategories?: (string | ProductSubCategory)[] | null;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * Define stock for whole product. A stock of 0 disables checkout for this product.
-   */
-  stock?: number | null;
-  /**
-   * Define weight for whole product.
-   */
-  weight?: number | null;
-  pricing?:
-    | {
-        value: number;
-        currency: string;
-        id?: string | null;
-      }[]
-    | null;
-  bought?: number | null;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2590,6 +2900,171 @@ export interface Order {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "products".
+ */
+export interface Product {
+  id: string;
+  title: string;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * If you have variants, first image will be variant image.
+   */
+  images: (string | Media)[];
+  details?:
+    | {
+        title: string;
+        content: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  enableVariants?: boolean | null;
+  /**
+   * If false, price is in Product Details
+   */
+  enableVariantPrices?: boolean | null;
+  /**
+   * If false, weight is in Product Details
+   */
+  enableVariantWeights?: boolean | null;
+  variantsType?: ('sizes' | 'colors' | 'colorsAndSizes') | null;
+  colors?:
+    | {
+        label: string;
+        slug: string;
+        colorValue?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  sizes?:
+    | {
+        label: string;
+        slug: string;
+        id?: string | null;
+      }[]
+    | null;
+  variants?:
+    | {
+        size?: string | null;
+        color?: string | null;
+        variantSlug?: string | null;
+        image?: (string | null) | Media;
+        /**
+         * Define stock for this variant. A stock of 0 disables checkout for this variant.
+         */
+        stock: number;
+        /**
+         * Define weight for this variant.
+         */
+        weight?: number | null;
+        pricing?:
+          | {
+              value: number;
+              currency: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  categoriesArr?:
+    | {
+        category: string | ProductCategory;
+        subcategories?: (string | ProductSubCategory)[] | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Define stock for whole product. A stock of 0 disables checkout for this product.
+   */
+  stock?: number | null;
+  /**
+   * Define weight for whole product.
+   */
+  weight?: number | null;
+  pricing?:
+    | {
+        value: number;
+        currency: string;
+        id?: string | null;
+      }[]
+    | null;
+  bought?: number | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "productCategories".
+ */
+export interface ProductCategory {
+  id: string;
+  title: string;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  subcategories?: {
+    docs?: (string | ProductSubCategory)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
+  products?: {
+    docs?: (string | Product)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "productSubCategories".
+ */
+export interface ProductSubCategory {
+  id: string;
+  category: string | ProductCategory;
+  title: string;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  products?: {
+    docs?: (string | Product)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "productReviews".
  */
 export interface ProductReview {
@@ -2953,17 +3428,532 @@ export interface PagesSelect<T extends boolean = true> {
         single_backgroundColor?: T;
         single_backgroundImage?: T;
       };
-  layout?:
+  section?:
     | T
     | {
-        cta?: T | CallToActionBlockSelect<T>;
-        content?: T | ContentBlockSelect<T>;
-        mediaBlock?: T | MediaBlockSelect<T>;
-        archive?: T | ArchiveBlockSelect<T>;
-        formBlock?: T | FormBlockSelect<T>;
-        carousel?: T | CarouselBlockSelect<T>;
-        accordion?: T | AccordionBlockSelect<T>;
-        hotspotZone?: T | HotspotBlockSelect<T>;
+        twoEqualColumns?:
+          | T
+          | {
+              leftColumn?:
+                | T
+                | {
+                    cta?: T | CallToActionBlockSelect<T>;
+                    content?: T | ContentBlockSelect<T>;
+                    mediaBlock?: T | MediaBlockSelect<T>;
+                    archive?: T | ArchiveBlockSelect<T>;
+                    formBlock?: T | FormBlockSelect<T>;
+                    carousel?: T | CarouselBlockSelect<T>;
+                    accordion?: T | AccordionBlockSelect<T>;
+                  };
+              rightColumn?:
+                | T
+                | {
+                    cta?: T | CallToActionBlockSelect<T>;
+                    content?: T | ContentBlockSelect<T>;
+                    mediaBlock?: T | MediaBlockSelect<T>;
+                    archive?: T | ArchiveBlockSelect<T>;
+                    formBlock?: T | FormBlockSelect<T>;
+                    carousel?: T | CarouselBlockSelect<T>;
+                    accordion?: T | AccordionBlockSelect<T>;
+                  };
+              backgroundColor?: T;
+              padding?: T;
+              gap?: T;
+              className?: T;
+              id?: T;
+              blockName?: T;
+            };
+        threeEqualColumns?:
+          | T
+          | {
+              leftColumn?:
+                | T
+                | {
+                    cta?: T | CallToActionBlockSelect<T>;
+                    content?: T | ContentBlockSelect<T>;
+                    mediaBlock?: T | MediaBlockSelect<T>;
+                    archive?: T | ArchiveBlockSelect<T>;
+                    formBlock?: T | FormBlockSelect<T>;
+                    carousel?: T | CarouselBlockSelect<T>;
+                    accordion?: T | AccordionBlockSelect<T>;
+                  };
+              centerColumn?:
+                | T
+                | {
+                    cta?: T | CallToActionBlockSelect<T>;
+                    content?: T | ContentBlockSelect<T>;
+                    mediaBlock?: T | MediaBlockSelect<T>;
+                    archive?: T | ArchiveBlockSelect<T>;
+                    formBlock?: T | FormBlockSelect<T>;
+                    carousel?: T | CarouselBlockSelect<T>;
+                    accordion?: T | AccordionBlockSelect<T>;
+                  };
+              rightColumn?:
+                | T
+                | {
+                    cta?: T | CallToActionBlockSelect<T>;
+                    content?: T | ContentBlockSelect<T>;
+                    mediaBlock?: T | MediaBlockSelect<T>;
+                    archive?: T | ArchiveBlockSelect<T>;
+                    formBlock?: T | FormBlockSelect<T>;
+                    carousel?: T | CarouselBlockSelect<T>;
+                    accordion?: T | AccordionBlockSelect<T>;
+                  };
+              backgroundColor?: T;
+              padding?: T;
+              gap?: T;
+              className?: T;
+              id?: T;
+              blockName?: T;
+            };
+        fourEqualColumns?:
+          | T
+          | {
+              columns?:
+                | T
+                | {
+                    content?:
+                      | T
+                      | {
+                          cta?: T | CallToActionBlockSelect<T>;
+                          content?: T | ContentBlockSelect<T>;
+                          mediaBlock?: T | MediaBlockSelect<T>;
+                          archive?: T | ArchiveBlockSelect<T>;
+                          formBlock?: T | FormBlockSelect<T>;
+                          carousel?: T | CarouselBlockSelect<T>;
+                          accordion?: T | AccordionBlockSelect<T>;
+                        };
+                    id?: T;
+                  };
+              backgroundColor?: T;
+              padding?: T;
+              gap?: T;
+              className?: T;
+              id?: T;
+              blockName?: T;
+            };
+        twoThirdsOneThird?:
+          | T
+          | {
+              backgroundColor?: T;
+              padding?: T;
+              gap?: T;
+              leftColumn?:
+                | T
+                | {
+                    cta?: T | CallToActionBlockSelect<T>;
+                    content?: T | ContentBlockSelect<T>;
+                    mediaBlock?: T | MediaBlockSelect<T>;
+                    archive?: T | ArchiveBlockSelect<T>;
+                    formBlock?: T | FormBlockSelect<T>;
+                    carousel?: T | CarouselBlockSelect<T>;
+                    accordion?: T | AccordionBlockSelect<T>;
+                  };
+              rightColumn?:
+                | T
+                | {
+                    cta?: T | CallToActionBlockSelect<T>;
+                    content?: T | ContentBlockSelect<T>;
+                    mediaBlock?: T | MediaBlockSelect<T>;
+                    archive?: T | ArchiveBlockSelect<T>;
+                    formBlock?: T | FormBlockSelect<T>;
+                    carousel?: T | CarouselBlockSelect<T>;
+                    accordion?: T | AccordionBlockSelect<T>;
+                  };
+              className?: T;
+              id?: T;
+              blockName?: T;
+            };
+        oneThirdTwoThirds?:
+          | T
+          | {
+              backgroundColor?: T;
+              padding?: T;
+              gap?: T;
+              leftColumn?:
+                | T
+                | {
+                    cta?: T | CallToActionBlockSelect<T>;
+                    content?: T | ContentBlockSelect<T>;
+                    mediaBlock?: T | MediaBlockSelect<T>;
+                    archive?: T | ArchiveBlockSelect<T>;
+                    formBlock?: T | FormBlockSelect<T>;
+                    carousel?: T | CarouselBlockSelect<T>;
+                    accordion?: T | AccordionBlockSelect<T>;
+                  };
+              rightColumn?:
+                | T
+                | {
+                    cta?: T | CallToActionBlockSelect<T>;
+                    content?: T | ContentBlockSelect<T>;
+                    mediaBlock?: T | MediaBlockSelect<T>;
+                    archive?: T | ArchiveBlockSelect<T>;
+                    formBlock?: T | FormBlockSelect<T>;
+                    carousel?: T | CarouselBlockSelect<T>;
+                    accordion?: T | AccordionBlockSelect<T>;
+                  };
+              className?: T;
+              id?: T;
+              blockName?: T;
+            };
+        oneQuarterThreeQuarters?:
+          | T
+          | {
+              backgroundColor?: T;
+              padding?: T;
+              gap?: T;
+              leftColumn?:
+                | T
+                | {
+                    cta?: T | CallToActionBlockSelect<T>;
+                    content?: T | ContentBlockSelect<T>;
+                    mediaBlock?: T | MediaBlockSelect<T>;
+                    archive?: T | ArchiveBlockSelect<T>;
+                    formBlock?: T | FormBlockSelect<T>;
+                    carousel?: T | CarouselBlockSelect<T>;
+                    accordion?: T | AccordionBlockSelect<T>;
+                  };
+              rightColumn?:
+                | T
+                | {
+                    cta?: T | CallToActionBlockSelect<T>;
+                    content?: T | ContentBlockSelect<T>;
+                    mediaBlock?: T | MediaBlockSelect<T>;
+                    archive?: T | ArchiveBlockSelect<T>;
+                    formBlock?: T | FormBlockSelect<T>;
+                    carousel?: T | CarouselBlockSelect<T>;
+                    accordion?: T | AccordionBlockSelect<T>;
+                  };
+              className?: T;
+              id?: T;
+              blockName?: T;
+            };
+        threeQuartersOneQuarter?:
+          | T
+          | {
+              backgroundColor?: T;
+              padding?: T;
+              gap?: T;
+              leftColumn?:
+                | T
+                | {
+                    cta?: T | CallToActionBlockSelect<T>;
+                    content?: T | ContentBlockSelect<T>;
+                    mediaBlock?: T | MediaBlockSelect<T>;
+                    archive?: T | ArchiveBlockSelect<T>;
+                    formBlock?: T | FormBlockSelect<T>;
+                    carousel?: T | CarouselBlockSelect<T>;
+                    accordion?: T | AccordionBlockSelect<T>;
+                  };
+              rightColumn?:
+                | T
+                | {
+                    cta?: T | CallToActionBlockSelect<T>;
+                    content?: T | ContentBlockSelect<T>;
+                    mediaBlock?: T | MediaBlockSelect<T>;
+                    archive?: T | ArchiveBlockSelect<T>;
+                    formBlock?: T | FormBlockSelect<T>;
+                    carousel?: T | CarouselBlockSelect<T>;
+                    accordion?: T | AccordionBlockSelect<T>;
+                  };
+              className?: T;
+              id?: T;
+              blockName?: T;
+            };
+        twoRowsTwoColumns?:
+          | T
+          | {
+              backgroundColor?: T;
+              padding?: T;
+              gap?: T;
+              rows?:
+                | T
+                | {
+                    columns?:
+                      | T
+                      | {
+                          blocks?:
+                            | T
+                            | {
+                                cta?: T | CallToActionBlockSelect<T>;
+                                content?: T | ContentBlockSelect<T>;
+                                mediaBlock?: T | MediaBlockSelect<T>;
+                                archive?: T | ArchiveBlockSelect<T>;
+                                formBlock?: T | FormBlockSelect<T>;
+                                carousel?: T | CarouselBlockSelect<T>;
+                                accordion?: T | AccordionBlockSelect<T>;
+                              };
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              className?: T;
+              id?: T;
+              blockName?: T;
+            };
+        twoRowsThreeColumns?:
+          | T
+          | {
+              backgroundColor?: T;
+              padding?: T;
+              gap?: T;
+              rows?:
+                | T
+                | {
+                    columns?:
+                      | T
+                      | {
+                          blocks?:
+                            | T
+                            | {
+                                cta?: T | CallToActionBlockSelect<T>;
+                                content?: T | ContentBlockSelect<T>;
+                                mediaBlock?: T | MediaBlockSelect<T>;
+                                archive?: T | ArchiveBlockSelect<T>;
+                                formBlock?: T | FormBlockSelect<T>;
+                                carousel?: T | CarouselBlockSelect<T>;
+                                accordion?: T | AccordionBlockSelect<T>;
+                              };
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              className?: T;
+              id?: T;
+              blockName?: T;
+            };
+        threeRowsTwoColumns?:
+          | T
+          | {
+              backgroundColor?: T;
+              padding?: T;
+              gap?: T;
+              rows?:
+                | T
+                | {
+                    columns?:
+                      | T
+                      | {
+                          blocks?:
+                            | T
+                            | {
+                                cta?: T | CallToActionBlockSelect<T>;
+                                content?: T | ContentBlockSelect<T>;
+                                mediaBlock?: T | MediaBlockSelect<T>;
+                                archive?: T | ArchiveBlockSelect<T>;
+                                formBlock?: T | FormBlockSelect<T>;
+                                carousel?: T | CarouselBlockSelect<T>;
+                                accordion?: T | AccordionBlockSelect<T>;
+                              };
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              className?: T;
+              id?: T;
+              blockName?: T;
+            };
+        threeRowsThreeColumns?:
+          | T
+          | {
+              backgroundColor?: T;
+              padding?: T;
+              gap?: T;
+              rows?:
+                | T
+                | {
+                    columns?:
+                      | T
+                      | {
+                          blocks?:
+                            | T
+                            | {
+                                cta?: T | CallToActionBlockSelect<T>;
+                                content?: T | ContentBlockSelect<T>;
+                                mediaBlock?: T | MediaBlockSelect<T>;
+                                archive?: T | ArchiveBlockSelect<T>;
+                                formBlock?: T | FormBlockSelect<T>;
+                                carousel?: T | CarouselBlockSelect<T>;
+                                accordion?: T | AccordionBlockSelect<T>;
+                              };
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              className?: T;
+              id?: T;
+              blockName?: T;
+            };
+        sidebarMainLayout?:
+          | T
+          | {
+              backgroundColor?: T;
+              padding?: T;
+              gap?: T;
+              sidebar?:
+                | T
+                | {
+                    cta?: T | CallToActionBlockSelect<T>;
+                    content?: T | ContentBlockSelect<T>;
+                    mediaBlock?: T | MediaBlockSelect<T>;
+                    archive?: T | ArchiveBlockSelect<T>;
+                    formBlock?: T | FormBlockSelect<T>;
+                    carousel?: T | CarouselBlockSelect<T>;
+                    accordion?: T | AccordionBlockSelect<T>;
+                  };
+              mainContent?:
+                | T
+                | {
+                    cta?: T | CallToActionBlockSelect<T>;
+                    content?: T | ContentBlockSelect<T>;
+                    mediaBlock?: T | MediaBlockSelect<T>;
+                    archive?: T | ArchiveBlockSelect<T>;
+                    formBlock?: T | FormBlockSelect<T>;
+                    carousel?: T | CarouselBlockSelect<T>;
+                    accordion?: T | AccordionBlockSelect<T>;
+                  };
+              className?: T;
+              id?: T;
+              blockName?: T;
+            };
+        mainSidebarLayout?:
+          | T
+          | {
+              backgroundColor?: T;
+              padding?: T;
+              gap?: T;
+              mainContent?:
+                | T
+                | {
+                    cta?: T | CallToActionBlockSelect<T>;
+                    content?: T | ContentBlockSelect<T>;
+                    mediaBlock?: T | MediaBlockSelect<T>;
+                    archive?: T | ArchiveBlockSelect<T>;
+                    formBlock?: T | FormBlockSelect<T>;
+                    carousel?: T | CarouselBlockSelect<T>;
+                    accordion?: T | AccordionBlockSelect<T>;
+                  };
+              sidebar?:
+                | T
+                | {
+                    cta?: T | CallToActionBlockSelect<T>;
+                    content?: T | ContentBlockSelect<T>;
+                    mediaBlock?: T | MediaBlockSelect<T>;
+                    archive?: T | ArchiveBlockSelect<T>;
+                    formBlock?: T | FormBlockSelect<T>;
+                    carousel?: T | CarouselBlockSelect<T>;
+                    accordion?: T | AccordionBlockSelect<T>;
+                  };
+              className?: T;
+              id?: T;
+              blockName?: T;
+            };
+        headerTwoColumnsLayout?:
+          | T
+          | {
+              backgroundColor?: T;
+              padding?: T;
+              gap?: T;
+              header?:
+                | T
+                | {
+                    cta?: T | CallToActionBlockSelect<T>;
+                    content?: T | ContentBlockSelect<T>;
+                    mediaBlock?: T | MediaBlockSelect<T>;
+                    archive?: T | ArchiveBlockSelect<T>;
+                    formBlock?: T | FormBlockSelect<T>;
+                    carousel?: T | CarouselBlockSelect<T>;
+                    accordion?: T | AccordionBlockSelect<T>;
+                  };
+              leftColumn?:
+                | T
+                | {
+                    cta?: T | CallToActionBlockSelect<T>;
+                    content?: T | ContentBlockSelect<T>;
+                    mediaBlock?: T | MediaBlockSelect<T>;
+                    archive?: T | ArchiveBlockSelect<T>;
+                    formBlock?: T | FormBlockSelect<T>;
+                    carousel?: T | CarouselBlockSelect<T>;
+                    accordion?: T | AccordionBlockSelect<T>;
+                  };
+              rightColumn?:
+                | T
+                | {
+                    cta?: T | CallToActionBlockSelect<T>;
+                    content?: T | ContentBlockSelect<T>;
+                    mediaBlock?: T | MediaBlockSelect<T>;
+                    archive?: T | ArchiveBlockSelect<T>;
+                    formBlock?: T | FormBlockSelect<T>;
+                    carousel?: T | CarouselBlockSelect<T>;
+                    accordion?: T | AccordionBlockSelect<T>;
+                  };
+              className?: T;
+              id?: T;
+              blockName?: T;
+            };
+        headerThreeColumnsLayout?:
+          | T
+          | {
+              backgroundColor?: T;
+              padding?: T;
+              gap?: T;
+              header?:
+                | T
+                | {
+                    cta?: T | CallToActionBlockSelect<T>;
+                    content?: T | ContentBlockSelect<T>;
+                    mediaBlock?: T | MediaBlockSelect<T>;
+                    archive?: T | ArchiveBlockSelect<T>;
+                    formBlock?: T | FormBlockSelect<T>;
+                    carousel?: T | CarouselBlockSelect<T>;
+                    accordion?: T | AccordionBlockSelect<T>;
+                  };
+              columns?:
+                | T
+                | {
+                    blocks?:
+                      | T
+                      | {
+                          cta?: T | CallToActionBlockSelect<T>;
+                          content?: T | ContentBlockSelect<T>;
+                          mediaBlock?: T | MediaBlockSelect<T>;
+                          archive?: T | ArchiveBlockSelect<T>;
+                          formBlock?: T | FormBlockSelect<T>;
+                          carousel?: T | CarouselBlockSelect<T>;
+                          accordion?: T | AccordionBlockSelect<T>;
+                        };
+                    id?: T;
+                  };
+              className?: T;
+              id?: T;
+              blockName?: T;
+            };
+        masonryLayout?:
+          | T
+          | {
+              backgroundColor?: T;
+              padding?: T;
+              gap?: T;
+              items?:
+                | T
+                | {
+                    blocks?:
+                      | T
+                      | {
+                          cta?: T | CallToActionBlockSelect<T>;
+                          content?: T | ContentBlockSelect<T>;
+                          mediaBlock?: T | MediaBlockSelect<T>;
+                          archive?: T | ArchiveBlockSelect<T>;
+                          formBlock?: T | FormBlockSelect<T>;
+                          carousel?: T | CarouselBlockSelect<T>;
+                          accordion?: T | AccordionBlockSelect<T>;
+                        };
+                    id?: T;
+                  };
+              className?: T;
+              id?: T;
+              blockName?: T;
+            };
         aboutPage?: T | AboutPageBlockSelect<T>;
         textBlock?:
           | T
@@ -3372,26 +4362,6 @@ export interface AccordionBlockSelect<T extends boolean = true> {
         content?: T;
         id?: T;
       };
-  spacingBottom?: T;
-  spacingTop?: T;
-  paddingBottom?: T;
-  paddingTop?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "hotspotBlock_select".
- */
-export interface HotspotBlockSelect<T extends boolean = true> {
-  title?: T;
-  type?: T;
-  appearance?: T;
-  category?: T;
-  subcategory?: T;
-  sort?: T;
-  products?: T;
-  limit?: T;
   spacingBottom?: T;
   spacingTop?: T;
   paddingBottom?: T;
