@@ -117,12 +117,12 @@ export const RenderBlocks = ({ blocks, pageId }: { blocks: Page["section"]; page
 
               if (isSectionComponent) {
                 // For section components, pass the whole block
-                return <Block key={index} {...block} />;
+                return <Block key={`section-${index}`} {...(block as any)} />;
               } else {
                 // For regular blocks
                 return (
-                  <VisualEditingWrapper key={index} blockType={blockType}>
-                    <Block id={pageId} {...block} />
+                  <VisualEditingWrapper key={`block-${index}`} blockType={blockType}>
+                    <Block id={pageId} {...(block as any)} />
                   </VisualEditingWrapper>
                 );
               }

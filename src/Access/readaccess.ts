@@ -55,6 +55,6 @@ export const readAccess: Access = async ({ req }) => {
     return businessWhere([...mappedUserIds, user.id]);
   }
 
-  console.log("❌ Role not authorized for administrator list");
+
   return false;
 };

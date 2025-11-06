@@ -14,7 +14,7 @@ export const TwoRowsTwoColumnsSection: Block = {
     singular: "Two Rows - Two Columns Grid",
     plural: "Two Rows - Two Columns Grids",
   },
-  imageURL: `<svg width="90" height="48" viewBox="0 0 90 48" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="47" y="6" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="6" y="26" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="47" y="26" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect></svg>`,
+  // imageURL: `<svg width="90" height="48" viewBox="0 0 90 48" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="47" y="6" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="6" y="26" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="47" y="26" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect></svg>`,
   imageAltText: "Two Rows Two Columns Grid",
   fields: [
     {
@@ -170,7 +170,7 @@ export const ThreeRowsTwoColumnsSection: Block = {
     singular: "Three Rows - Two Columns Grid",
     plural: "Three Rows - Two Columns Grids",
   },
-  imageURL: `<svg width="90" height="68" viewBox="0 0 90 68" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="47" y="6" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="6" y="26" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="47" y="26" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="6" y="46" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="47" y="46" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect></svg>`,
+  // imageURL: `<svg width="90" height="68" viewBox="0 0 90 68" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="47" y="6" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="6" y="26" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="47" y="26" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="6" y="46" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="47" y="46" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect></svg>`,
   imageAltText: "Three Rows Two Columns Grid",
   fields: [
     {

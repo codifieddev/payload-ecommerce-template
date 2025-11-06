@@ -9,15 +9,30 @@ import {
 import { authenticated } from "@/access/authenticated";
 import { authenticatedOrPublished } from "@/access/authenticatedOrPublished";
 import { superAdminOnly, superAdminOnlyAdmin } from "@/access/roleBasedAccess";
-// Commented out existing blocks - now using sections instead
-// import { Hotspot } from "@/blocks/(ecommerce)/Hotspot/config";
-// import { Accordion } from "@/blocks/Accordion/config";
-// import { Archive } from "@/blocks/ArchiveBlock/config";
-// import { CallToAction } from "@/blocks/CallToAction/config";
-// import { Carousel } from "@/blocks/Carousel/config";
-// import { Content } from "@/blocks/Content/config";
-// import { FormBlock } from "@/blocks/Form/config";
-// import { MediaBlock } from "@/blocks/MediaBlock/config";
+
+// Import original blocks
+import { Hotspot } from "@/blocks/(ecommerce)/Hotspot/config";
+import { Accordion } from "@/blocks/Accordion/config";
+import { Archive } from "@/blocks/ArchiveBlock/config";
+import { CallToAction } from "@/blocks/CallToAction/config";
+import { Carousel } from "@/blocks/Carousel/config";
+import { Content } from "@/blocks/Content/config";
+import { FormBlock } from "@/blocks/Form/config";
+import { MediaBlock } from "@/blocks/MediaBlock/config";
+
+// Import content blocks
+import { Blurb } from "@/blocks/contentBlock/Blurb/config";
+import { Text } from "@/blocks/contentBlock/Text/config";
+import { Divider } from "@/blocks/contentBlock/Divider/config";
+import { Toggle } from "@/blocks/contentBlock/Toggle/config";
+import { Tabs } from "@/blocks/contentBlock/Tabs/config";
+import { Testimonial } from "@/blocks/contentBlock/Testimonial/config";
+import { TeamMember } from "@/blocks/contentBlock/TeamMember/config";
+import { PricingTable } from "@/blocks/contentBlock/PricingTable/config";
+import { Counter } from "@/blocks/contentBlock/Counter/config";
+import { ProgressBar } from "@/blocks/contentBlock/ProgressBar/config";
+import { Icon } from "@/blocks/contentBlock/Icon/config";
+import { List } from "@/blocks/contentBlock/List/config";
 
 // Import section blocks instead
 import {
@@ -38,6 +53,7 @@ import {
   HeaderThreeColumnsLayoutSection,
   MasonryLayoutSection,
 } from "@/section/blocks";
+
 import { hero } from "@/components/heros/config";
 import { slugField } from "@/fields/slug";
 import { populatePublishedAt } from "@/hooks/populatePublishedAt";
@@ -142,24 +158,37 @@ export const Pages: CollectionConfig<"pages"> = {
               name: "section",
               type: "blocks",
               blocks: [
-                // Section Layout Blocks
+                // === EQUAL COLUMNS ===
+
                 TwoEqualColumnsSection,
                 ThreeEqualColumnsSection,
                 FourEqualColumnsSection,
+
+                // === OFFSET COLUMNS ===
+
                 TwoThirdsOneThirdSection,
                 OneThirdTwoThirdsSection,
                 OneQuarterThreeQuartersSection,
                 ThreeQuartersOneQuarterSection,
+
+                // === MULTI ROW ===
+
                 TwoRowsTwoColumnsSection,
                 TwoRowsThreeColumnsSection,
                 ThreeRowsTwoColumnsSection,
                 ThreeRowsThreeColumnsSection,
+
+                // === MULTI COLUMN ===
+
                 SidebarMainLayoutSection,
                 MainSidebarLayoutSection,
                 HeaderTwoColumnsLayoutSection,
                 HeaderThreeColumnsLayoutSection,
                 MasonryLayoutSection,
-                // Keep some original blocks if needed (uncomment as required)
+
+                // === CONTENT BLOCKS ===
+
+                // Original Blocks
                 // CallToAction,
                 // Content,
                 // MediaBlock,
@@ -168,9 +197,13 @@ export const Pages: CollectionConfig<"pages"> = {
                 // Carousel,
                 // Accordion,
                 // Hotspot,
-                AboutPage,
-                TextBlock,
-                LayoutBlock,
+
+                // Content Blocks (Divi-inspired)
+
+                // Other Blocks
+                // AboutPage,
+                // TextBlock,
+                // LayoutBlock,
               ],
               required: true,
               admin: {

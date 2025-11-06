@@ -8,7 +8,7 @@ export const isAdmin: Access = ({ req: { user } }) =>
 
 // src/access/isSuperAdmin.ts
 
-export const isSuperAdmin: Access = ({ req: { user } }) =>
-  user?.collection === "administrators" && (
-    (typeof user.role === "string" && user.role === "superadmin")
-  );
+// export const isSuperAdmin: Access = ({ req: { user } }) =>
+//   user?.collection === "administrators" && (
+//     (typeof user.role === "string" && user.role === "superadmin")
+//   );

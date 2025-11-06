@@ -55,7 +55,7 @@
 // };
 
 import { authenticated } from "@/access/authenticated";
-import { readAccess } from "@/Access/readaccess";
+// import { readAccess } from "@/Access/readaccess";
 
 import type { CollectionConfig } from "payload";
 
@@ -98,6 +98,10 @@ export const Administrators: CollectionConfig = {
       type: "select",
       required: true,
       options: [
+        {
+          label: "Super Admin",
+          value: "superadmin",
+        },
         {
           label: "Admin",
           value: "admin",
