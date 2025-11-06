@@ -38,11 +38,13 @@ import { plugins } from "./plugins";
 import { getServerSideURL } from "./utilities/getURL";
 import { Websites } from "./collections/Tenants";
 import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob";
+import { Permission } from "./collections/Role";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
 export default buildConfig({
+  hooks: {},
   admin: {
     avatar: {
       Component: "@/components/AdminAvatar#AdminAvatar",
@@ -131,7 +133,7 @@ export default buildConfig({
     ProductSubCategories,
     ProductReviews,
     Websites,
-   
+    Permission,
   ],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [

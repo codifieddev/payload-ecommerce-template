@@ -80,6 +80,7 @@ export interface Config {
     productSubCategories: ProductSubCategory;
     productReviews: ProductReview;
     websites: Website;
+    permission: Permission;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -114,6 +115,7 @@ export interface Config {
     productSubCategories: ProductSubCategoriesSelect<false> | ProductSubCategoriesSelect<true>;
     productReviews: ProductReviewsSelect<false> | ProductReviewsSelect<true>;
     websites: WebsitesSelect<false> | WebsitesSelect<true>;
+    permission: PermissionSelect<false> | PermissionSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -740,8 +742,8 @@ export interface Category {
  */
 export interface Administrator {
   id: string;
-  name?: string | null;
-  role?: ('admin' | 'superadmin' | 'tenants' | 'clients' | 'designer' | 'editor' | 'franchise' | 'guest') | null;
+  name: string;
+  role: 'admin' | 'guest' | 'client' | 'business' | 'designer' | 'franchise' | 'editor';
   createdBy?: (string | null) | Administrator;
   updatedAt: string;
   createdAt: string;
@@ -2705,6 +2707,21 @@ export interface ProductReview {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "permission".
+ */
+export interface Permission {
+  id: string;
+  pagePermission?: ('read' | 'write' | 'delete' | 'update')[] | null;
+  productPermission?: ('read' | 'write' | 'delete' | 'update')[] | null;
+  productcatPermission?: ('read' | 'write' | 'delete' | 'update')[] | null;
+  userPermission?: ('read' | 'write' | 'delete' | 'update')[] | null;
+  parent?: (string | null) | Administrator;
+  createdFor?: (string | null) | Administrator;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -2922,6 +2939,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'websites';
         value: string | Website;
+      } | null)
+    | ({
+        relationTo: 'permission';
+        value: string | Permission;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -4313,6 +4334,20 @@ export interface WebsitesSelect<T extends boolean = true> {
   fontFamily?: T;
   createdBy?: T;
   tenantID?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "permission_select".
+ */
+export interface PermissionSelect<T extends boolean = true> {
+  pagePermission?: T;
+  productPermission?: T;
+  productcatPermission?: T;
+  userPermission?: T;
+  parent?: T;
+  createdFor?: T;
   updatedAt?: T;
   createdAt?: T;
 }
