@@ -9,8 +9,32 @@ import {
 } from "@/blocks/globals";
 import RichText from "@/components/RichText";
 import { WithInlinePrice } from "@/globals/(ecommerce)/Layout/ProductList/variants/listings/WithInlinePrice";
-import { type HotspotBlock as HotspotBlockProps, type Product } from "@/payload-types";
+import { type Product } from "@/payload-types";
 import { cn } from "@/utilities/cn";
+
+// Define HotspotBlock interface locally since it's not in payload-types
+interface HotspotBlockProps {
+  blockType?: string;
+  appearance?: string;
+  type?: string;
+  title?: any;
+  products?: any[];
+  enableLiveSearch?: boolean;
+  categories?: any[];
+  populateBy?: string;
+  relationTo?: string;
+  margin?: any;
+  padding?: any;
+  className?: string;
+  category?: any;
+  limit?: number;
+  paddingBottom?: string;
+  paddingTop?: string;
+  spacingBottom?: string;
+  spacingTop?: string;
+  subcategory?: any;
+  sort?: string;
+}
 import config from "@payload-config";
 
 import { WithInlinePriceSlider } from "./variants/WithInlinePriceSlider";

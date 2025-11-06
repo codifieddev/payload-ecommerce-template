@@ -1,4 +1,4 @@
-export async function getTenantByDomain(domain: string, slug: string) {
+export async function getTenantByDomain(domain: string, slug: string, locale = "en") {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/websites?where[domains.domain][equals]=${domain}`,
     // { next: { revalidate: 3600 } }, // 1 hour cache
@@ -13,7 +13,7 @@ export async function getTenantByDomain(domain: string, slug: string) {
   }
 
   const final = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/pages?where[website][equals]=${id.id}&where[slug][equals]=${slug}`,
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/pages?where[website][equals]=${id.id}&where[slug][equals]=${slug}&locale=${locale}`,
     // { next: { revalidate: 60 } },
   );
 

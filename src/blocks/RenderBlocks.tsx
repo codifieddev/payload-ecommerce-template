@@ -10,27 +10,78 @@ import { AccordionBlock } from "./Accordion/Component";
 import { CarouselBlock } from "./Carousel/Component";
 
 import type { Page } from "@/payload-types";
-import LayoutBlockRenderer from "./Container/component";
-import { AboutPage } from "./About/config";
+import { default as LayoutBlockRenderer } from "./Container/component";
 import { AboutPageRenderer } from "./About/component";
+
+// Import section components
+// Equal Columns
+import {
+  TwoEqualColumnsComponent,
+  ThreeEqualColumnsComponent,
+  FourEqualColumnsComponent,
+  FiveEqualColumnsComponent,
+  SixEqualColumnsComponent,
+} from "@/section/components/EqualColumns";
+// Offset Columns
+import {
+  TwoThirdsOneThirdComponent,
+  OneThirdTwoThirdsComponent,
+  OneQuarterThreeQuartersComponent,
+  ThreeQuartersOneQuarterComponent,
+} from "@/section/components/OffsetColumns";
+// Multi-Column Layouts
+import {
+  SidebarMainLayoutComponent,
+  MainSidebarLayoutComponent,
+  HeaderTwoColumnsLayoutComponent,
+  HeaderThreeColumnsLayoutComponent,
+  MasonryLayoutComponent,
+} from "@/section/components/MultiColumnLayouts";
+// Multi-Row Columns
+import {
+  TwoRowsTwoColumnsComponent,
+  TwoRowsThreeColumnsComponent,
+  ThreeRowsTwoColumnsComponent,
+  ThreeRowsThreeColumnsComponent,
+} from "@/section/components/MultiRowColumns";
 
 const blockComponents = {
   archive: ArchiveBlock,
   content: ContentBlock,
   cta: CallToActionBlock,
   formBlock: FormBlock,
-  // code: CodeBlock,
   carousel: CarouselBlock,
   mediaBlock: MediaBlock,
   accordion: AccordionBlock,
   hotspotZone: HotspotBlock,
   layoutBlock: LayoutBlockRenderer,
   aboutPage: AboutPageRenderer,
+  // Equal Columns Section components
+  twoEqualColumns: TwoEqualColumnsComponent,
+  threeEqualColumns: ThreeEqualColumnsComponent,
+  fourEqualColumns: FourEqualColumnsComponent,
+  fiveEqualColumns: FiveEqualColumnsComponent,
+  sixEqualColumns: SixEqualColumnsComponent,
+  // Offset Columns components
+  twoThirdsOneThird: TwoThirdsOneThirdComponent,
+  oneThirdTwoThirds: OneThirdTwoThirdsComponent,
+  oneQuarterThreeQuarters: OneQuarterThreeQuartersComponent,
+  threeQuartersOneQuarter: ThreeQuartersOneQuarterComponent,
+  // Multi-Column Layout components
+  sidebarMainLayout: SidebarMainLayoutComponent,
+  mainSidebarLayout: MainSidebarLayoutComponent,
+  headerTwoColumnsLayout: HeaderTwoColumnsLayoutComponent,
+  headerThreeColumnsLayout: HeaderThreeColumnsLayoutComponent,
+  masonryLayout: MasonryLayoutComponent,
+  // Multi-Row Columns components
+  twoRowsTwoColumns: TwoRowsTwoColumnsComponent,
+  twoRowsThreeColumns: TwoRowsThreeColumnsComponent,
+  threeRowsTwoColumns: ThreeRowsTwoColumnsComponent,
+  threeRowsThreeColumns: ThreeRowsThreeColumnsComponent,
 };
 
-export const RenderBlocks = ({ blocks, pageId }: { blocks: Page["layout"][0][]; pageId?: string }) => {
+export const RenderBlocks = ({ blocks, pageId }: { blocks: Page["section"]; pageId?: string }) => {
   const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0;
-  console.log(blocks);
 
   if (hasBlocks) {
     return (
@@ -42,32 +93,39 @@ export const RenderBlocks = ({ blocks, pageId }: { blocks: Page["layout"][0][]; 
             const Block = blockComponents[blockType];
 
             if (Block) {
-              // LayoutBlockRenderer expects a 'block' prop, others expect spread props
-              if (blockType === "layoutBlock") {
+              // Check if it's a section component
+              const isSectionComponent = [
+                "twoEqualColumns",
+                "threeEqualColumns",
+                "fourEqualColumns",
+                "fiveEqualColumns",
+                "sixEqualColumns",
+                "twoThirdsOneThird",
+                "oneThirdTwoThirds",
+                "oneQuarterThreeQuarters",
+                "threeQuartersOneQuarter",
+                "sidebarMainLayout",
+                "mainSidebarLayout",
+                "headerTwoColumnsLayout",
+                "headerThreeColumnsLayout",
+                "masonryLayout",
+                "twoRowsTwoColumns",
+                "twoRowsThreeColumns",
+                "threeRowsTwoColumns",
+                "threeRowsThreeColumns",
+              ].includes(blockType as string);
+
+              if (isSectionComponent) {
+                // For section components, pass the whole block
+                return <Block key={index} {...block} />;
+              } else {
+                // For regular blocks
                 return (
-                  <div key={index}>
-                    <Block block={block} />
-                  </div>
+                  <VisualEditingWrapper key={index} blockType={blockType}>
+                    <Block id={pageId} {...block} />
+                  </VisualEditingWrapper>
                 );
               }
-              return (
-                <>
-                <div key={index}>
-                  <Block {...block} disableInnerContainer />
-                </div>
-                <VisualEditingWrapper
-                  key={index}
-                  blockType={blockType}
-                  blockId={(block as any)?.id}
-                  docId={pageId}
-                  field={`layout.${index}`}
-                  className="block-wrapper"
-                >
-                
-                 
-                  <Block {...block} disableInnerContainer fieldPath={`layout.${index}`} />
-                </VisualEditingWrapper>
-                </>              );
             }
           }
           return null;
@@ -76,13 +134,5 @@ export const RenderBlocks = ({ blocks, pageId }: { blocks: Page["layout"][0][]; 
     );
   }
 
-  // Return placeholder when no blocks exist
-  return (
-    <div className="container py-16 text-center text-gray-500">
-      <div className="mx-auto max-w-lg">
-        <h3 className="mb-4 text-lg font-medium">No content blocks yet</h3>
-        <p className="mb-6 text-sm">Add content blocks to this page from the admin panel.</p>
-      </div>
-    </div>
-  );
+  return null;
 };
