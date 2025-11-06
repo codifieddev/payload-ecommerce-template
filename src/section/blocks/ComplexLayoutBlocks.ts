@@ -9,6 +9,7 @@ import { Accordion } from "@/blocks/Accordion/config";
 
 export const SidebarMainLayoutSection: Block = {
   slug: "sidebarMainLayout",
+  interfaceName: "MultiColumn",
   labels: {
     singular: "Sidebar + Main Layout",
     plural: "Sidebar + Main Layouts",
@@ -56,10 +57,9 @@ export const SidebarMainLayoutSection: Block = {
       blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
       required: true,
       minRows: 1,
-      maxRows: 1,
       admin: {
         initCollapsed: false,
-        description: "Add one block for the sidebar content",
+        description: "Add one or more blocks for the sidebar content",
       },
     },
     {
@@ -69,10 +69,9 @@ export const SidebarMainLayoutSection: Block = {
       blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
       required: true,
       minRows: 1,
-      maxRows: 1,
       admin: {
         initCollapsed: false,
-        description: "Add one block for the main content area",
+        description: "Add one or more blocks for the main content area",
       },
     },
     {
@@ -85,6 +84,7 @@ export const SidebarMainLayoutSection: Block = {
 
 export const MainSidebarLayoutSection: Block = {
   slug: "mainSidebarLayout",
+  interfaceName: "MultiColumn",
   labels: {
     singular: "Main + Sidebar Layout",
     plural: "Main + Sidebar Layouts",
@@ -132,10 +132,9 @@ export const MainSidebarLayoutSection: Block = {
       blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
       required: true,
       minRows: 1,
-      maxRows: 1,
       admin: {
         initCollapsed: false,
-        description: "Add one block for the main content area",
+        description: "Add one or more blocks for the main content area",
       },
     },
     {
@@ -145,10 +144,9 @@ export const MainSidebarLayoutSection: Block = {
       blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
       required: true,
       minRows: 1,
-      maxRows: 1,
       admin: {
         initCollapsed: false,
-        description: "Add one block for the sidebar content",
+        description: "Add one or more blocks for the sidebar content",
       },
     },
     {
@@ -161,6 +159,7 @@ export const MainSidebarLayoutSection: Block = {
 
 export const HeaderTwoColumnsLayoutSection: Block = {
   slug: "headerTwoColumnsLayout",
+  interfaceName: "MultiColumn",
   labels: {
     singular: "Header + Two Columns Layout",
     plural: "Header + Two Columns Layouts",
@@ -208,10 +207,9 @@ export const HeaderTwoColumnsLayoutSection: Block = {
       blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
       required: true,
       minRows: 1,
-      maxRows: 1,
       admin: {
         initCollapsed: false,
-        description: "Add one block for the header content",
+        description: "Add one or more blocks for the header content",
       },
     },
     {
@@ -221,10 +219,9 @@ export const HeaderTwoColumnsLayoutSection: Block = {
       blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
       required: true,
       minRows: 1,
-      maxRows: 1,
       admin: {
         initCollapsed: false,
-        description: "Add one block for the left column content",
+        description: "Add one or more blocks for the left column content",
       },
     },
     {
@@ -234,10 +231,9 @@ export const HeaderTwoColumnsLayoutSection: Block = {
       blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
       required: true,
       minRows: 1,
-      maxRows: 1,
       admin: {
         initCollapsed: false,
-        description: "Add one block for the right column content",
+        description: "Add one or more blocks for the right column content",
       },
     },
     {
@@ -250,6 +246,7 @@ export const HeaderTwoColumnsLayoutSection: Block = {
 
 export const HeaderThreeColumnsLayoutSection: Block = {
   slug: "headerThreeColumnsLayout",
+  interfaceName: "MultiColumn",
   imageURL: `<svg width="90" height="48" viewBox="0 0 90 48" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="78" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="6" y="26" width="23.3333" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="33.333" y="26" width="23.3333" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="60.667" y="26" width="23.3333" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect></svg>`,
   imageAltText: "Header + Three Columns Layout",
   labels: {
@@ -297,10 +294,9 @@ export const HeaderThreeColumnsLayoutSection: Block = {
       blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
       required: true,
       minRows: 1,
-      maxRows: 1,
       admin: {
         initCollapsed: false,
-        description: "Add one block for the header content",
+        description: "Add one or more blocks for the header content",
       },
     },
     {
@@ -315,10 +311,9 @@ export const HeaderThreeColumnsLayoutSection: Block = {
           blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
           required: true,
           minRows: 1,
-          maxRows: 1,
           admin: {
             initCollapsed: false,
-            description: "Add one block for this column",
+            description: "Add one or more blocks for this column",
           },
         },
       ],
@@ -333,6 +328,7 @@ export const HeaderThreeColumnsLayoutSection: Block = {
 
 export const MasonryLayoutSection: Block = {
   slug: "masonryLayout",
+  interfaceName: "MultiColumn",
   imageURL: `<svg width="90" height="48" viewBox="0 0 90 48" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="47" y="6" width="17" height="36" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="68" y="6" width="16" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="6" y="26" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="68" y="26" width="16" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect></svg>`,
   imageAltText: "Masonry Layout",
   labels: {
@@ -383,10 +379,9 @@ export const MasonryLayoutSection: Block = {
           blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
           required: true,
           minRows: 1,
-          maxRows: 1,
           admin: {
             initCollapsed: false,
-            description: "Add one block for this masonry item",
+            description: "Add one or more blocks for this masonry item",
           },
         },
       ],

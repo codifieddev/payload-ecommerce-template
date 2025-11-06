@@ -7,13 +7,51 @@ import { FormBlock } from "@/blocks/Form/config";
 import { Carousel } from "@/blocks/Carousel/config";
 import { Accordion } from "@/blocks/Accordion/config";
 
+// Import content blocks
+import { Blurb } from "@/blocks/contentBlock/Blurb/config";
+import { Text } from "@/blocks/contentBlock/Text/config";
+import { Divider } from "@/blocks/contentBlock/Divider/config";
+import { Toggle } from "@/blocks/contentBlock/Toggle/config";
+import { Tabs } from "@/blocks/contentBlock/Tabs/config";
+import { Testimonial } from "@/blocks/contentBlock/Testimonial/config";
+import { TeamMember } from "@/blocks/contentBlock/TeamMember/config";
+import { PricingTable } from "@/blocks/contentBlock/PricingTable/config";
+import { Counter } from "@/blocks/contentBlock/Counter/config";
+import { ProgressBar } from "@/blocks/contentBlock/ProgressBar/config";
+import { Icon } from "@/blocks/contentBlock/Icon/config";
+import { List } from "@/blocks/contentBlock/List/config";
+
+// All available blocks for columns
+const columnBlocks = [
+  // CallToAction,
+  // Content,
+  // MediaBlock,
+  // Archive,
+  //FormBlock,
+  // Carousel,
+  //Accordion,
+  Blurb,
+  Text,
+  Divider,
+  Toggle,
+  Tabs,
+  Testimonial,
+  TeamMember,
+  PricingTable,
+  Counter,
+  ProgressBar,
+  Icon,
+  List,
+];
+
 export const TwoEqualColumnsSection: Block = {
   slug: "twoEqualColumns",
+  interfaceName: "EqualColumns",
   labels: {
     singular: "Two Equal Columns",
     plural: "Two Equal Columns",
   },
-  imageURL: `<svg width="90" height="28" viewBox="0 0 90 28" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="47" y="6" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect></svg>`,
+  // imageURL: `<svg width="90" height="28" viewBox="0 0 90 28" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="47" y="6" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect></svg>`,
   imageAltText: "Two Equal Columns Layout",
   fields: [
     {
@@ -26,26 +64,24 @@ export const TwoEqualColumnsSection: Block = {
               name: "leftColumn",
               type: "blocks",
               label: "Left Column Content",
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
+              blocks: columnBlocks,
               required: true,
               minRows: 1,
-              maxRows: 1,
               admin: {
                 initCollapsed: false,
-                description: "Add one block for the left column content",
+                description: "Add one or more blocks for the left column content",
               },
             },
             {
               name: "rightColumn",
               type: "blocks",
               label: "Right Column Content",
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
+              blocks: columnBlocks,
               required: true,
               minRows: 1,
-              maxRows: 1,
               admin: {
                 initCollapsed: false,
-                description: "Add one block for the right column content",
+                description: "Add one or more blocks for the right column content",
               },
             },
           ],
@@ -100,11 +136,12 @@ export const TwoEqualColumnsSection: Block = {
 
 export const ThreeEqualColumnsSection: Block = {
   slug: "threeEqualColumns",
+  interfaceName: "EqualColumns",
   labels: {
     singular: "Three Equal Columns",
     plural: "Three Equal Columns",
   },
-  imageURL: `<svg width="90" height="28" viewBox="0 0 90 28" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="23.3333" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="33.333" y="6" width="23.3333" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="60.667" y="6" width="23.3333" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect></svg>`,
+  // imageURL: `<svg width="90" height="28" viewBox="0 0 90 28" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="23.3333" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="33.333" y="6" width="23.3333" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="60.667" y="6" width="23.3333" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect></svg>`,
   imageAltText: "Three Equal Columns Layout",
   fields: [
     {
@@ -117,39 +154,36 @@ export const ThreeEqualColumnsSection: Block = {
               name: "leftColumn",
               type: "blocks",
               label: "Left Column Content",
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
+              blocks: columnBlocks,
               required: true,
               minRows: 1,
-              maxRows: 1,
               admin: {
                 initCollapsed: false,
-                description: "Add one block for the left column content",
+                description: "Add one or more blocks for the left column content",
               },
             },
             {
               name: "centerColumn",
               type: "blocks",
               label: "Center Column Content",
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
+              blocks: columnBlocks,
               required: true,
               minRows: 1,
-              maxRows: 1,
               admin: {
                 initCollapsed: false,
-                description: "Add one block for the center column content",
+                description: "Add one or more blocks for the center column content",
               },
             },
             {
               name: "rightColumn",
               type: "blocks",
               label: "Right Column Content",
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
+              blocks: columnBlocks,
               required: true,
               minRows: 1,
-              maxRows: 1,
               admin: {
                 initCollapsed: false,
-                description: "Add one block for the right column content",
+                description: "Add one or more blocks for the right column content",
               },
             },
           ],
@@ -204,6 +238,7 @@ export const ThreeEqualColumnsSection: Block = {
 
 export const FourEqualColumnsSection: Block = {
   slug: "fourEqualColumns",
+  interfaceName: "EqualColumns",
   labels: {
     singular: "Four Equal Columns",
     plural: "Four Equal Columns",
@@ -227,7 +262,7 @@ export const FourEqualColumnsSection: Block = {
                   name: "content",
                   type: "blocks",
                   label: "Column Content",
-                  blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
+                  blocks: columnBlocks,
                   required: true,
                   minRows: 1,
                   maxRows: 2,

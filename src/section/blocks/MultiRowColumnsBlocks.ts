@@ -9,11 +9,12 @@ import { Accordion } from "@/blocks/Accordion/config";
 
 export const TwoRowsTwoColumnsSection: Block = {
   slug: "twoRowsTwoColumns",
+  interfaceName: "MultiRow",
   labels: {
     singular: "Two Rows - Two Columns Grid",
     plural: "Two Rows - Two Columns Grids",
   },
-  imageURL: `<svg width="90" height="48" viewBox="0 0 90 48" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="47" y="6" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="6" y="26" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="47" y="26" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect></svg>`,
+  // imageURL: `<svg width="90" height="48" viewBox="0 0 90 48" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="47" y="6" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="6" y="26" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="47" y="26" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect></svg>`,
   imageAltText: "Two Rows Two Columns Grid",
   fields: [
     {
@@ -67,10 +68,9 @@ export const TwoRowsTwoColumnsSection: Block = {
               blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
               required: true,
               minRows: 1,
-              maxRows: 1,
               admin: {
                 initCollapsed: false,
-                description: "Add one block for this cell",
+                description: "Add one or more blocks for this cell",
               },
             },
           ],
@@ -87,6 +87,7 @@ export const TwoRowsTwoColumnsSection: Block = {
 
 export const TwoRowsThreeColumnsSection: Block = {
   slug: "twoRowsThreeColumns",
+  interfaceName: "MultiRow",
   labels: {
     singular: "Two Rows - Three Columns Grid",
     plural: "Two Rows - Three Columns Grids",
@@ -145,10 +146,9 @@ export const TwoRowsThreeColumnsSection: Block = {
               blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
               required: true,
               minRows: 1,
-              maxRows: 1,
               admin: {
                 initCollapsed: false,
-                description: "Add one block for this cell",
+                description: "Add one or more blocks for this cell",
               },
             },
           ],
@@ -165,11 +165,12 @@ export const TwoRowsThreeColumnsSection: Block = {
 
 export const ThreeRowsTwoColumnsSection: Block = {
   slug: "threeRowsTwoColumns",
+  interfaceName: "MultiRow",
   labels: {
     singular: "Three Rows - Two Columns Grid",
     plural: "Three Rows - Two Columns Grids",
   },
-  imageURL: `<svg width="90" height="68" viewBox="0 0 90 68" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="47" y="6" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="6" y="26" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="47" y="26" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="6" y="46" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="47" y="46" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect></svg>`,
+  // imageURL: `<svg width="90" height="68" viewBox="0 0 90 68" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="47" y="6" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="6" y="26" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="47" y="26" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="6" y="46" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect><rect x="47" y="46" width="37" height="16" fill="#D2D7E4" class="et-vb-svg-nofill"></rect></svg>`,
   imageAltText: "Three Rows Two Columns Grid",
   fields: [
     {
@@ -223,10 +224,9 @@ export const ThreeRowsTwoColumnsSection: Block = {
               blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
               required: true,
               minRows: 1,
-              maxRows: 1,
               admin: {
                 initCollapsed: false,
-                description: "Add one block for this cell",
+                description: "Add one or more blocks for this cell",
               },
             },
           ],
@@ -243,6 +243,7 @@ export const ThreeRowsTwoColumnsSection: Block = {
 
 export const ThreeRowsThreeColumnsSection: Block = {
   slug: "threeRowsThreeColumns",
+  interfaceName: "MultiRow",
   labels: {
     singular: "Three Rows - Three Columns Grid",
     plural: "Three Rows - Three Columns Grids",
@@ -301,10 +302,9 @@ export const ThreeRowsThreeColumnsSection: Block = {
               blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
               required: true,
               minRows: 1,
-              maxRows: 1,
               admin: {
                 initCollapsed: false,
-                description: "Add one block for this cell",
+                description: "Add one or more blocks for this cell",
               },
             },
           ],

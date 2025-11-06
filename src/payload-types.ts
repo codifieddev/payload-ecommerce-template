@@ -80,6 +80,7 @@ export interface Config {
     productSubCategories: ProductSubCategory;
     productReviews: ProductReview;
     websites: Website;
+    permission: Permission;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -114,6 +115,7 @@ export interface Config {
     productSubCategories: ProductSubCategoriesSelect<false> | ProductSubCategoriesSelect<true>;
     productReviews: ProductReviewsSelect<false> | ProductReviewsSelect<true>;
     websites: WebsitesSelect<false> | WebsitesSelect<true>;
+    permission: PermissionSelect<false> | PermissionSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -274,805 +276,22 @@ export interface Page {
     single_backgroundImage?: (string | null) | Media;
   };
   section: (
-    | {
-        /**
-         * Add one block for the left column content
-         */
-        leftColumn: (
-          | CallToActionBlock
-          | ContentBlock
-          | MediaBlock
-          | ArchiveBlock
-          | FormBlock
-          | CarouselBlock
-          | AccordionBlock
-        )[];
-        /**
-         * Add one block for the right column content
-         */
-        rightColumn: (
-          | CallToActionBlock
-          | ContentBlock
-          | MediaBlock
-          | ArchiveBlock
-          | FormBlock
-          | CarouselBlock
-          | AccordionBlock
-        )[];
-        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
-        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-        gap?: ('sm' | 'md' | 'lg') | null;
-        className?: string | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'twoEqualColumns';
-      }
-    | {
-        /**
-         * Add one block for the left column content
-         */
-        leftColumn: (
-          | CallToActionBlock
-          | ContentBlock
-          | MediaBlock
-          | ArchiveBlock
-          | FormBlock
-          | CarouselBlock
-          | AccordionBlock
-        )[];
-        /**
-         * Add one block for the center column content
-         */
-        centerColumn: (
-          | CallToActionBlock
-          | ContentBlock
-          | MediaBlock
-          | ArchiveBlock
-          | FormBlock
-          | CarouselBlock
-          | AccordionBlock
-        )[];
-        /**
-         * Add one block for the right column content
-         */
-        rightColumn: (
-          | CallToActionBlock
-          | ContentBlock
-          | MediaBlock
-          | ArchiveBlock
-          | FormBlock
-          | CarouselBlock
-          | AccordionBlock
-        )[];
-        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
-        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-        gap?: ('sm' | 'md' | 'lg') | null;
-        className?: string | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'threeEqualColumns';
-      }
-    | {
-        columns?:
-          | {
-              content: (
-                | CallToActionBlock
-                | ContentBlock
-                | MediaBlock
-                | ArchiveBlock
-                | FormBlock
-                | CarouselBlock
-                | AccordionBlock
-              )[];
-              id?: string | null;
-            }[]
-          | null;
-        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
-        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-        gap?: ('sm' | 'md' | 'lg') | null;
-        className?: string | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'fourEqualColumns';
-      }
-    | {
-        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
-        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-        gap?: ('sm' | 'md' | 'lg') | null;
-        /**
-         * Add one block for the main content
-         */
-        leftColumn: (
-          | CallToActionBlock
-          | ContentBlock
-          | MediaBlock
-          | ArchiveBlock
-          | FormBlock
-          | CarouselBlock
-          | AccordionBlock
-        )[];
-        /**
-         * Add one block for the sidebar content
-         */
-        rightColumn: (
-          | CallToActionBlock
-          | ContentBlock
-          | MediaBlock
-          | ArchiveBlock
-          | FormBlock
-          | CarouselBlock
-          | AccordionBlock
-        )[];
-        className?: string | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'twoThirdsOneThird';
-      }
-    | {
-        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
-        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-        gap?: ('sm' | 'md' | 'lg') | null;
-        /**
-         * Add one block for the sidebar content
-         */
-        leftColumn: (
-          | CallToActionBlock
-          | ContentBlock
-          | MediaBlock
-          | ArchiveBlock
-          | FormBlock
-          | CarouselBlock
-          | AccordionBlock
-        )[];
-        /**
-         * Add one block for the main content
-         */
-        rightColumn: (
-          | CallToActionBlock
-          | ContentBlock
-          | MediaBlock
-          | ArchiveBlock
-          | FormBlock
-          | CarouselBlock
-          | AccordionBlock
-        )[];
-        className?: string | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'oneThirdTwoThirds';
-      }
-    | {
-        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
-        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-        gap?: ('sm' | 'md' | 'lg') | null;
-        /**
-         * Add one block for the sidebar content
-         */
-        leftColumn: (
-          | CallToActionBlock
-          | ContentBlock
-          | MediaBlock
-          | ArchiveBlock
-          | FormBlock
-          | CarouselBlock
-          | AccordionBlock
-        )[];
-        /**
-         * Add one block for the main content
-         */
-        rightColumn: (
-          | CallToActionBlock
-          | ContentBlock
-          | MediaBlock
-          | ArchiveBlock
-          | FormBlock
-          | CarouselBlock
-          | AccordionBlock
-        )[];
-        className?: string | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'oneQuarterThreeQuarters';
-      }
-    | {
-        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
-        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-        gap?: ('sm' | 'md' | 'lg') | null;
-        /**
-         * Add one block for the main content
-         */
-        leftColumn: (
-          | CallToActionBlock
-          | ContentBlock
-          | MediaBlock
-          | ArchiveBlock
-          | FormBlock
-          | CarouselBlock
-          | AccordionBlock
-        )[];
-        /**
-         * Add one block for the sidebar content
-         */
-        rightColumn: (
-          | CallToActionBlock
-          | ContentBlock
-          | MediaBlock
-          | ArchiveBlock
-          | FormBlock
-          | CarouselBlock
-          | AccordionBlock
-        )[];
-        className?: string | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'threeQuartersOneQuarter';
-      }
-    | {
-        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
-        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-        gap?: ('sm' | 'md' | 'lg') | null;
-        rows?:
-          | {
-              columns?:
-                | {
-                    /**
-                     * Add one block for this cell
-                     */
-                    blocks: (
-                      | CallToActionBlock
-                      | ContentBlock
-                      | MediaBlock
-                      | ArchiveBlock
-                      | FormBlock
-                      | CarouselBlock
-                      | AccordionBlock
-                    )[];
-                    id?: string | null;
-                  }[]
-                | null;
-              id?: string | null;
-            }[]
-          | null;
-        className?: string | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'twoRowsTwoColumns';
-      }
-    | {
-        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
-        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-        gap?: ('sm' | 'md' | 'lg') | null;
-        rows?:
-          | {
-              columns?:
-                | {
-                    /**
-                     * Add one block for this cell
-                     */
-                    blocks: (
-                      | CallToActionBlock
-                      | ContentBlock
-                      | MediaBlock
-                      | ArchiveBlock
-                      | FormBlock
-                      | CarouselBlock
-                      | AccordionBlock
-                    )[];
-                    id?: string | null;
-                  }[]
-                | null;
-              id?: string | null;
-            }[]
-          | null;
-        className?: string | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'twoRowsThreeColumns';
-      }
-    | {
-        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
-        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-        gap?: ('sm' | 'md' | 'lg') | null;
-        rows?:
-          | {
-              columns?:
-                | {
-                    /**
-                     * Add one block for this cell
-                     */
-                    blocks: (
-                      | CallToActionBlock
-                      | ContentBlock
-                      | MediaBlock
-                      | ArchiveBlock
-                      | FormBlock
-                      | CarouselBlock
-                      | AccordionBlock
-                    )[];
-                    id?: string | null;
-                  }[]
-                | null;
-              id?: string | null;
-            }[]
-          | null;
-        className?: string | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'threeRowsTwoColumns';
-      }
-    | {
-        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
-        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-        gap?: ('sm' | 'md' | 'lg') | null;
-        rows?:
-          | {
-              columns?:
-                | {
-                    /**
-                     * Add one block for this cell
-                     */
-                    blocks: (
-                      | CallToActionBlock
-                      | ContentBlock
-                      | MediaBlock
-                      | ArchiveBlock
-                      | FormBlock
-                      | CarouselBlock
-                      | AccordionBlock
-                    )[];
-                    id?: string | null;
-                  }[]
-                | null;
-              id?: string | null;
-            }[]
-          | null;
-        className?: string | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'threeRowsThreeColumns';
-      }
-    | {
-        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
-        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-        gap?: ('sm' | 'md' | 'lg') | null;
-        /**
-         * Add one block for the sidebar content
-         */
-        sidebar: (
-          | CallToActionBlock
-          | ContentBlock
-          | MediaBlock
-          | ArchiveBlock
-          | FormBlock
-          | CarouselBlock
-          | AccordionBlock
-        )[];
-        /**
-         * Add one block for the main content area
-         */
-        mainContent: (
-          | CallToActionBlock
-          | ContentBlock
-          | MediaBlock
-          | ArchiveBlock
-          | FormBlock
-          | CarouselBlock
-          | AccordionBlock
-        )[];
-        className?: string | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'sidebarMainLayout';
-      }
-    | {
-        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
-        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-        gap?: ('sm' | 'md' | 'lg') | null;
-        /**
-         * Add one block for the main content area
-         */
-        mainContent: (
-          | CallToActionBlock
-          | ContentBlock
-          | MediaBlock
-          | ArchiveBlock
-          | FormBlock
-          | CarouselBlock
-          | AccordionBlock
-        )[];
-        /**
-         * Add one block for the sidebar content
-         */
-        sidebar: (
-          | CallToActionBlock
-          | ContentBlock
-          | MediaBlock
-          | ArchiveBlock
-          | FormBlock
-          | CarouselBlock
-          | AccordionBlock
-        )[];
-        className?: string | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'mainSidebarLayout';
-      }
-    | {
-        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
-        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-        gap?: ('sm' | 'md' | 'lg') | null;
-        /**
-         * Add one block for the header content
-         */
-        header: (
-          | CallToActionBlock
-          | ContentBlock
-          | MediaBlock
-          | ArchiveBlock
-          | FormBlock
-          | CarouselBlock
-          | AccordionBlock
-        )[];
-        /**
-         * Add one block for the left column content
-         */
-        leftColumn: (
-          | CallToActionBlock
-          | ContentBlock
-          | MediaBlock
-          | ArchiveBlock
-          | FormBlock
-          | CarouselBlock
-          | AccordionBlock
-        )[];
-        /**
-         * Add one block for the right column content
-         */
-        rightColumn: (
-          | CallToActionBlock
-          | ContentBlock
-          | MediaBlock
-          | ArchiveBlock
-          | FormBlock
-          | CarouselBlock
-          | AccordionBlock
-        )[];
-        className?: string | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'headerTwoColumnsLayout';
-      }
-    | {
-        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
-        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-        gap?: ('sm' | 'md' | 'lg') | null;
-        /**
-         * Add one block for the header content
-         */
-        header: (
-          | CallToActionBlock
-          | ContentBlock
-          | MediaBlock
-          | ArchiveBlock
-          | FormBlock
-          | CarouselBlock
-          | AccordionBlock
-        )[];
-        columns?:
-          | {
-              /**
-               * Add one block for this column
-               */
-              blocks: (
-                | CallToActionBlock
-                | ContentBlock
-                | MediaBlock
-                | ArchiveBlock
-                | FormBlock
-                | CarouselBlock
-                | AccordionBlock
-              )[];
-              id?: string | null;
-            }[]
-          | null;
-        className?: string | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'headerThreeColumnsLayout';
-      }
-    | {
-        backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
-        padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-        gap?: ('sm' | 'md' | 'lg') | null;
-        items?:
-          | {
-              /**
-               * Add one block for this masonry item
-               */
-              blocks: (
-                | CallToActionBlock
-                | ContentBlock
-                | MediaBlock
-                | ArchiveBlock
-                | FormBlock
-                | CarouselBlock
-                | AccordionBlock
-              )[];
-              id?: string | null;
-            }[]
-          | null;
-        className?: string | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'masonryLayout';
-      }
-    | AboutPageBlock
-    | {
-        textType: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'paragraph' | 'blockquote' | 'code';
-        content: string;
-        textAlign?: ('left' | 'center' | 'right' | 'justify') | null;
-        textColor?: ('default' | 'primary' | 'secondary' | 'accent' | 'muted' | 'custom') | null;
-        customTextColor?: string | null;
-        fontSize?: ('xs' | 'sm' | 'default' | 'lg' | 'xl' | '2xl' | '3xl' | 'custom') | null;
-        customFontSize?: string | null;
-        fontWeight?: ('light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold') | null;
-        lineHeight?: ('tight' | 'normal' | 'relaxed' | 'loose') | null;
-        letterSpacing?: ('tighter' | 'tight' | 'normal' | 'wide' | 'wider' | 'widest') | null;
-        textTransform?: ('none' | 'uppercase' | 'lowercase' | 'capitalize') | null;
-        fontFamily?: ('default' | 'sans' | 'serif' | 'mono') | null;
-        backgroundColor?: ('transparent' | 'light' | 'dark' | 'primary' | 'secondary' | 'custom') | null;
-        customBackgroundColor?: string | null;
-        padding?: {
-          top?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-          bottom?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-          left?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-          right?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-        };
-        margin?: {
-          top?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-          bottom?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-        };
-        maxWidth?: ('full' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
-        /**
-         * Make the entire text block clickable
-         */
-        link?: {
-          enable?: boolean | null;
-          url?: string | null;
-          newTab?: boolean | null;
-          rel?: ('none' | 'nofollow' | 'noopener' | 'noreferrer' | 'noopener noreferrer') | null;
-          linkStyle?: ('default' | 'underline' | 'no-underline' | 'hover-underline') | null;
-          linkColor?: ('inherit' | 'primary' | 'secondary' | 'accent' | 'custom') | null;
-          customLinkColor?: string | null;
-        };
-        /**
-         * Add custom CSS classes for additional styling
-         */
-        className?: string | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'textBlock';
-      }
-    | {
-        layoutType:
-          | 'single-column'
-          | 'two-columns'
-          | 'three-columns'
-          | 'four-columns'
-          | 'sidebar-left'
-          | 'sidebar-right'
-          | 'hero'
-          | 'split-screen'
-          | 'card-grid'
-          | 'masonry'
-          | 'feature-sections'
-          | 'custom-grid';
-        columnRatio?: ('equal' | '1-2' | '2-1' | '1-3' | '3-1' | '1-2-1' | 'custom') | null;
-        /**
-         * Use CSS grid values (e.g., 1fr 2fr or 300px 1fr)
-         */
-        customColumnRatio?: string | null;
-        maxWidth?: ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full' | 'custom') | null;
-        customMaxWidth?: string | null;
-        alignment?: ('left' | 'center' | 'right') | null;
-        verticalAlignment?: ('top' | 'center' | 'bottom' | 'stretch') | null;
-        gap?: ('none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl') | null;
-        responsiveBehavior?: ('stack' | 'keep' | 'reverse' | 'hide-mobile') | null;
-        backgroundColor?:
-          | (
-              | 'transparent'
-              | 'white'
-              | 'light-gray'
-              | 'gray'
-              | 'dark-gray'
-              | 'black'
-              | 'primary'
-              | 'secondary'
-              | 'accent'
-              | 'custom'
-            )
-          | null;
-        customBackgroundColor?: string | null;
-        backgroundImage?: {
-          enable?: boolean | null;
-          image?: (string | null) | Media;
-          size?: ('cover' | 'contain' | 'auto') | null;
-          position?: ('center' | 'top' | 'bottom' | 'left' | 'right') | null;
-          attachment?: ('scroll' | 'fixed') | null;
-          overlay?: boolean | null;
-          overlayColor?: string | null;
-        };
-        gradient?: {
-          enable?: boolean | null;
-          type?: ('linear' | 'radial') | null;
-          direction?: ('to-right' | 'to-left' | 'to-bottom' | 'to-top' | 'to-bottom-right') | null;
-          colorStops?: string | null;
-        };
-        padding?: {
-          top?: ('none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl') | null;
-          bottom?: ('none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl') | null;
-          left?: ('none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl') | null;
-          right?: ('none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl') | null;
-        };
-        margin?: {
-          top?: ('none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl') | null;
-          bottom?: ('none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl') | null;
-        };
-        border?: {
-          enable?: boolean | null;
-          width?: ('1' | '2' | '4' | '8') | null;
-          style?: ('solid' | 'dashed' | 'dotted') | null;
-          color?: string | null;
-        };
-        borderRadius?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-        shadow?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-        minHeight?: ('none' | '300' | '400' | '500' | '50vh' | '75vh' | '100vh' | 'custom') | null;
-        customMinHeight?: string | null;
-        animation?: {
-          enable?: boolean | null;
-          type?: ('fade-in' | 'fade-in-up' | 'slide-up' | 'zoom-in') | null;
-          duration?: ('fast' | 'normal' | 'slow') | null;
-        };
-        /**
-         * For anchor links
-         */
-        customId?: string | null;
-        className?: string | null;
-        columns?:
-          | {
-              /**
-               * Optional label for this column
-               */
-              columnName?: string | null;
-              content?:
-                | (
-                    | {
-                        textType: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'paragraph' | 'blockquote' | 'code';
-                        content: string;
-                        textAlign?: ('left' | 'center' | 'right' | 'justify') | null;
-                        textColor?: ('default' | 'primary' | 'secondary' | 'accent' | 'muted' | 'custom') | null;
-                        customTextColor?: string | null;
-                        fontSize?: ('xs' | 'sm' | 'default' | 'lg' | 'xl' | '2xl' | '3xl' | 'custom') | null;
-                        customFontSize?: string | null;
-                        fontWeight?: ('light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold') | null;
-                        lineHeight?: ('tight' | 'normal' | 'relaxed' | 'loose') | null;
-                        letterSpacing?: ('tighter' | 'tight' | 'normal' | 'wide' | 'wider' | 'widest') | null;
-                        textTransform?: ('none' | 'uppercase' | 'lowercase' | 'capitalize') | null;
-                        fontFamily?: ('default' | 'sans' | 'serif' | 'mono') | null;
-                        backgroundColor?:
-                          | ('transparent' | 'light' | 'dark' | 'primary' | 'secondary' | 'custom')
-                          | null;
-                        customBackgroundColor?: string | null;
-                        padding?: {
-                          top?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-                          bottom?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-                          left?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-                          right?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-                        };
-                        margin?: {
-                          top?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-                          bottom?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-                        };
-                        maxWidth?: ('full' | 'sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
-                        /**
-                         * Make the entire text block clickable
-                         */
-                        link?: {
-                          enable?: boolean | null;
-                          url?: string | null;
-                          newTab?: boolean | null;
-                          rel?: ('none' | 'nofollow' | 'noopener' | 'noreferrer' | 'noopener noreferrer') | null;
-                          linkStyle?: ('default' | 'underline' | 'no-underline' | 'hover-underline') | null;
-                          linkColor?: ('inherit' | 'primary' | 'secondary' | 'accent' | 'custom') | null;
-                          customLinkColor?: string | null;
-                        };
-                        /**
-                         * Add custom CSS classes for additional styling
-                         */
-                        className?: string | null;
-                        id?: string | null;
-                        blockName?: string | null;
-                        blockType: 'textBlock';
-                      }
-                    | {
-                        label: string;
-                        link: {
-                          type: 'external' | 'internal' | 'email' | 'phone' | 'anchor';
-                          url?: string | null;
-                          page?: (string | null) | Page;
-                          email?: string | null;
-                          phone?: string | null;
-                          anchor?: string | null;
-                          newTab?: boolean | null;
-                          rel?:
-                            | ('none' | 'nofollow' | 'noopener' | 'noreferrer' | 'noopener noreferrer' | 'sponsored')
-                            | null;
-                        };
-                        icon?: {
-                          enable?: boolean | null;
-                          /**
-                           * e.g., "arrow-right" or icon class from your icon library
-                           */
-                          iconName?: string | null;
-                          position?: ('left' | 'right') | null;
-                          iconSize?: ('sm' | 'md' | 'lg') | null;
-                        };
-                        variant:
-                          | 'primary'
-                          | 'secondary'
-                          | 'outline'
-                          | 'ghost'
-                          | 'link'
-                          | 'destructive'
-                          | 'success'
-                          | 'custom';
-                        customColors?: {
-                          backgroundColor?: string | null;
-                          textColor?: string | null;
-                          hoverBackgroundColor?: string | null;
-                          hoverTextColor?: string | null;
-                          borderColor?: string | null;
-                        };
-                        size?: ('xs' | 'sm' | 'md' | 'lg' | 'xl') | null;
-                        fullWidth?: boolean | null;
-                        alignment?: ('left' | 'center' | 'right') | null;
-                        borderRadius?: ('none' | 'sm' | 'md' | 'lg' | 'xl' | 'full') | null;
-                        shadow?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-                        fontWeight?: ('normal' | 'medium' | 'semibold' | 'bold') | null;
-                        textTransform?: ('none' | 'uppercase' | 'lowercase' | 'capitalize') | null;
-                        animation?:
-                          | ('none' | 'scale-up' | 'scale-down' | 'lift' | 'slide-right' | 'pulse' | 'bounce')
-                          | null;
-                        disabled?: boolean | null;
-                        /**
-                         * Accessibility label for screen readers (optional)
-                         */
-                        ariaLabel?: string | null;
-                        padding?: {
-                          horizontal?: ('default' | 'sm' | 'md' | 'lg' | 'xl') | null;
-                          vertical?: ('default' | 'sm' | 'md' | 'lg' | 'xl') | null;
-                        };
-                        margin?: {
-                          top?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-                          bottom?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
-                        };
-                        /**
-                         * Add custom CSS classes for additional styling
-                         */
-                        className?: string | null;
-                        id?: string | null;
-                        blockName?: string | null;
-                        blockType: 'buttonBlock';
-                      }
-                  )[]
-                | null;
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'layoutBlock';
-      }
+    | EqualColumns
+    | EqualColumns
+    | EqualColumns
+    | OffsetColumns
+    | OffsetColumns
+    | OffsetColumns
+    | OffsetColumns
+    | MultiRow
+    | MultiRow
+    | MultiRow
+    | MultiRow
+    | MultiColumn
+    | MultiColumn
+    | MultiColumn
+    | MultiColumn
+    | MultiColumn
   )[];
   Code?: string | null;
   meta?: {
@@ -1256,8 +475,8 @@ export interface Category {
  */
 export interface Administrator {
   id: string;
-  name?: string | null;
-  role?: ('admin' | 'superadmin' | 'tenants' | 'clients' | 'designer' | 'editor' | 'franchise' | 'guest') | null;
+  name: string;
+  role: 'superadmin' | 'admin' | 'guest' | 'client' | 'business' | 'designer' | 'franchise' | 'editor';
   createdBy?: (string | null) | Administrator;
   updatedAt: string;
   createdAt: string;
@@ -1276,6 +495,563 @@ export interface Administrator {
       }[]
     | null;
   password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "EqualColumns".
+ */
+export interface EqualColumns {
+  columns?:
+    | {
+        content: (
+          | BlurbBlock
+          | TextBlock
+          | DividerBlock
+          | ToggleBlock
+          | TabsBlock
+          | TestimonialBlock
+          | TeamMemberBlock
+          | PricingTableBlock
+          | CounterBlock
+          | ProgressBarBlock
+          | IconBlock
+          | ListBlock
+        )[];
+        id?: string | null;
+      }[]
+    | null;
+  backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
+  padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+  gap?: ('sm' | 'md' | 'lg') | null;
+  className?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'fourEqualColumns';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BlurbBlock".
+ */
+export interface BlurbBlock {
+  icon?:
+    | (
+        | 'none'
+        | 'check'
+        | 'star'
+        | 'heart'
+        | 'lightning'
+        | 'shield'
+        | 'rocket'
+        | 'globe'
+        | 'users'
+        | 'chart'
+        | 'settings'
+        | 'lock'
+        | 'unlock'
+      )
+    | null;
+  /**
+   * Upload a custom icon to override the selected icon
+   */
+  customIcon?: (string | null) | Media;
+  title: string;
+  description: string;
+  /**
+   * Make the entire blurb clickable
+   */
+  url?: string | null;
+  urlNewTab?: boolean | null;
+  iconPosition?: ('top' | 'left' | 'right') | null;
+  iconSize?: ('sm' | 'md' | 'lg' | 'xl') | null;
+  /**
+   * Hex color code (e.g., #3B82F6)
+   */
+  iconColor?: string | null;
+  /**
+   * Hex color code for icon background circle/square
+   */
+  iconBackgroundColor?: string | null;
+  iconShape?: ('none' | 'circle' | 'square' | 'rounded') | null;
+  textAlign?: ('left' | 'center' | 'right') | null;
+  /**
+   * Hex color code
+   */
+  titleColor?: string | null;
+  titleSize?: ('h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6') | null;
+  /**
+   * Hex color code
+   */
+  descriptionColor?: string | null;
+  /**
+   * Hex color code for blurb background
+   */
+  backgroundColor?: string | null;
+  padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+  borderRadius?: ('none' | 'sm' | 'md' | 'lg' | 'full') | null;
+  shadow?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+  border?: boolean | null;
+  /**
+   * Hex color code
+   */
+  borderColor?: string | null;
+  borderWidth?: ('1' | '2' | '3' | '4') | null;
+  hoverEffect?: ('none' | 'lift' | 'scale' | 'glow') | null;
+  animation?: ('none' | 'fadeIn' | 'slideUp' | 'slideLeft' | 'slideRight' | 'zoomIn') | null;
+  className?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'blurb';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TextBlock".
+ */
+export interface TextBlock {
+  text: string;
+  fontSize?: ('xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl') | null;
+  fontWeight?: ('light' | 'normal' | 'medium' | 'semibold' | 'bold') | null;
+  textAlign?: ('left' | 'center' | 'right' | 'justify') | null;
+  /**
+   * Hex color code (e.g., #000000)
+   */
+  textColor?: string | null;
+  /**
+   * Hex color code
+   */
+  backgroundColor?: string | null;
+  lineHeight?: ('tight' | 'normal' | 'relaxed' | 'loose') | null;
+  letterSpacing?: ('tighter' | 'tight' | 'normal' | 'wide' | 'wider') | null;
+  padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+  margin?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+  textTransform?: ('none' | 'uppercase' | 'lowercase' | 'capitalize') | null;
+  textDecoration?: ('none' | 'underline' | 'line-through') | null;
+  fontStyle?: ('normal' | 'italic') | null;
+  maxWidth?: ('full' | 'sm' | 'md' | 'lg' | 'xl') | null;
+  animation?: ('none' | 'fadeIn' | 'slideUp' | 'slideLeft' | 'slideRight') | null;
+  className?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'text';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "DividerBlock".
+ */
+export interface DividerBlock {
+  style?: ('solid' | 'dashed' | 'dotted' | 'double' | 'gradient') | null;
+  showIcon?: boolean | null;
+  centerContent?: ('icon' | 'text') | null;
+  icon?: ('star' | 'heart' | 'diamond' | 'circle' | 'square') | null;
+  text?: string | null;
+  width?: ('full' | '3/4' | '1/2' | '1/4') | null;
+  alignment?: ('left' | 'center' | 'right') | null;
+  /**
+   * Hex color code
+   */
+  color?: string | null;
+  thickness?: ('1' | '2' | '3' | '4' | '5') | null;
+  marginTop?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+  marginBottom?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+  /**
+   * Hex color code
+   */
+  gradientStartColor?: string | null;
+  /**
+   * Hex color code
+   */
+  gradientEndColor?: string | null;
+  animation?: ('none' | 'fadeIn' | 'expand') | null;
+  className?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'divider';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ToggleBlock".
+ */
+export interface ToggleBlock {
+  title: string;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  defaultOpen?: boolean | null;
+  titleSize?: ('sm' | 'base' | 'lg' | 'xl') | null;
+  /**
+   * Hex color code
+   */
+  titleColor?: string | null;
+  /**
+   * Hex color code
+   */
+  contentColor?: string | null;
+  /**
+   * Hex color code
+   */
+  backgroundColor?: string | null;
+  /**
+   * Hex color code
+   */
+  borderColor?: string | null;
+  iconStyle?: ('plus' | 'chevron' | 'arrow') | null;
+  iconPosition?: ('left' | 'right') | null;
+  borderRadius?: ('none' | 'sm' | 'md' | 'lg') | null;
+  padding?: ('sm' | 'md' | 'lg' | 'xl') | null;
+  margin?: ('none' | 'sm' | 'md' | 'lg') | null;
+  shadow?: ('none' | 'sm' | 'md' | 'lg') | null;
+  hoverEffect?: boolean | null;
+  animation?: ('none' | 'fadeIn' | 'slideUp') | null;
+  className?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'toggle';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TabsBlock".
+ */
+export interface TabsBlock {
+  tabs?:
+    | {
+        label: string;
+        content: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        icon?: ('none' | 'home' | 'user' | 'settings' | 'star' | 'heart') | null;
+        id?: string | null;
+      }[]
+    | null;
+  defaultTab?: number | null;
+  tabsStyle?: ('underline' | 'pills' | 'boxed') | null;
+  tabsPosition?: ('top' | 'left' | 'right') | null;
+  tabsAlignment?: ('left' | 'center' | 'right') | null;
+  /**
+   * Hex color code
+   */
+  activeTabColor?: string | null;
+  /**
+   * Hex color code
+   */
+  inactiveTabColor?: string | null;
+  /**
+   * Hex color code (for pills/boxed style)
+   */
+  tabBackgroundColor?: string | null;
+  /**
+   * Hex color code
+   */
+  contentBackgroundColor?: string | null;
+  /**
+   * Hex color code
+   */
+  contentBorderColor?: string | null;
+  borderRadius?: ('none' | 'sm' | 'md' | 'lg') | null;
+  padding?: ('sm' | 'md' | 'lg' | 'xl') | null;
+  shadow?: ('none' | 'sm' | 'md' | 'lg') | null;
+  animation?: ('none' | 'fade' | 'slide') | null;
+  className?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'tabs';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialBlock".
+ */
+export interface TestimonialBlock {
+  quote: string;
+  authorName: string;
+  authorTitle?: string | null;
+  authorCompany?: string | null;
+  authorImage?: (string | null) | Media;
+  /**
+   * Star rating out of 5
+   */
+  rating?: number | null;
+  showQuoteIcon?: boolean | null;
+  layout?: ('card' | 'inline' | 'centered') | null;
+  quoteSize?: ('base' | 'lg' | 'xl') | null;
+  /**
+   * Hex color code
+   */
+  quoteColor?: string | null;
+  /**
+   * Hex color code
+   */
+  authorNameColor?: string | null;
+  /**
+   * Hex color code
+   */
+  authorTitleColor?: string | null;
+  /**
+   * Hex color code
+   */
+  backgroundColor?: string | null;
+  /**
+   * Hex color code
+   */
+  borderColor?: string | null;
+  imageSize?: ('sm' | 'md' | 'lg') | null;
+  imageShape?: ('circle' | 'square' | 'rounded') | null;
+  textAlign?: ('left' | 'center') | null;
+  borderRadius?: ('none' | 'sm' | 'md' | 'lg') | null;
+  padding?: ('sm' | 'md' | 'lg' | 'xl') | null;
+  shadow?: ('none' | 'sm' | 'md' | 'lg') | null;
+  /**
+   * Hex color code
+   */
+  quoteIconColor?: string | null;
+  /**
+   * Hex color code
+   */
+  starColor?: string | null;
+  animation?: ('none' | 'fadeIn' | 'slideUp' | 'scale') | null;
+  className?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'testimonial';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TeamMemberBlock".
+ */
+export interface TeamMemberBlock {
+  photo: string | Media;
+  name: string;
+  position: string;
+  bio?: string | null;
+  email?: string | null;
+  phone?: string | null;
+  socialLinks?:
+    | {
+        platform?: ('linkedin' | 'twitter' | 'facebook' | 'instagram' | 'github') | null;
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  layout?: ('card' | 'horizontal' | 'overlay') | null;
+  imageShape?: ('square' | 'circle' | 'rounded') | null;
+  textAlign?: ('left' | 'center') | null;
+  nameColor?: string | null;
+  positionColor?: string | null;
+  bioColor?: string | null;
+  backgroundColor?: string | null;
+  borderRadius?: ('none' | 'sm' | 'md' | 'lg') | null;
+  padding?: ('sm' | 'md' | 'lg') | null;
+  shadow?: ('none' | 'sm' | 'md' | 'lg') | null;
+  hoverEffect?: ('none' | 'lift' | 'scale') | null;
+  animation?: ('none' | 'fadeIn' | 'slideUp') | null;
+  className?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'teamMember';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PricingTableBlock".
+ */
+export interface PricingTableBlock {
+  planName: string;
+  price: string;
+  currency?: string | null;
+  billingPeriod?: string | null;
+  description?: string | null;
+  features?:
+    | {
+        feature: string;
+        included?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  buttonText?: string | null;
+  buttonLink?: string | null;
+  highlighted?: boolean | null;
+  badge?: string | null;
+  headerColor?: string | null;
+  priceColor?: string | null;
+  backgroundColor?: string | null;
+  borderColor?: string | null;
+  buttonColor?: string | null;
+  buttonTextColor?: string | null;
+  highlightColor?: string | null;
+  borderRadius?: ('none' | 'sm' | 'md' | 'lg') | null;
+  shadow?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+  hoverEffect?: ('none' | 'lift' | 'scale') | null;
+  animation?: ('none' | 'fadeIn' | 'slideUp') | null;
+  className?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'pricingTable';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CounterBlock".
+ */
+export interface CounterBlock {
+  number: number;
+  prefix?: string | null;
+  suffix?: string | null;
+  title: string;
+  description?: string | null;
+  icon?: ('none' | 'users' | 'star' | 'trophy' | 'chart' | 'globe') | null;
+  animationDuration?: number | null;
+  numberSize?: ('2xl' | '3xl' | '4xl' | '5xl' | '6xl') | null;
+  numberColor?: string | null;
+  titleColor?: string | null;
+  descriptionColor?: string | null;
+  iconColor?: string | null;
+  backgroundColor?: string | null;
+  textAlign?: ('left' | 'center') | null;
+  borderRadius?: ('none' | 'sm' | 'md' | 'lg') | null;
+  padding?: ('sm' | 'md' | 'lg' | 'xl') | null;
+  shadow?: ('none' | 'sm' | 'md' | 'lg') | null;
+  animation?: ('none' | 'fadeIn' | 'scale') | null;
+  className?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'counter';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProgressBarBlock".
+ */
+export interface ProgressBarBlock {
+  label: string;
+  percentage: number;
+  showPercentage?: boolean | null;
+  animateOnScroll?: boolean | null;
+  barColor?: string | null;
+  backgroundColor?: string | null;
+  labelColor?: string | null;
+  percentageColor?: string | null;
+  height?: ('sm' | 'md' | 'lg') | null;
+  borderRadius?: ('none' | 'sm' | 'md' | 'full') | null;
+  striped?: boolean | null;
+  animated?: boolean | null;
+  showGlow?: boolean | null;
+  margin?: ('none' | 'sm' | 'md' | 'lg') | null;
+  className?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'progressBar';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IconBlock".
+ */
+export interface IconBlock {
+  iconType?: ('preset' | 'custom') | null;
+  icon?:
+    | ('star' | 'heart' | 'check' | 'lightning' | 'shield' | 'rocket' | 'globe' | 'users' | 'chart' | 'settings')
+    | null;
+  customIcon?: (string | null) | Media;
+  url?: string | null;
+  urlNewTab?: boolean | null;
+  size?: ('sm' | 'md' | 'lg' | 'xl' | '2xl') | null;
+  color?: string | null;
+  backgroundColor?: string | null;
+  backgroundShape?: ('none' | 'circle' | 'square' | 'rounded') | null;
+  borderColor?: string | null;
+  borderWidth?: ('0' | '1' | '2' | '3') | null;
+  padding?: ('none' | 'sm' | 'md' | 'lg') | null;
+  shadow?: ('none' | 'sm' | 'md' | 'lg') | null;
+  hoverEffect?: ('none' | 'scale' | 'rotate' | 'bounce') | null;
+  animation?: ('none' | 'fadeIn' | 'zoomIn' | 'bounce') | null;
+  alignment?: ('left' | 'center' | 'right') | null;
+  className?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'icon';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ListBlock".
+ */
+export interface ListBlock {
+  listType?: ('unordered' | 'ordered' | 'icon') | null;
+  items: {
+    text: string;
+    icon?: ('check' | 'star' | 'arrow' | 'plus' | 'heart') | null;
+    id?: string | null;
+  }[];
+  bulletStyle?: ('disc' | 'circle' | 'square') | null;
+  numberStyle?: ('decimal' | 'upper-roman' | 'upper-alpha' | 'lower-alpha') | null;
+  iconColor?: string | null;
+  textColor?: string | null;
+  fontSize?: ('sm' | 'base' | 'lg' | 'xl') | null;
+  spacing?: ('sm' | 'md' | 'lg') | null;
+  indentation?: ('none' | 'sm' | 'md' | 'lg') | null;
+  backgroundColor?: string | null;
+  borderColor?: string | null;
+  borderRadius?: ('none' | 'sm' | 'md' | 'lg') | null;
+  padding?: ('none' | 'sm' | 'md' | 'lg') | null;
+  shadow?: ('none' | 'sm' | 'md' | 'lg') | null;
+  animation?: ('none' | 'fadeIn' | 'slideLeft' | 'stagger') | null;
+  className?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'list';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OffsetColumns".
+ */
+export interface OffsetColumns {
+  backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
+  padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+  gap?: ('sm' | 'md' | 'lg') | null;
+  /**
+   * Add one or more blocks for the main content
+   */
+  leftColumn: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | CarouselBlock
+    | AccordionBlock
+  )[];
+  /**
+   * Add one or more blocks for the sidebar content
+   */
+  rightColumn: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | CarouselBlock
+    | AccordionBlock
+  )[];
+  className?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'threeQuartersOneQuarter';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1804,801 +1580,68 @@ export interface AccordionBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "AboutPageBlock".
+ * via the `definition` "MultiRow".
  */
-export interface AboutPageBlock {
-  blocks?:
-    | (
-        | StoryBlock
-        | MissionVisionBlock
-        | ValuesBlock
-        | TeamBlock
-        | TimelineBlock
-        | StatsBlock
-        | CultureBlock
-        | CTABlock
-      )[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'aboutPage';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "StoryBlock".
- */
-export interface StoryBlock {
-  heading: string;
-  subheading?: string | null;
-  content: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  image?: (string | null) | Media;
-  imagePosition?: ('left' | 'right') | null;
-  alignment?: ('center' | 'left' | 'right' | 'full') | null;
-  background?: string | null;
-  paddingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
-  paddingTop?: ('none' | 'small' | 'medium' | 'large') | null;
-  spacingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
-  spacingTop?: ('none' | 'small' | 'medium' | 'large') | null;
-  radius?: boolean | null;
-  specifiedRadius?: boolean | null;
-  radiusAll?:
-    | (
-        | 'rounded-none'
-        | 'rounded-sm'
-        | 'rounded-md'
-        | 'rounded-lg'
-        | 'rounded-xl'
-        | 'rounded-2xl'
-        | 'rounded-3xl'
-        | 'rounded-full'
-      )
-    | null;
-  radiusTopLeft?:
-    | (
-        | 'rounded-tl-none'
-        | 'rounded-tl-sm'
-        | 'rounded-tl-md'
-        | 'rounded-tl-lg'
-        | 'rounded-tl-xl'
-        | 'rounded-tl-2xl'
-        | 'rounded-tl-3xl'
-        | 'rounded-tl-full'
-      )
-    | null;
-  radiusTopRight?:
-    | (
-        | 'rounded-tr-none'
-        | 'rounded-tr-sm'
-        | 'rounded-tr-md'
-        | 'rounded-tr-lg'
-        | 'rounded-tr-xl'
-        | 'rounded-tr-2xl'
-        | 'rounded-tr-3xl'
-        | 'rounded-tr-full'
-      )
-    | null;
-  radiusBottomLeft?:
-    | (
-        | 'rounded-bl-none'
-        | 'rounded-bl-sm'
-        | 'rounded-bl-md'
-        | 'rounded-bl-lg'
-        | 'rounded-bl-xl'
-        | 'rounded-bl-2xl'
-        | 'rounded-bl-3xl'
-        | 'rounded-bl-full'
-      )
-    | null;
-  radiusBottomRight?:
-    | (
-        | 'rounded-br-none'
-        | 'rounded-br-sm'
-        | 'rounded-br-md'
-        | 'rounded-br-lg'
-        | 'rounded-br-xl'
-        | 'rounded-br-2xl'
-        | 'rounded-br-3xl'
-        | 'rounded-br-full'
-      )
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'story';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "MissionVisionBlock".
- */
-export interface MissionVisionBlock {
-  heading?: string | null;
-  mission: {
-    title: string;
-    content: {
-      root: {
-        type: string;
-        children: {
-          type: string;
-          version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        version: number;
-      };
-      [k: string]: unknown;
-    };
-    icon?: (string | null) | Media;
-  };
-  vision: {
-    title: string;
-    content: {
-      root: {
-        type: string;
-        children: {
-          type: string;
-          version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        version: number;
-      };
-      [k: string]: unknown;
-    };
-    icon?: (string | null) | Media;
-  };
-  alignment?: ('center' | 'left' | 'right' | 'full') | null;
-  background?: string | null;
-  paddingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
-  paddingTop?: ('none' | 'small' | 'medium' | 'large') | null;
-  spacingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
-  spacingTop?: ('none' | 'small' | 'medium' | 'large') | null;
-  radius?: boolean | null;
-  specifiedRadius?: boolean | null;
-  radiusAll?:
-    | (
-        | 'rounded-none'
-        | 'rounded-sm'
-        | 'rounded-md'
-        | 'rounded-lg'
-        | 'rounded-xl'
-        | 'rounded-2xl'
-        | 'rounded-3xl'
-        | 'rounded-full'
-      )
-    | null;
-  radiusTopLeft?:
-    | (
-        | 'rounded-tl-none'
-        | 'rounded-tl-sm'
-        | 'rounded-tl-md'
-        | 'rounded-tl-lg'
-        | 'rounded-tl-xl'
-        | 'rounded-tl-2xl'
-        | 'rounded-tl-3xl'
-        | 'rounded-tl-full'
-      )
-    | null;
-  radiusTopRight?:
-    | (
-        | 'rounded-tr-none'
-        | 'rounded-tr-sm'
-        | 'rounded-tr-md'
-        | 'rounded-tr-lg'
-        | 'rounded-tr-xl'
-        | 'rounded-tr-2xl'
-        | 'rounded-tr-3xl'
-        | 'rounded-tr-full'
-      )
-    | null;
-  radiusBottomLeft?:
-    | (
-        | 'rounded-bl-none'
-        | 'rounded-bl-sm'
-        | 'rounded-bl-md'
-        | 'rounded-bl-lg'
-        | 'rounded-bl-xl'
-        | 'rounded-bl-2xl'
-        | 'rounded-bl-3xl'
-        | 'rounded-bl-full'
-      )
-    | null;
-  radiusBottomRight?:
-    | (
-        | 'rounded-br-none'
-        | 'rounded-br-sm'
-        | 'rounded-br-md'
-        | 'rounded-br-lg'
-        | 'rounded-br-xl'
-        | 'rounded-br-2xl'
-        | 'rounded-br-3xl'
-        | 'rounded-br-full'
-      )
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'missionVision';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ValuesBlock".
- */
-export interface ValuesBlock {
-  heading: string;
-  subheading?: string | null;
-  values?:
+export interface MultiRow {
+  backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
+  padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+  gap?: ('sm' | 'md' | 'lg') | null;
+  rows?:
     | {
-        title: string;
-        description: string;
-        icon?: (string | null) | Media;
+        columns?:
+          | {
+              /**
+               * Add one or more blocks for this cell
+               */
+              blocks: (
+                | CallToActionBlock
+                | ContentBlock
+                | MediaBlock
+                | ArchiveBlock
+                | FormBlock
+                | CarouselBlock
+                | AccordionBlock
+              )[];
+              id?: string | null;
+            }[]
+          | null;
         id?: string | null;
       }[]
     | null;
-  layout?: ('grid-2' | 'grid-3' | 'grid-4' | 'list') | null;
-  alignment?: ('center' | 'left' | 'right' | 'full') | null;
-  background?: string | null;
-  paddingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
-  paddingTop?: ('none' | 'small' | 'medium' | 'large') | null;
-  spacingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
-  spacingTop?: ('none' | 'small' | 'medium' | 'large') | null;
-  radius?: boolean | null;
-  specifiedRadius?: boolean | null;
-  radiusAll?:
-    | (
-        | 'rounded-none'
-        | 'rounded-sm'
-        | 'rounded-md'
-        | 'rounded-lg'
-        | 'rounded-xl'
-        | 'rounded-2xl'
-        | 'rounded-3xl'
-        | 'rounded-full'
-      )
-    | null;
-  radiusTopLeft?:
-    | (
-        | 'rounded-tl-none'
-        | 'rounded-tl-sm'
-        | 'rounded-tl-md'
-        | 'rounded-tl-lg'
-        | 'rounded-tl-xl'
-        | 'rounded-tl-2xl'
-        | 'rounded-tl-3xl'
-        | 'rounded-tl-full'
-      )
-    | null;
-  radiusTopRight?:
-    | (
-        | 'rounded-tr-none'
-        | 'rounded-tr-sm'
-        | 'rounded-tr-md'
-        | 'rounded-tr-lg'
-        | 'rounded-tr-xl'
-        | 'rounded-tr-2xl'
-        | 'rounded-tr-3xl'
-        | 'rounded-tr-full'
-      )
-    | null;
-  radiusBottomLeft?:
-    | (
-        | 'rounded-bl-none'
-        | 'rounded-bl-sm'
-        | 'rounded-bl-md'
-        | 'rounded-bl-lg'
-        | 'rounded-bl-xl'
-        | 'rounded-bl-2xl'
-        | 'rounded-bl-3xl'
-        | 'rounded-bl-full'
-      )
-    | null;
-  radiusBottomRight?:
-    | (
-        | 'rounded-br-none'
-        | 'rounded-br-sm'
-        | 'rounded-br-md'
-        | 'rounded-br-lg'
-        | 'rounded-br-xl'
-        | 'rounded-br-2xl'
-        | 'rounded-br-3xl'
-        | 'rounded-br-full'
-      )
-    | null;
+  className?: string | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'values';
+  blockType: 'threeRowsThreeColumns';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "TeamBlock".
+ * via the `definition` "MultiColumn".
  */
-export interface TeamBlock {
-  heading: string;
-  subheading?: string | null;
-  teamMembers?:
-    | {
-        name: string;
-        position: string;
-        bio?: string | null;
-        image: string | Media;
-        socials?: {
-          linkedin?: string | null;
-          twitter?: string | null;
-          email?: string | null;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  layout?: ('grid-2' | 'grid-3' | 'grid-4') | null;
-  alignment?: ('center' | 'left' | 'right' | 'full') | null;
-  background?: string | null;
-  paddingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
-  paddingTop?: ('none' | 'small' | 'medium' | 'large') | null;
-  spacingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
-  spacingTop?: ('none' | 'small' | 'medium' | 'large') | null;
-  radius?: boolean | null;
-  specifiedRadius?: boolean | null;
-  radiusAll?:
-    | (
-        | 'rounded-none'
-        | 'rounded-sm'
-        | 'rounded-md'
-        | 'rounded-lg'
-        | 'rounded-xl'
-        | 'rounded-2xl'
-        | 'rounded-3xl'
-        | 'rounded-full'
-      )
-    | null;
-  radiusTopLeft?:
-    | (
-        | 'rounded-tl-none'
-        | 'rounded-tl-sm'
-        | 'rounded-tl-md'
-        | 'rounded-tl-lg'
-        | 'rounded-tl-xl'
-        | 'rounded-tl-2xl'
-        | 'rounded-tl-3xl'
-        | 'rounded-tl-full'
-      )
-    | null;
-  radiusTopRight?:
-    | (
-        | 'rounded-tr-none'
-        | 'rounded-tr-sm'
-        | 'rounded-tr-md'
-        | 'rounded-tr-lg'
-        | 'rounded-tr-xl'
-        | 'rounded-tr-2xl'
-        | 'rounded-tr-3xl'
-        | 'rounded-tr-full'
-      )
-    | null;
-  radiusBottomLeft?:
-    | (
-        | 'rounded-bl-none'
-        | 'rounded-bl-sm'
-        | 'rounded-bl-md'
-        | 'rounded-bl-lg'
-        | 'rounded-bl-xl'
-        | 'rounded-bl-2xl'
-        | 'rounded-bl-3xl'
-        | 'rounded-bl-full'
-      )
-    | null;
-  radiusBottomRight?:
-    | (
-        | 'rounded-br-none'
-        | 'rounded-br-sm'
-        | 'rounded-br-md'
-        | 'rounded-br-lg'
-        | 'rounded-br-xl'
-        | 'rounded-br-2xl'
-        | 'rounded-br-3xl'
-        | 'rounded-br-full'
-      )
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'team';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "TimelineBlock".
- */
-export interface TimelineBlock {
-  heading: string;
-  subheading?: string | null;
-  milestones?:
-    | {
-        year: string;
-        title: string;
-        description: string;
-        image?: (string | null) | Media;
-        id?: string | null;
-      }[]
-    | null;
-  style?: ('vertical' | 'horizontal' | 'cards') | null;
-  alignment?: ('center' | 'left' | 'right' | 'full') | null;
-  background?: string | null;
-  paddingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
-  paddingTop?: ('none' | 'small' | 'medium' | 'large') | null;
-  spacingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
-  spacingTop?: ('none' | 'small' | 'medium' | 'large') | null;
-  radius?: boolean | null;
-  specifiedRadius?: boolean | null;
-  radiusAll?:
-    | (
-        | 'rounded-none'
-        | 'rounded-sm'
-        | 'rounded-md'
-        | 'rounded-lg'
-        | 'rounded-xl'
-        | 'rounded-2xl'
-        | 'rounded-3xl'
-        | 'rounded-full'
-      )
-    | null;
-  radiusTopLeft?:
-    | (
-        | 'rounded-tl-none'
-        | 'rounded-tl-sm'
-        | 'rounded-tl-md'
-        | 'rounded-tl-lg'
-        | 'rounded-tl-xl'
-        | 'rounded-tl-2xl'
-        | 'rounded-tl-3xl'
-        | 'rounded-tl-full'
-      )
-    | null;
-  radiusTopRight?:
-    | (
-        | 'rounded-tr-none'
-        | 'rounded-tr-sm'
-        | 'rounded-tr-md'
-        | 'rounded-tr-lg'
-        | 'rounded-tr-xl'
-        | 'rounded-tr-2xl'
-        | 'rounded-tr-3xl'
-        | 'rounded-tr-full'
-      )
-    | null;
-  radiusBottomLeft?:
-    | (
-        | 'rounded-bl-none'
-        | 'rounded-bl-sm'
-        | 'rounded-bl-md'
-        | 'rounded-bl-lg'
-        | 'rounded-bl-xl'
-        | 'rounded-bl-2xl'
-        | 'rounded-bl-3xl'
-        | 'rounded-bl-full'
-      )
-    | null;
-  radiusBottomRight?:
-    | (
-        | 'rounded-br-none'
-        | 'rounded-br-sm'
-        | 'rounded-br-md'
-        | 'rounded-br-lg'
-        | 'rounded-br-xl'
-        | 'rounded-br-2xl'
-        | 'rounded-br-3xl'
-        | 'rounded-br-full'
-      )
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'timeline';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "StatsBlock".
- */
-export interface StatsBlock {
-  heading?: string | null;
-  subheading?: string | null;
-  statistics?:
+export interface MultiColumn {
+  backgroundColor?: ('white' | 'gray' | 'blue' | 'transparent') | null;
+  padding?: ('none' | 'sm' | 'md' | 'lg' | 'xl') | null;
+  gap?: ('sm' | 'md' | 'lg') | null;
+  items?:
     | {
         /**
-         * e.g., 500+, 10M, 99%
+         * Add one or more blocks for this masonry item
          */
-        number: string;
-        /**
-         * e.g., Happy Clients, Products Sold
-         */
-        label: string;
-        icon?: (string | null) | Media;
+        blocks: (
+          | CallToActionBlock
+          | ContentBlock
+          | MediaBlock
+          | ArchiveBlock
+          | FormBlock
+          | CarouselBlock
+          | AccordionBlock
+        )[];
         id?: string | null;
       }[]
     | null;
-  layout?: ('grid-2' | 'grid-3' | 'grid-4' | 'inline') | null;
-  alignment?: ('center' | 'left' | 'right' | 'full') | null;
-  background?: string | null;
-  paddingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
-  paddingTop?: ('none' | 'small' | 'medium' | 'large') | null;
-  spacingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
-  spacingTop?: ('none' | 'small' | 'medium' | 'large') | null;
-  radius?: boolean | null;
-  specifiedRadius?: boolean | null;
-  radiusAll?:
-    | (
-        | 'rounded-none'
-        | 'rounded-sm'
-        | 'rounded-md'
-        | 'rounded-lg'
-        | 'rounded-xl'
-        | 'rounded-2xl'
-        | 'rounded-3xl'
-        | 'rounded-full'
-      )
-    | null;
-  radiusTopLeft?:
-    | (
-        | 'rounded-tl-none'
-        | 'rounded-tl-sm'
-        | 'rounded-tl-md'
-        | 'rounded-tl-lg'
-        | 'rounded-tl-xl'
-        | 'rounded-tl-2xl'
-        | 'rounded-tl-3xl'
-        | 'rounded-tl-full'
-      )
-    | null;
-  radiusTopRight?:
-    | (
-        | 'rounded-tr-none'
-        | 'rounded-tr-sm'
-        | 'rounded-tr-md'
-        | 'rounded-tr-lg'
-        | 'rounded-tr-xl'
-        | 'rounded-tr-2xl'
-        | 'rounded-tr-3xl'
-        | 'rounded-tr-full'
-      )
-    | null;
-  radiusBottomLeft?:
-    | (
-        | 'rounded-bl-none'
-        | 'rounded-bl-sm'
-        | 'rounded-bl-md'
-        | 'rounded-bl-lg'
-        | 'rounded-bl-xl'
-        | 'rounded-bl-2xl'
-        | 'rounded-bl-3xl'
-        | 'rounded-bl-full'
-      )
-    | null;
-  radiusBottomRight?:
-    | (
-        | 'rounded-br-none'
-        | 'rounded-br-sm'
-        | 'rounded-br-md'
-        | 'rounded-br-lg'
-        | 'rounded-br-xl'
-        | 'rounded-br-2xl'
-        | 'rounded-br-3xl'
-        | 'rounded-br-full'
-      )
-    | null;
+  className?: string | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'stats';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CultureBlock".
- */
-export interface CultureBlock {
-  heading: string;
-  subheading?: string | null;
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  images?:
-    | {
-        image: string | Media;
-        caption?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  highlights?:
-    | {
-        title: string;
-        description?: string | null;
-        icon?: (string | null) | Media;
-        id?: string | null;
-      }[]
-    | null;
-  alignment?: ('center' | 'left' | 'right' | 'full') | null;
-  background?: string | null;
-  paddingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
-  paddingTop?: ('none' | 'small' | 'medium' | 'large') | null;
-  spacingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
-  spacingTop?: ('none' | 'small' | 'medium' | 'large') | null;
-  radius?: boolean | null;
-  specifiedRadius?: boolean | null;
-  radiusAll?:
-    | (
-        | 'rounded-none'
-        | 'rounded-sm'
-        | 'rounded-md'
-        | 'rounded-lg'
-        | 'rounded-xl'
-        | 'rounded-2xl'
-        | 'rounded-3xl'
-        | 'rounded-full'
-      )
-    | null;
-  radiusTopLeft?:
-    | (
-        | 'rounded-tl-none'
-        | 'rounded-tl-sm'
-        | 'rounded-tl-md'
-        | 'rounded-tl-lg'
-        | 'rounded-tl-xl'
-        | 'rounded-tl-2xl'
-        | 'rounded-tl-3xl'
-        | 'rounded-tl-full'
-      )
-    | null;
-  radiusTopRight?:
-    | (
-        | 'rounded-tr-none'
-        | 'rounded-tr-sm'
-        | 'rounded-tr-md'
-        | 'rounded-tr-lg'
-        | 'rounded-tr-xl'
-        | 'rounded-tr-2xl'
-        | 'rounded-tr-3xl'
-        | 'rounded-tr-full'
-      )
-    | null;
-  radiusBottomLeft?:
-    | (
-        | 'rounded-bl-none'
-        | 'rounded-bl-sm'
-        | 'rounded-bl-md'
-        | 'rounded-bl-lg'
-        | 'rounded-bl-xl'
-        | 'rounded-bl-2xl'
-        | 'rounded-bl-3xl'
-        | 'rounded-bl-full'
-      )
-    | null;
-  radiusBottomRight?:
-    | (
-        | 'rounded-br-none'
-        | 'rounded-br-sm'
-        | 'rounded-br-md'
-        | 'rounded-br-lg'
-        | 'rounded-br-xl'
-        | 'rounded-br-2xl'
-        | 'rounded-br-3xl'
-        | 'rounded-br-full'
-      )
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'culture';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CTABlock".
- */
-export interface CTABlock {
-  heading: string;
-  subheading?: string | null;
-  content?: string | null;
-  buttons?:
-    | {
-        text: string;
-        url: string;
-        style?: ('primary' | 'secondary' | 'outline') | null;
-        openInNewTab?: boolean | null;
-        id?: string | null;
-      }[]
-    | null;
-  style?: ('centered' | 'left' | 'split') | null;
-  backgroundImage?: (string | null) | Media;
-  alignment?: ('center' | 'left' | 'right' | 'full') | null;
-  background?: string | null;
-  paddingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
-  paddingTop?: ('none' | 'small' | 'medium' | 'large') | null;
-  spacingBottom?: ('none' | 'small' | 'medium' | 'large') | null;
-  spacingTop?: ('none' | 'small' | 'medium' | 'large') | null;
-  radius?: boolean | null;
-  specifiedRadius?: boolean | null;
-  radiusAll?:
-    | (
-        | 'rounded-none'
-        | 'rounded-sm'
-        | 'rounded-md'
-        | 'rounded-lg'
-        | 'rounded-xl'
-        | 'rounded-2xl'
-        | 'rounded-3xl'
-        | 'rounded-full'
-      )
-    | null;
-  radiusTopLeft?:
-    | (
-        | 'rounded-tl-none'
-        | 'rounded-tl-sm'
-        | 'rounded-tl-md'
-        | 'rounded-tl-lg'
-        | 'rounded-tl-xl'
-        | 'rounded-tl-2xl'
-        | 'rounded-tl-3xl'
-        | 'rounded-tl-full'
-      )
-    | null;
-  radiusTopRight?:
-    | (
-        | 'rounded-tr-none'
-        | 'rounded-tr-sm'
-        | 'rounded-tr-md'
-        | 'rounded-tr-lg'
-        | 'rounded-tr-xl'
-        | 'rounded-tr-2xl'
-        | 'rounded-tr-3xl'
-        | 'rounded-tr-full'
-      )
-    | null;
-  radiusBottomLeft?:
-    | (
-        | 'rounded-bl-none'
-        | 'rounded-bl-sm'
-        | 'rounded-bl-md'
-        | 'rounded-bl-lg'
-        | 'rounded-bl-xl'
-        | 'rounded-bl-2xl'
-        | 'rounded-bl-3xl'
-        | 'rounded-bl-full'
-      )
-    | null;
-  radiusBottomRight?:
-    | (
-        | 'rounded-br-none'
-        | 'rounded-br-sm'
-        | 'rounded-br-md'
-        | 'rounded-br-lg'
-        | 'rounded-br-xl'
-        | 'rounded-br-2xl'
-        | 'rounded-br-3xl'
-        | 'rounded-br-full'
-      )
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'cta';
+  blockType: 'masonryLayout';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -3092,6 +2135,21 @@ export interface ProductReview {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "permission".
+ */
+export interface Permission {
+  id: string;
+  pagePermission?: ('read' | 'write' | 'delete' | 'update')[] | null;
+  productPermission?: ('read' | 'write' | 'delete' | 'update')[] | null;
+  productcatPermission?: ('read' | 'write' | 'delete' | 'update')[] | null;
+  userPermission?: ('read' | 'write' | 'delete' | 'update')[] | null;
+  parent?: (string | null) | Administrator;
+  createdFor?: (string | null) | Administrator;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -3311,6 +2369,10 @@ export interface PayloadLockedDocument {
         value: string | Website;
       } | null)
     | ({
+        relationTo: 'permission';
+        value: string | Permission;
+      } | null)
+    | ({
         relationTo: 'redirects';
         value: string | Redirect;
       } | null)
@@ -3431,765 +2493,22 @@ export interface PagesSelect<T extends boolean = true> {
   section?:
     | T
     | {
-        twoEqualColumns?:
-          | T
-          | {
-              leftColumn?:
-                | T
-                | {
-                    cta?: T | CallToActionBlockSelect<T>;
-                    content?: T | ContentBlockSelect<T>;
-                    mediaBlock?: T | MediaBlockSelect<T>;
-                    archive?: T | ArchiveBlockSelect<T>;
-                    formBlock?: T | FormBlockSelect<T>;
-                    carousel?: T | CarouselBlockSelect<T>;
-                    accordion?: T | AccordionBlockSelect<T>;
-                  };
-              rightColumn?:
-                | T
-                | {
-                    cta?: T | CallToActionBlockSelect<T>;
-                    content?: T | ContentBlockSelect<T>;
-                    mediaBlock?: T | MediaBlockSelect<T>;
-                    archive?: T | ArchiveBlockSelect<T>;
-                    formBlock?: T | FormBlockSelect<T>;
-                    carousel?: T | CarouselBlockSelect<T>;
-                    accordion?: T | AccordionBlockSelect<T>;
-                  };
-              backgroundColor?: T;
-              padding?: T;
-              gap?: T;
-              className?: T;
-              id?: T;
-              blockName?: T;
-            };
-        threeEqualColumns?:
-          | T
-          | {
-              leftColumn?:
-                | T
-                | {
-                    cta?: T | CallToActionBlockSelect<T>;
-                    content?: T | ContentBlockSelect<T>;
-                    mediaBlock?: T | MediaBlockSelect<T>;
-                    archive?: T | ArchiveBlockSelect<T>;
-                    formBlock?: T | FormBlockSelect<T>;
-                    carousel?: T | CarouselBlockSelect<T>;
-                    accordion?: T | AccordionBlockSelect<T>;
-                  };
-              centerColumn?:
-                | T
-                | {
-                    cta?: T | CallToActionBlockSelect<T>;
-                    content?: T | ContentBlockSelect<T>;
-                    mediaBlock?: T | MediaBlockSelect<T>;
-                    archive?: T | ArchiveBlockSelect<T>;
-                    formBlock?: T | FormBlockSelect<T>;
-                    carousel?: T | CarouselBlockSelect<T>;
-                    accordion?: T | AccordionBlockSelect<T>;
-                  };
-              rightColumn?:
-                | T
-                | {
-                    cta?: T | CallToActionBlockSelect<T>;
-                    content?: T | ContentBlockSelect<T>;
-                    mediaBlock?: T | MediaBlockSelect<T>;
-                    archive?: T | ArchiveBlockSelect<T>;
-                    formBlock?: T | FormBlockSelect<T>;
-                    carousel?: T | CarouselBlockSelect<T>;
-                    accordion?: T | AccordionBlockSelect<T>;
-                  };
-              backgroundColor?: T;
-              padding?: T;
-              gap?: T;
-              className?: T;
-              id?: T;
-              blockName?: T;
-            };
-        fourEqualColumns?:
-          | T
-          | {
-              columns?:
-                | T
-                | {
-                    content?:
-                      | T
-                      | {
-                          cta?: T | CallToActionBlockSelect<T>;
-                          content?: T | ContentBlockSelect<T>;
-                          mediaBlock?: T | MediaBlockSelect<T>;
-                          archive?: T | ArchiveBlockSelect<T>;
-                          formBlock?: T | FormBlockSelect<T>;
-                          carousel?: T | CarouselBlockSelect<T>;
-                          accordion?: T | AccordionBlockSelect<T>;
-                        };
-                    id?: T;
-                  };
-              backgroundColor?: T;
-              padding?: T;
-              gap?: T;
-              className?: T;
-              id?: T;
-              blockName?: T;
-            };
-        twoThirdsOneThird?:
-          | T
-          | {
-              backgroundColor?: T;
-              padding?: T;
-              gap?: T;
-              leftColumn?:
-                | T
-                | {
-                    cta?: T | CallToActionBlockSelect<T>;
-                    content?: T | ContentBlockSelect<T>;
-                    mediaBlock?: T | MediaBlockSelect<T>;
-                    archive?: T | ArchiveBlockSelect<T>;
-                    formBlock?: T | FormBlockSelect<T>;
-                    carousel?: T | CarouselBlockSelect<T>;
-                    accordion?: T | AccordionBlockSelect<T>;
-                  };
-              rightColumn?:
-                | T
-                | {
-                    cta?: T | CallToActionBlockSelect<T>;
-                    content?: T | ContentBlockSelect<T>;
-                    mediaBlock?: T | MediaBlockSelect<T>;
-                    archive?: T | ArchiveBlockSelect<T>;
-                    formBlock?: T | FormBlockSelect<T>;
-                    carousel?: T | CarouselBlockSelect<T>;
-                    accordion?: T | AccordionBlockSelect<T>;
-                  };
-              className?: T;
-              id?: T;
-              blockName?: T;
-            };
-        oneThirdTwoThirds?:
-          | T
-          | {
-              backgroundColor?: T;
-              padding?: T;
-              gap?: T;
-              leftColumn?:
-                | T
-                | {
-                    cta?: T | CallToActionBlockSelect<T>;
-                    content?: T | ContentBlockSelect<T>;
-                    mediaBlock?: T | MediaBlockSelect<T>;
-                    archive?: T | ArchiveBlockSelect<T>;
-                    formBlock?: T | FormBlockSelect<T>;
-                    carousel?: T | CarouselBlockSelect<T>;
-                    accordion?: T | AccordionBlockSelect<T>;
-                  };
-              rightColumn?:
-                | T
-                | {
-                    cta?: T | CallToActionBlockSelect<T>;
-                    content?: T | ContentBlockSelect<T>;
-                    mediaBlock?: T | MediaBlockSelect<T>;
-                    archive?: T | ArchiveBlockSelect<T>;
-                    formBlock?: T | FormBlockSelect<T>;
-                    carousel?: T | CarouselBlockSelect<T>;
-                    accordion?: T | AccordionBlockSelect<T>;
-                  };
-              className?: T;
-              id?: T;
-              blockName?: T;
-            };
-        oneQuarterThreeQuarters?:
-          | T
-          | {
-              backgroundColor?: T;
-              padding?: T;
-              gap?: T;
-              leftColumn?:
-                | T
-                | {
-                    cta?: T | CallToActionBlockSelect<T>;
-                    content?: T | ContentBlockSelect<T>;
-                    mediaBlock?: T | MediaBlockSelect<T>;
-                    archive?: T | ArchiveBlockSelect<T>;
-                    formBlock?: T | FormBlockSelect<T>;
-                    carousel?: T | CarouselBlockSelect<T>;
-                    accordion?: T | AccordionBlockSelect<T>;
-                  };
-              rightColumn?:
-                | T
-                | {
-                    cta?: T | CallToActionBlockSelect<T>;
-                    content?: T | ContentBlockSelect<T>;
-                    mediaBlock?: T | MediaBlockSelect<T>;
-                    archive?: T | ArchiveBlockSelect<T>;
-                    formBlock?: T | FormBlockSelect<T>;
-                    carousel?: T | CarouselBlockSelect<T>;
-                    accordion?: T | AccordionBlockSelect<T>;
-                  };
-              className?: T;
-              id?: T;
-              blockName?: T;
-            };
-        threeQuartersOneQuarter?:
-          | T
-          | {
-              backgroundColor?: T;
-              padding?: T;
-              gap?: T;
-              leftColumn?:
-                | T
-                | {
-                    cta?: T | CallToActionBlockSelect<T>;
-                    content?: T | ContentBlockSelect<T>;
-                    mediaBlock?: T | MediaBlockSelect<T>;
-                    archive?: T | ArchiveBlockSelect<T>;
-                    formBlock?: T | FormBlockSelect<T>;
-                    carousel?: T | CarouselBlockSelect<T>;
-                    accordion?: T | AccordionBlockSelect<T>;
-                  };
-              rightColumn?:
-                | T
-                | {
-                    cta?: T | CallToActionBlockSelect<T>;
-                    content?: T | ContentBlockSelect<T>;
-                    mediaBlock?: T | MediaBlockSelect<T>;
-                    archive?: T | ArchiveBlockSelect<T>;
-                    formBlock?: T | FormBlockSelect<T>;
-                    carousel?: T | CarouselBlockSelect<T>;
-                    accordion?: T | AccordionBlockSelect<T>;
-                  };
-              className?: T;
-              id?: T;
-              blockName?: T;
-            };
-        twoRowsTwoColumns?:
-          | T
-          | {
-              backgroundColor?: T;
-              padding?: T;
-              gap?: T;
-              rows?:
-                | T
-                | {
-                    columns?:
-                      | T
-                      | {
-                          blocks?:
-                            | T
-                            | {
-                                cta?: T | CallToActionBlockSelect<T>;
-                                content?: T | ContentBlockSelect<T>;
-                                mediaBlock?: T | MediaBlockSelect<T>;
-                                archive?: T | ArchiveBlockSelect<T>;
-                                formBlock?: T | FormBlockSelect<T>;
-                                carousel?: T | CarouselBlockSelect<T>;
-                                accordion?: T | AccordionBlockSelect<T>;
-                              };
-                          id?: T;
-                        };
-                    id?: T;
-                  };
-              className?: T;
-              id?: T;
-              blockName?: T;
-            };
-        twoRowsThreeColumns?:
-          | T
-          | {
-              backgroundColor?: T;
-              padding?: T;
-              gap?: T;
-              rows?:
-                | T
-                | {
-                    columns?:
-                      | T
-                      | {
-                          blocks?:
-                            | T
-                            | {
-                                cta?: T | CallToActionBlockSelect<T>;
-                                content?: T | ContentBlockSelect<T>;
-                                mediaBlock?: T | MediaBlockSelect<T>;
-                                archive?: T | ArchiveBlockSelect<T>;
-                                formBlock?: T | FormBlockSelect<T>;
-                                carousel?: T | CarouselBlockSelect<T>;
-                                accordion?: T | AccordionBlockSelect<T>;
-                              };
-                          id?: T;
-                        };
-                    id?: T;
-                  };
-              className?: T;
-              id?: T;
-              blockName?: T;
-            };
-        threeRowsTwoColumns?:
-          | T
-          | {
-              backgroundColor?: T;
-              padding?: T;
-              gap?: T;
-              rows?:
-                | T
-                | {
-                    columns?:
-                      | T
-                      | {
-                          blocks?:
-                            | T
-                            | {
-                                cta?: T | CallToActionBlockSelect<T>;
-                                content?: T | ContentBlockSelect<T>;
-                                mediaBlock?: T | MediaBlockSelect<T>;
-                                archive?: T | ArchiveBlockSelect<T>;
-                                formBlock?: T | FormBlockSelect<T>;
-                                carousel?: T | CarouselBlockSelect<T>;
-                                accordion?: T | AccordionBlockSelect<T>;
-                              };
-                          id?: T;
-                        };
-                    id?: T;
-                  };
-              className?: T;
-              id?: T;
-              blockName?: T;
-            };
-        threeRowsThreeColumns?:
-          | T
-          | {
-              backgroundColor?: T;
-              padding?: T;
-              gap?: T;
-              rows?:
-                | T
-                | {
-                    columns?:
-                      | T
-                      | {
-                          blocks?:
-                            | T
-                            | {
-                                cta?: T | CallToActionBlockSelect<T>;
-                                content?: T | ContentBlockSelect<T>;
-                                mediaBlock?: T | MediaBlockSelect<T>;
-                                archive?: T | ArchiveBlockSelect<T>;
-                                formBlock?: T | FormBlockSelect<T>;
-                                carousel?: T | CarouselBlockSelect<T>;
-                                accordion?: T | AccordionBlockSelect<T>;
-                              };
-                          id?: T;
-                        };
-                    id?: T;
-                  };
-              className?: T;
-              id?: T;
-              blockName?: T;
-            };
-        sidebarMainLayout?:
-          | T
-          | {
-              backgroundColor?: T;
-              padding?: T;
-              gap?: T;
-              sidebar?:
-                | T
-                | {
-                    cta?: T | CallToActionBlockSelect<T>;
-                    content?: T | ContentBlockSelect<T>;
-                    mediaBlock?: T | MediaBlockSelect<T>;
-                    archive?: T | ArchiveBlockSelect<T>;
-                    formBlock?: T | FormBlockSelect<T>;
-                    carousel?: T | CarouselBlockSelect<T>;
-                    accordion?: T | AccordionBlockSelect<T>;
-                  };
-              mainContent?:
-                | T
-                | {
-                    cta?: T | CallToActionBlockSelect<T>;
-                    content?: T | ContentBlockSelect<T>;
-                    mediaBlock?: T | MediaBlockSelect<T>;
-                    archive?: T | ArchiveBlockSelect<T>;
-                    formBlock?: T | FormBlockSelect<T>;
-                    carousel?: T | CarouselBlockSelect<T>;
-                    accordion?: T | AccordionBlockSelect<T>;
-                  };
-              className?: T;
-              id?: T;
-              blockName?: T;
-            };
-        mainSidebarLayout?:
-          | T
-          | {
-              backgroundColor?: T;
-              padding?: T;
-              gap?: T;
-              mainContent?:
-                | T
-                | {
-                    cta?: T | CallToActionBlockSelect<T>;
-                    content?: T | ContentBlockSelect<T>;
-                    mediaBlock?: T | MediaBlockSelect<T>;
-                    archive?: T | ArchiveBlockSelect<T>;
-                    formBlock?: T | FormBlockSelect<T>;
-                    carousel?: T | CarouselBlockSelect<T>;
-                    accordion?: T | AccordionBlockSelect<T>;
-                  };
-              sidebar?:
-                | T
-                | {
-                    cta?: T | CallToActionBlockSelect<T>;
-                    content?: T | ContentBlockSelect<T>;
-                    mediaBlock?: T | MediaBlockSelect<T>;
-                    archive?: T | ArchiveBlockSelect<T>;
-                    formBlock?: T | FormBlockSelect<T>;
-                    carousel?: T | CarouselBlockSelect<T>;
-                    accordion?: T | AccordionBlockSelect<T>;
-                  };
-              className?: T;
-              id?: T;
-              blockName?: T;
-            };
-        headerTwoColumnsLayout?:
-          | T
-          | {
-              backgroundColor?: T;
-              padding?: T;
-              gap?: T;
-              header?:
-                | T
-                | {
-                    cta?: T | CallToActionBlockSelect<T>;
-                    content?: T | ContentBlockSelect<T>;
-                    mediaBlock?: T | MediaBlockSelect<T>;
-                    archive?: T | ArchiveBlockSelect<T>;
-                    formBlock?: T | FormBlockSelect<T>;
-                    carousel?: T | CarouselBlockSelect<T>;
-                    accordion?: T | AccordionBlockSelect<T>;
-                  };
-              leftColumn?:
-                | T
-                | {
-                    cta?: T | CallToActionBlockSelect<T>;
-                    content?: T | ContentBlockSelect<T>;
-                    mediaBlock?: T | MediaBlockSelect<T>;
-                    archive?: T | ArchiveBlockSelect<T>;
-                    formBlock?: T | FormBlockSelect<T>;
-                    carousel?: T | CarouselBlockSelect<T>;
-                    accordion?: T | AccordionBlockSelect<T>;
-                  };
-              rightColumn?:
-                | T
-                | {
-                    cta?: T | CallToActionBlockSelect<T>;
-                    content?: T | ContentBlockSelect<T>;
-                    mediaBlock?: T | MediaBlockSelect<T>;
-                    archive?: T | ArchiveBlockSelect<T>;
-                    formBlock?: T | FormBlockSelect<T>;
-                    carousel?: T | CarouselBlockSelect<T>;
-                    accordion?: T | AccordionBlockSelect<T>;
-                  };
-              className?: T;
-              id?: T;
-              blockName?: T;
-            };
-        headerThreeColumnsLayout?:
-          | T
-          | {
-              backgroundColor?: T;
-              padding?: T;
-              gap?: T;
-              header?:
-                | T
-                | {
-                    cta?: T | CallToActionBlockSelect<T>;
-                    content?: T | ContentBlockSelect<T>;
-                    mediaBlock?: T | MediaBlockSelect<T>;
-                    archive?: T | ArchiveBlockSelect<T>;
-                    formBlock?: T | FormBlockSelect<T>;
-                    carousel?: T | CarouselBlockSelect<T>;
-                    accordion?: T | AccordionBlockSelect<T>;
-                  };
-              columns?:
-                | T
-                | {
-                    blocks?:
-                      | T
-                      | {
-                          cta?: T | CallToActionBlockSelect<T>;
-                          content?: T | ContentBlockSelect<T>;
-                          mediaBlock?: T | MediaBlockSelect<T>;
-                          archive?: T | ArchiveBlockSelect<T>;
-                          formBlock?: T | FormBlockSelect<T>;
-                          carousel?: T | CarouselBlockSelect<T>;
-                          accordion?: T | AccordionBlockSelect<T>;
-                        };
-                    id?: T;
-                  };
-              className?: T;
-              id?: T;
-              blockName?: T;
-            };
-        masonryLayout?:
-          | T
-          | {
-              backgroundColor?: T;
-              padding?: T;
-              gap?: T;
-              items?:
-                | T
-                | {
-                    blocks?:
-                      | T
-                      | {
-                          cta?: T | CallToActionBlockSelect<T>;
-                          content?: T | ContentBlockSelect<T>;
-                          mediaBlock?: T | MediaBlockSelect<T>;
-                          archive?: T | ArchiveBlockSelect<T>;
-                          formBlock?: T | FormBlockSelect<T>;
-                          carousel?: T | CarouselBlockSelect<T>;
-                          accordion?: T | AccordionBlockSelect<T>;
-                        };
-                    id?: T;
-                  };
-              className?: T;
-              id?: T;
-              blockName?: T;
-            };
-        aboutPage?: T | AboutPageBlockSelect<T>;
-        textBlock?:
-          | T
-          | {
-              textType?: T;
-              content?: T;
-              textAlign?: T;
-              textColor?: T;
-              customTextColor?: T;
-              fontSize?: T;
-              customFontSize?: T;
-              fontWeight?: T;
-              lineHeight?: T;
-              letterSpacing?: T;
-              textTransform?: T;
-              fontFamily?: T;
-              backgroundColor?: T;
-              customBackgroundColor?: T;
-              padding?:
-                | T
-                | {
-                    top?: T;
-                    bottom?: T;
-                    left?: T;
-                    right?: T;
-                  };
-              margin?:
-                | T
-                | {
-                    top?: T;
-                    bottom?: T;
-                  };
-              maxWidth?: T;
-              link?:
-                | T
-                | {
-                    enable?: T;
-                    url?: T;
-                    newTab?: T;
-                    rel?: T;
-                    linkStyle?: T;
-                    linkColor?: T;
-                    customLinkColor?: T;
-                  };
-              className?: T;
-              id?: T;
-              blockName?: T;
-            };
-        layoutBlock?:
-          | T
-          | {
-              layoutType?: T;
-              columnRatio?: T;
-              customColumnRatio?: T;
-              maxWidth?: T;
-              customMaxWidth?: T;
-              alignment?: T;
-              verticalAlignment?: T;
-              gap?: T;
-              responsiveBehavior?: T;
-              backgroundColor?: T;
-              customBackgroundColor?: T;
-              backgroundImage?:
-                | T
-                | {
-                    enable?: T;
-                    image?: T;
-                    size?: T;
-                    position?: T;
-                    attachment?: T;
-                    overlay?: T;
-                    overlayColor?: T;
-                  };
-              gradient?:
-                | T
-                | {
-                    enable?: T;
-                    type?: T;
-                    direction?: T;
-                    colorStops?: T;
-                  };
-              padding?:
-                | T
-                | {
-                    top?: T;
-                    bottom?: T;
-                    left?: T;
-                    right?: T;
-                  };
-              margin?:
-                | T
-                | {
-                    top?: T;
-                    bottom?: T;
-                  };
-              border?:
-                | T
-                | {
-                    enable?: T;
-                    width?: T;
-                    style?: T;
-                    color?: T;
-                  };
-              borderRadius?: T;
-              shadow?: T;
-              minHeight?: T;
-              customMinHeight?: T;
-              animation?:
-                | T
-                | {
-                    enable?: T;
-                    type?: T;
-                    duration?: T;
-                  };
-              customId?: T;
-              className?: T;
-              columns?:
-                | T
-                | {
-                    columnName?: T;
-                    content?:
-                      | T
-                      | {
-                          textBlock?:
-                            | T
-                            | {
-                                textType?: T;
-                                content?: T;
-                                textAlign?: T;
-                                textColor?: T;
-                                customTextColor?: T;
-                                fontSize?: T;
-                                customFontSize?: T;
-                                fontWeight?: T;
-                                lineHeight?: T;
-                                letterSpacing?: T;
-                                textTransform?: T;
-                                fontFamily?: T;
-                                backgroundColor?: T;
-                                customBackgroundColor?: T;
-                                padding?:
-                                  | T
-                                  | {
-                                      top?: T;
-                                      bottom?: T;
-                                      left?: T;
-                                      right?: T;
-                                    };
-                                margin?:
-                                  | T
-                                  | {
-                                      top?: T;
-                                      bottom?: T;
-                                    };
-                                maxWidth?: T;
-                                link?:
-                                  | T
-                                  | {
-                                      enable?: T;
-                                      url?: T;
-                                      newTab?: T;
-                                      rel?: T;
-                                      linkStyle?: T;
-                                      linkColor?: T;
-                                      customLinkColor?: T;
-                                    };
-                                className?: T;
-                                id?: T;
-                                blockName?: T;
-                              };
-                          buttonBlock?:
-                            | T
-                            | {
-                                label?: T;
-                                link?:
-                                  | T
-                                  | {
-                                      type?: T;
-                                      url?: T;
-                                      page?: T;
-                                      email?: T;
-                                      phone?: T;
-                                      anchor?: T;
-                                      newTab?: T;
-                                      rel?: T;
-                                    };
-                                icon?:
-                                  | T
-                                  | {
-                                      enable?: T;
-                                      iconName?: T;
-                                      position?: T;
-                                      iconSize?: T;
-                                    };
-                                variant?: T;
-                                customColors?:
-                                  | T
-                                  | {
-                                      backgroundColor?: T;
-                                      textColor?: T;
-                                      hoverBackgroundColor?: T;
-                                      hoverTextColor?: T;
-                                      borderColor?: T;
-                                    };
-                                size?: T;
-                                fullWidth?: T;
-                                alignment?: T;
-                                borderRadius?: T;
-                                shadow?: T;
-                                fontWeight?: T;
-                                textTransform?: T;
-                                animation?: T;
-                                disabled?: T;
-                                ariaLabel?: T;
-                                padding?:
-                                  | T
-                                  | {
-                                      horizontal?: T;
-                                      vertical?: T;
-                                    };
-                                margin?:
-                                  | T
-                                  | {
-                                      top?: T;
-                                      bottom?: T;
-                                    };
-                                className?: T;
-                                id?: T;
-                                blockName?: T;
-                              };
-                        };
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
+        twoEqualColumns?: T | EqualColumnsSelect<T>;
+        threeEqualColumns?: T | EqualColumnsSelect<T>;
+        fourEqualColumns?: T | EqualColumnsSelect<T>;
+        twoThirdsOneThird?: T | OffsetColumnsSelect<T>;
+        oneThirdTwoThirds?: T | OffsetColumnsSelect<T>;
+        oneQuarterThreeQuarters?: T | OffsetColumnsSelect<T>;
+        threeQuartersOneQuarter?: T | OffsetColumnsSelect<T>;
+        twoRowsTwoColumns?: T | MultiRowSelect<T>;
+        twoRowsThreeColumns?: T | MultiRowSelect<T>;
+        threeRowsTwoColumns?: T | MultiRowSelect<T>;
+        threeRowsThreeColumns?: T | MultiRowSelect<T>;
+        sidebarMainLayout?: T | MultiColumnSelect<T>;
+        mainSidebarLayout?: T | MultiColumnSelect<T>;
+        headerTwoColumnsLayout?: T | MultiColumnSelect<T>;
+        headerThreeColumnsLayout?: T | MultiColumnSelect<T>;
+        masonryLayout?: T | MultiColumnSelect<T>;
       };
   Code?: T;
   meta?:
@@ -4207,6 +2526,415 @@ export interface PagesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "EqualColumns_select".
+ */
+export interface EqualColumnsSelect<T extends boolean = true> {
+  columns?:
+    | T
+    | {
+        content?:
+          | T
+          | {
+              blurb?: T | BlurbBlockSelect<T>;
+              text?: T | TextBlockSelect<T>;
+              divider?: T | DividerBlockSelect<T>;
+              toggle?: T | ToggleBlockSelect<T>;
+              tabs?: T | TabsBlockSelect<T>;
+              testimonial?: T | TestimonialBlockSelect<T>;
+              teamMember?: T | TeamMemberBlockSelect<T>;
+              pricingTable?: T | PricingTableBlockSelect<T>;
+              counter?: T | CounterBlockSelect<T>;
+              progressBar?: T | ProgressBarBlockSelect<T>;
+              icon?: T | IconBlockSelect<T>;
+              list?: T | ListBlockSelect<T>;
+            };
+        id?: T;
+      };
+  backgroundColor?: T;
+  padding?: T;
+  gap?: T;
+  className?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BlurbBlock_select".
+ */
+export interface BlurbBlockSelect<T extends boolean = true> {
+  icon?: T;
+  customIcon?: T;
+  title?: T;
+  description?: T;
+  url?: T;
+  urlNewTab?: T;
+  iconPosition?: T;
+  iconSize?: T;
+  iconColor?: T;
+  iconBackgroundColor?: T;
+  iconShape?: T;
+  textAlign?: T;
+  titleColor?: T;
+  titleSize?: T;
+  descriptionColor?: T;
+  backgroundColor?: T;
+  padding?: T;
+  borderRadius?: T;
+  shadow?: T;
+  border?: T;
+  borderColor?: T;
+  borderWidth?: T;
+  hoverEffect?: T;
+  animation?: T;
+  className?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TextBlock_select".
+ */
+export interface TextBlockSelect<T extends boolean = true> {
+  text?: T;
+  fontSize?: T;
+  fontWeight?: T;
+  textAlign?: T;
+  textColor?: T;
+  backgroundColor?: T;
+  lineHeight?: T;
+  letterSpacing?: T;
+  padding?: T;
+  margin?: T;
+  textTransform?: T;
+  textDecoration?: T;
+  fontStyle?: T;
+  maxWidth?: T;
+  animation?: T;
+  className?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "DividerBlock_select".
+ */
+export interface DividerBlockSelect<T extends boolean = true> {
+  style?: T;
+  showIcon?: T;
+  centerContent?: T;
+  icon?: T;
+  text?: T;
+  width?: T;
+  alignment?: T;
+  color?: T;
+  thickness?: T;
+  marginTop?: T;
+  marginBottom?: T;
+  gradientStartColor?: T;
+  gradientEndColor?: T;
+  animation?: T;
+  className?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ToggleBlock_select".
+ */
+export interface ToggleBlockSelect<T extends boolean = true> {
+  title?: T;
+  content?: T;
+  defaultOpen?: T;
+  titleSize?: T;
+  titleColor?: T;
+  contentColor?: T;
+  backgroundColor?: T;
+  borderColor?: T;
+  iconStyle?: T;
+  iconPosition?: T;
+  borderRadius?: T;
+  padding?: T;
+  margin?: T;
+  shadow?: T;
+  hoverEffect?: T;
+  animation?: T;
+  className?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TabsBlock_select".
+ */
+export interface TabsBlockSelect<T extends boolean = true> {
+  tabs?:
+    | T
+    | {
+        label?: T;
+        content?: T;
+        icon?: T;
+        id?: T;
+      };
+  defaultTab?: T;
+  tabsStyle?: T;
+  tabsPosition?: T;
+  tabsAlignment?: T;
+  activeTabColor?: T;
+  inactiveTabColor?: T;
+  tabBackgroundColor?: T;
+  contentBackgroundColor?: T;
+  contentBorderColor?: T;
+  borderRadius?: T;
+  padding?: T;
+  shadow?: T;
+  animation?: T;
+  className?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialBlock_select".
+ */
+export interface TestimonialBlockSelect<T extends boolean = true> {
+  quote?: T;
+  authorName?: T;
+  authorTitle?: T;
+  authorCompany?: T;
+  authorImage?: T;
+  rating?: T;
+  showQuoteIcon?: T;
+  layout?: T;
+  quoteSize?: T;
+  quoteColor?: T;
+  authorNameColor?: T;
+  authorTitleColor?: T;
+  backgroundColor?: T;
+  borderColor?: T;
+  imageSize?: T;
+  imageShape?: T;
+  textAlign?: T;
+  borderRadius?: T;
+  padding?: T;
+  shadow?: T;
+  quoteIconColor?: T;
+  starColor?: T;
+  animation?: T;
+  className?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TeamMemberBlock_select".
+ */
+export interface TeamMemberBlockSelect<T extends boolean = true> {
+  photo?: T;
+  name?: T;
+  position?: T;
+  bio?: T;
+  email?: T;
+  phone?: T;
+  socialLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
+  layout?: T;
+  imageShape?: T;
+  textAlign?: T;
+  nameColor?: T;
+  positionColor?: T;
+  bioColor?: T;
+  backgroundColor?: T;
+  borderRadius?: T;
+  padding?: T;
+  shadow?: T;
+  hoverEffect?: T;
+  animation?: T;
+  className?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PricingTableBlock_select".
+ */
+export interface PricingTableBlockSelect<T extends boolean = true> {
+  planName?: T;
+  price?: T;
+  currency?: T;
+  billingPeriod?: T;
+  description?: T;
+  features?:
+    | T
+    | {
+        feature?: T;
+        included?: T;
+        id?: T;
+      };
+  buttonText?: T;
+  buttonLink?: T;
+  highlighted?: T;
+  badge?: T;
+  headerColor?: T;
+  priceColor?: T;
+  backgroundColor?: T;
+  borderColor?: T;
+  buttonColor?: T;
+  buttonTextColor?: T;
+  highlightColor?: T;
+  borderRadius?: T;
+  shadow?: T;
+  hoverEffect?: T;
+  animation?: T;
+  className?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CounterBlock_select".
+ */
+export interface CounterBlockSelect<T extends boolean = true> {
+  number?: T;
+  prefix?: T;
+  suffix?: T;
+  title?: T;
+  description?: T;
+  icon?: T;
+  animationDuration?: T;
+  numberSize?: T;
+  numberColor?: T;
+  titleColor?: T;
+  descriptionColor?: T;
+  iconColor?: T;
+  backgroundColor?: T;
+  textAlign?: T;
+  borderRadius?: T;
+  padding?: T;
+  shadow?: T;
+  animation?: T;
+  className?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProgressBarBlock_select".
+ */
+export interface ProgressBarBlockSelect<T extends boolean = true> {
+  label?: T;
+  percentage?: T;
+  showPercentage?: T;
+  animateOnScroll?: T;
+  barColor?: T;
+  backgroundColor?: T;
+  labelColor?: T;
+  percentageColor?: T;
+  height?: T;
+  borderRadius?: T;
+  striped?: T;
+  animated?: T;
+  showGlow?: T;
+  margin?: T;
+  className?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IconBlock_select".
+ */
+export interface IconBlockSelect<T extends boolean = true> {
+  iconType?: T;
+  icon?: T;
+  customIcon?: T;
+  url?: T;
+  urlNewTab?: T;
+  size?: T;
+  color?: T;
+  backgroundColor?: T;
+  backgroundShape?: T;
+  borderColor?: T;
+  borderWidth?: T;
+  padding?: T;
+  shadow?: T;
+  hoverEffect?: T;
+  animation?: T;
+  alignment?: T;
+  className?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ListBlock_select".
+ */
+export interface ListBlockSelect<T extends boolean = true> {
+  listType?: T;
+  items?:
+    | T
+    | {
+        text?: T;
+        icon?: T;
+        id?: T;
+      };
+  bulletStyle?: T;
+  numberStyle?: T;
+  iconColor?: T;
+  textColor?: T;
+  fontSize?: T;
+  spacing?: T;
+  indentation?: T;
+  backgroundColor?: T;
+  borderColor?: T;
+  borderRadius?: T;
+  padding?: T;
+  shadow?: T;
+  animation?: T;
+  className?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OffsetColumns_select".
+ */
+export interface OffsetColumnsSelect<T extends boolean = true> {
+  backgroundColor?: T;
+  padding?: T;
+  gap?: T;
+  leftColumn?:
+    | T
+    | {
+        cta?: T | CallToActionBlockSelect<T>;
+        content?: T | ContentBlockSelect<T>;
+        mediaBlock?: T | MediaBlockSelect<T>;
+        archive?: T | ArchiveBlockSelect<T>;
+        formBlock?: T | FormBlockSelect<T>;
+        carousel?: T | CarouselBlockSelect<T>;
+        accordion?: T | AccordionBlockSelect<T>;
+      };
+  rightColumn?:
+    | T
+    | {
+        cta?: T | CallToActionBlockSelect<T>;
+        content?: T | ContentBlockSelect<T>;
+        mediaBlock?: T | MediaBlockSelect<T>;
+        archive?: T | ArchiveBlockSelect<T>;
+        formBlock?: T | FormBlockSelect<T>;
+        carousel?: T | CarouselBlockSelect<T>;
+        accordion?: T | AccordionBlockSelect<T>;
+      };
+  className?: T;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -4371,294 +3099,62 @@ export interface AccordionBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "AboutPageBlock_select".
+ * via the `definition` "MultiRow_select".
  */
-export interface AboutPageBlockSelect<T extends boolean = true> {
-  blocks?:
+export interface MultiRowSelect<T extends boolean = true> {
+  backgroundColor?: T;
+  padding?: T;
+  gap?: T;
+  rows?:
     | T
     | {
-        story?: T | StoryBlockSelect<T>;
-        missionVision?: T | MissionVisionBlockSelect<T>;
-        values?: T | ValuesBlockSelect<T>;
-        team?: T | TeamBlockSelect<T>;
-        timeline?: T | TimelineBlockSelect<T>;
-        stats?: T | StatsBlockSelect<T>;
-        culture?: T | CultureBlockSelect<T>;
-        cta?: T | CTABlockSelect<T>;
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "StoryBlock_select".
- */
-export interface StoryBlockSelect<T extends boolean = true> {
-  heading?: T;
-  subheading?: T;
-  content?: T;
-  image?: T;
-  imagePosition?: T;
-  alignment?: T;
-  background?: T;
-  paddingBottom?: T;
-  paddingTop?: T;
-  spacingBottom?: T;
-  spacingTop?: T;
-  radius?: T;
-  specifiedRadius?: T;
-  radiusAll?: T;
-  radiusTopLeft?: T;
-  radiusTopRight?: T;
-  radiusBottomLeft?: T;
-  radiusBottomRight?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "MissionVisionBlock_select".
- */
-export interface MissionVisionBlockSelect<T extends boolean = true> {
-  heading?: T;
-  mission?:
-    | T
-    | {
-        title?: T;
-        content?: T;
-        icon?: T;
-      };
-  vision?:
-    | T
-    | {
-        title?: T;
-        content?: T;
-        icon?: T;
-      };
-  alignment?: T;
-  background?: T;
-  paddingBottom?: T;
-  paddingTop?: T;
-  spacingBottom?: T;
-  spacingTop?: T;
-  radius?: T;
-  specifiedRadius?: T;
-  radiusAll?: T;
-  radiusTopLeft?: T;
-  radiusTopRight?: T;
-  radiusBottomLeft?: T;
-  radiusBottomRight?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ValuesBlock_select".
- */
-export interface ValuesBlockSelect<T extends boolean = true> {
-  heading?: T;
-  subheading?: T;
-  values?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        icon?: T;
-        id?: T;
-      };
-  layout?: T;
-  alignment?: T;
-  background?: T;
-  paddingBottom?: T;
-  paddingTop?: T;
-  spacingBottom?: T;
-  spacingTop?: T;
-  radius?: T;
-  specifiedRadius?: T;
-  radiusAll?: T;
-  radiusTopLeft?: T;
-  radiusTopRight?: T;
-  radiusBottomLeft?: T;
-  radiusBottomRight?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "TeamBlock_select".
- */
-export interface TeamBlockSelect<T extends boolean = true> {
-  heading?: T;
-  subheading?: T;
-  teamMembers?:
-    | T
-    | {
-        name?: T;
-        position?: T;
-        bio?: T;
-        image?: T;
-        socials?:
+        columns?:
           | T
           | {
-              linkedin?: T;
-              twitter?: T;
-              email?: T;
+              blocks?:
+                | T
+                | {
+                    cta?: T | CallToActionBlockSelect<T>;
+                    content?: T | ContentBlockSelect<T>;
+                    mediaBlock?: T | MediaBlockSelect<T>;
+                    archive?: T | ArchiveBlockSelect<T>;
+                    formBlock?: T | FormBlockSelect<T>;
+                    carousel?: T | CarouselBlockSelect<T>;
+                    accordion?: T | AccordionBlockSelect<T>;
+                  };
+              id?: T;
             };
         id?: T;
       };
-  layout?: T;
-  alignment?: T;
-  background?: T;
-  paddingBottom?: T;
-  paddingTop?: T;
-  spacingBottom?: T;
-  spacingTop?: T;
-  radius?: T;
-  specifiedRadius?: T;
-  radiusAll?: T;
-  radiusTopLeft?: T;
-  radiusTopRight?: T;
-  radiusBottomLeft?: T;
-  radiusBottomRight?: T;
+  className?: T;
   id?: T;
   blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "TimelineBlock_select".
+ * via the `definition` "MultiColumn_select".
  */
-export interface TimelineBlockSelect<T extends boolean = true> {
-  heading?: T;
-  subheading?: T;
-  milestones?:
+export interface MultiColumnSelect<T extends boolean = true> {
+  backgroundColor?: T;
+  padding?: T;
+  gap?: T;
+  items?:
     | T
     | {
-        year?: T;
-        title?: T;
-        description?: T;
-        image?: T;
+        blocks?:
+          | T
+          | {
+              cta?: T | CallToActionBlockSelect<T>;
+              content?: T | ContentBlockSelect<T>;
+              mediaBlock?: T | MediaBlockSelect<T>;
+              archive?: T | ArchiveBlockSelect<T>;
+              formBlock?: T | FormBlockSelect<T>;
+              carousel?: T | CarouselBlockSelect<T>;
+              accordion?: T | AccordionBlockSelect<T>;
+            };
         id?: T;
       };
-  style?: T;
-  alignment?: T;
-  background?: T;
-  paddingBottom?: T;
-  paddingTop?: T;
-  spacingBottom?: T;
-  spacingTop?: T;
-  radius?: T;
-  specifiedRadius?: T;
-  radiusAll?: T;
-  radiusTopLeft?: T;
-  radiusTopRight?: T;
-  radiusBottomLeft?: T;
-  radiusBottomRight?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "StatsBlock_select".
- */
-export interface StatsBlockSelect<T extends boolean = true> {
-  heading?: T;
-  subheading?: T;
-  statistics?:
-    | T
-    | {
-        number?: T;
-        label?: T;
-        icon?: T;
-        id?: T;
-      };
-  layout?: T;
-  alignment?: T;
-  background?: T;
-  paddingBottom?: T;
-  paddingTop?: T;
-  spacingBottom?: T;
-  spacingTop?: T;
-  radius?: T;
-  specifiedRadius?: T;
-  radiusAll?: T;
-  radiusTopLeft?: T;
-  radiusTopRight?: T;
-  radiusBottomLeft?: T;
-  radiusBottomRight?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CultureBlock_select".
- */
-export interface CultureBlockSelect<T extends boolean = true> {
-  heading?: T;
-  subheading?: T;
-  content?: T;
-  images?:
-    | T
-    | {
-        image?: T;
-        caption?: T;
-        id?: T;
-      };
-  highlights?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        icon?: T;
-        id?: T;
-      };
-  alignment?: T;
-  background?: T;
-  paddingBottom?: T;
-  paddingTop?: T;
-  spacingBottom?: T;
-  spacingTop?: T;
-  radius?: T;
-  specifiedRadius?: T;
-  radiusAll?: T;
-  radiusTopLeft?: T;
-  radiusTopRight?: T;
-  radiusBottomLeft?: T;
-  radiusBottomRight?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CTABlock_select".
- */
-export interface CTABlockSelect<T extends boolean = true> {
-  heading?: T;
-  subheading?: T;
-  content?: T;
-  buttons?:
-    | T
-    | {
-        text?: T;
-        url?: T;
-        style?: T;
-        openInNewTab?: T;
-        id?: T;
-      };
-  style?: T;
-  backgroundImage?: T;
-  alignment?: T;
-  background?: T;
-  paddingBottom?: T;
-  paddingTop?: T;
-  spacingBottom?: T;
-  spacingTop?: T;
-  radius?: T;
-  specifiedRadius?: T;
-  radiusAll?: T;
-  radiusTopLeft?: T;
-  radiusTopRight?: T;
-  radiusBottomLeft?: T;
-  radiusBottomRight?: T;
+  className?: T;
   id?: T;
   blockName?: T;
 }
@@ -5084,6 +3580,20 @@ export interface WebsitesSelect<T extends boolean = true> {
   fontFamily?: T;
   createdBy?: T;
   tenantID?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "permission_select".
+ */
+export interface PermissionSelect<T extends boolean = true> {
+  pagePermission?: T;
+  productPermission?: T;
+  productcatPermission?: T;
+  userPermission?: T;
+  parent?: T;
+  createdFor?: T;
   updatedAt?: T;
   createdAt?: T;
 }

@@ -83,8 +83,8 @@ export const ImageCard: React.FC<ImageCardProps> = ({
         src={src}
         alt={alt}
         fill={aspectRatio !== "auto"}
-        width={aspectRatio === "auto" ? 400 : undefined}
-        height={aspectRatio === "auto" ? 300 : undefined}
+        width={aspectRatio === "auto" ? 100 : undefined}
+        height={aspectRatio === "auto" ?100 : undefined}
         className={cn("object-cover", aspectRatio !== "auto" ? "absolute inset-0" : "h-auto w-full")}
       />
 

@@ -9,6 +9,7 @@ import { Accordion } from "@/blocks/Accordion/config";
 
 export const TwoThirdsOneThirdSection: Block = {
   slug: "twoThirdsOneThird",
+  interfaceName: "OffsetColumns",
   labels: {
     singular: "Two Thirds - One Third Layout",
     plural: "Two Thirds - One Third Layouts",
@@ -56,10 +57,9 @@ export const TwoThirdsOneThirdSection: Block = {
       blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
       required: true,
       minRows: 1,
-      maxRows: 1,
       admin: {
         initCollapsed: false,
-        description: "Add one block for the main content",
+        description: "Add one or more blocks for the main content",
       },
     },
     {
@@ -69,10 +69,9 @@ export const TwoThirdsOneThirdSection: Block = {
       blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
       required: true,
       minRows: 1,
-      maxRows: 1,
       admin: {
         initCollapsed: false,
-        description: "Add one block for the sidebar content",
+        description: "Add one or more blocks for the sidebar content",
       },
     },
     {
@@ -85,6 +84,7 @@ export const TwoThirdsOneThirdSection: Block = {
 
 export const OneThirdTwoThirdsSection: Block = {
   slug: "oneThirdTwoThirds",
+  interfaceName: "OffsetColumns",
   labels: {
     singular: "One Third - Two Thirds Layout",
     plural: "One Third - Two Thirds Layouts",
@@ -132,10 +132,9 @@ export const OneThirdTwoThirdsSection: Block = {
       blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
       required: true,
       minRows: 1,
-      maxRows: 1,
       admin: {
         initCollapsed: false,
-        description: "Add one block for the sidebar content",
+        description: "Add one or more blocks for the sidebar content",
       },
     },
     {
@@ -145,10 +144,9 @@ export const OneThirdTwoThirdsSection: Block = {
       blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
       required: true,
       minRows: 1,
-      maxRows: 1,
       admin: {
         initCollapsed: false,
-        description: "Add one block for the main content",
+        description: "Add one or more blocks for the main content",
       },
     },
     {
@@ -161,6 +159,7 @@ export const OneThirdTwoThirdsSection: Block = {
 
 export const OneQuarterThreeQuartersSection: Block = {
   slug: "oneQuarterThreeQuarters",
+  interfaceName: "OffsetColumns",
   labels: {
     singular: "One Quarter - Three Quarters Layout",
     plural: "One Quarter - Three Quarters Layouts",
@@ -208,10 +207,9 @@ export const OneQuarterThreeQuartersSection: Block = {
       blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
       required: true,
       minRows: 1,
-      maxRows: 1,
       admin: {
         initCollapsed: false,
-        description: "Add one block for the sidebar content",
+        description: "Add one or more blocks for the sidebar content",
       },
     },
     {
@@ -221,10 +219,9 @@ export const OneQuarterThreeQuartersSection: Block = {
       blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
       required: true,
       minRows: 1,
-      maxRows: 1,
       admin: {
         initCollapsed: false,
-        description: "Add one block for the main content",
+        description: "Add one or more blocks for the main content",
       },
     },
     {
@@ -237,6 +234,7 @@ export const OneQuarterThreeQuartersSection: Block = {
 
 export const ThreeQuartersOneQuarterSection: Block = {
   slug: "threeQuartersOneQuarter",
+  interfaceName: "OffsetColumns",
   labels: {
     singular: "Three Quarters - One Quarter Layout",
     plural: "Three Quarters - One Quarter Layouts",
@@ -284,10 +282,9 @@ export const ThreeQuartersOneQuarterSection: Block = {
       blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
       required: true,
       minRows: 1,
-      maxRows: 1,
       admin: {
         initCollapsed: false,
-        description: "Add one block for the main content",
+        description: "Add one or more blocks for the main content",
       },
     },
     {
@@ -297,10 +294,9 @@ export const ThreeQuartersOneQuarterSection: Block = {
       blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
       required: true,
       minRows: 1,
-      maxRows: 1,
       admin: {
         initCollapsed: false,
-        description: "Add one block for the sidebar content",
+        description: "Add one or more blocks for the sidebar content",
       },
     },
     {
