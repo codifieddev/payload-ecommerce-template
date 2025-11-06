@@ -9,6 +9,7 @@ import { Accordion } from "@/blocks/Accordion/config";
 
 export const TwoEqualColumnsSection: Block = {
   slug: "twoEqualColumns",
+  interfaceName: "EqualColumns",
   labels: {
     singular: "Two Equal Columns",
     plural: "Two Equal Columns",
@@ -29,10 +30,9 @@ export const TwoEqualColumnsSection: Block = {
               blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
               required: true,
               minRows: 1,
-              maxRows: 1,
               admin: {
                 initCollapsed: false,
-                description: "Add one block for the left column content",
+                description: "Add one or more blocks for the left column content",
               },
             },
             {
@@ -42,10 +42,9 @@ export const TwoEqualColumnsSection: Block = {
               blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
               required: true,
               minRows: 1,
-              maxRows: 1,
               admin: {
                 initCollapsed: false,
-                description: "Add one block for the right column content",
+                description: "Add one or more blocks for the right column content",
               },
             },
           ],
@@ -100,6 +99,7 @@ export const TwoEqualColumnsSection: Block = {
 
 export const ThreeEqualColumnsSection: Block = {
   slug: "threeEqualColumns",
+  interfaceName: "EqualColumns",
   labels: {
     singular: "Three Equal Columns",
     plural: "Three Equal Columns",
@@ -120,10 +120,9 @@ export const ThreeEqualColumnsSection: Block = {
               blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
               required: true,
               minRows: 1,
-              maxRows: 1,
               admin: {
                 initCollapsed: false,
-                description: "Add one block for the left column content",
+                description: "Add one or more blocks for the left column content",
               },
             },
             {
@@ -133,10 +132,9 @@ export const ThreeEqualColumnsSection: Block = {
               blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
               required: true,
               minRows: 1,
-              maxRows: 1,
               admin: {
                 initCollapsed: false,
-                description: "Add one block for the center column content",
+                description: "Add one or more blocks for the center column content",
               },
             },
             {
@@ -146,10 +144,9 @@ export const ThreeEqualColumnsSection: Block = {
               blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
               required: true,
               minRows: 1,
-              maxRows: 1,
               admin: {
                 initCollapsed: false,
-                description: "Add one block for the right column content",
+                description: "Add one or more blocks for the right column content",
               },
             },
           ],
@@ -204,6 +201,7 @@ export const ThreeEqualColumnsSection: Block = {
 
 export const FourEqualColumnsSection: Block = {
   slug: "fourEqualColumns",
+  interfaceName: "EqualColumns",
   labels: {
     singular: "Four Equal Columns",
     plural: "Four Equal Columns",

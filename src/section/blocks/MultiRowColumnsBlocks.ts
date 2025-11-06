@@ -9,6 +9,7 @@ import { Accordion } from "@/blocks/Accordion/config";
 
 export const TwoRowsTwoColumnsSection: Block = {
   slug: "twoRowsTwoColumns",
+  interfaceName: "MultiRow",
   labels: {
     singular: "Two Rows - Two Columns Grid",
     plural: "Two Rows - Two Columns Grids",
@@ -67,10 +68,9 @@ export const TwoRowsTwoColumnsSection: Block = {
               blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
               required: true,
               minRows: 1,
-              maxRows: 1,
               admin: {
                 initCollapsed: false,
-                description: "Add one block for this cell",
+                description: "Add one or more blocks for this cell",
               },
             },
           ],
@@ -87,6 +87,7 @@ export const TwoRowsTwoColumnsSection: Block = {
 
 export const TwoRowsThreeColumnsSection: Block = {
   slug: "twoRowsThreeColumns",
+  interfaceName: "MultiRow",
   labels: {
     singular: "Two Rows - Three Columns Grid",
     plural: "Two Rows - Three Columns Grids",
@@ -145,10 +146,9 @@ export const TwoRowsThreeColumnsSection: Block = {
               blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
               required: true,
               minRows: 1,
-              maxRows: 1,
               admin: {
                 initCollapsed: false,
-                description: "Add one block for this cell",
+                description: "Add one or more blocks for this cell",
               },
             },
           ],
@@ -165,6 +165,7 @@ export const TwoRowsThreeColumnsSection: Block = {
 
 export const ThreeRowsTwoColumnsSection: Block = {
   slug: "threeRowsTwoColumns",
+  interfaceName: "MultiRow",
   labels: {
     singular: "Three Rows - Two Columns Grid",
     plural: "Three Rows - Two Columns Grids",
@@ -223,10 +224,9 @@ export const ThreeRowsTwoColumnsSection: Block = {
               blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
               required: true,
               minRows: 1,
-              maxRows: 1,
               admin: {
                 initCollapsed: false,
-                description: "Add one block for this cell",
+                description: "Add one or more blocks for this cell",
               },
             },
           ],
@@ -243,6 +243,7 @@ export const ThreeRowsTwoColumnsSection: Block = {
 
 export const ThreeRowsThreeColumnsSection: Block = {
   slug: "threeRowsThreeColumns",
+  interfaceName: "MultiRow",
   labels: {
     singular: "Three Rows - Three Columns Grid",
     plural: "Three Rows - Three Columns Grids",
@@ -301,10 +302,9 @@ export const ThreeRowsThreeColumnsSection: Block = {
               blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Carousel, Accordion],
               required: true,
               minRows: 1,
-              maxRows: 1,
               admin: {
                 initCollapsed: false,
-                description: "Add one block for this cell",
+                description: "Add one or more blocks for this cell",
               },
             },
           ],
