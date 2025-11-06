@@ -111,7 +111,8 @@ export default async function Page({ params: paramsPromise }: Args) {
   let page: any = null;
 
   // if(!process.env.NEXT_PUBLIC_SERVER_URL.includes(domain)){
-  page = await getTenantByDomain(domain, slug);
+  page = await getTenantByDomain(domain, slug, locale);
+  console.log("Page fetched:", page);
   if (!page) return <div>Page not found</div>;
   // }
 
@@ -128,7 +129,7 @@ export default async function Page({ params: paramsPromise }: Args) {
 
   setRequestLocale(locale);
 
-  const { hero, layout, Code } = page;
+  const { hero, section, Code } = page;
   console.log(page);
 
   return (
@@ -151,26 +152,26 @@ export default async function Page({ params: paramsPromise }: Args) {
       /> */}
 
       {/* <div dangerouslySetInnerHTML={{ __html: Code }} /> */}
-{/* 
+      {/* 
       <AboutKarloBan />
       <AboutStrip /> */}
       <section className="container mx-auto px-4 py-10">
         {/* Section Title */}
-        <h3 className="mb-1 inline-block w-full border-b border-gray-200 pb-2 text-[16px] font-medium text-[#FF7020]">
+        {/* <h3 className="mb-1 inline-block w-full border-b border-gray-200 pb-2 text-[16px] font-medium text-[#FF7020]">
           Naši kuharski noževi
-        </h3>
+        </h3> */}
 
         {/* Section Description */}
-        <p className="max-w-4xl text-[28px] leading-[160%] font-medium text-[#4F4640]">
+        {/* <p className="max-w-4xl text-[28px] leading-[160%] font-medium text-[#4F4640]">
           Otkrijte kolekciju ručno kovanih noževa stvorenih za kuhare koji traže više od alata. Svaki model
           spaja preciznost, dugotrajnost i ljepotu rada iz majstorskih ruku.
-        </p>
+        </p> */}
       </section>
 
-      <ProductTabsGrid categories={categories} />
-
-      <Testimonials />
-      <RenderBlocks blocks={layout} />
+      {/* <ProductTabsGrid categories={categories} /> */}
+      {/* 
+      <Testimonials /> */}
+      <RenderBlocks blocks={section} />
     </article>
   );
 }

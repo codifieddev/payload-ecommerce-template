@@ -3,24 +3,91 @@ import { authenticated } from "@/access/authenticated";
 import type { Access, CollectionConfig } from "payload";
 import { uuidv4 } from "zod";
 
-const access: Access = async ({ req }) => {
+// const access: Access = async ({ req }) => {
+//   const user = req.user;
+
+//   if (!user) return false;
+
+//   // Type guard: only apply role logic if it's an Administrator
+//   if (user.collection === "administrators") {
+//     const role = user.role;
+
+//     if (role === "superadmin") return true;
+
+//     if (role === "admin") {
+//       return {
+//         createdBy: {
+//           equals: user.id,
+//         },
+//       };
+//     }
+//   }
+
+//   return false;
+// };
+
+// Read access: determines who can see which administrators
+const readAccess: Access = async ({ req }) => {
   const user = req.user;
 
-  if (!user) return false;
+  if (!user || user.collection !== "administrators") return false;
 
-  // Type guard: only apply role logic if it's an Administrator
-  if (user.collection === "administrators") {
-    const role = user.role;
+  const role = user.role;
 
-    if (role === "superadmin") return true;
+  // Superadmin can see all administrators
+  if (role === "superadmin") return true;
 
-    if (role === "admin") {
-      return {
-        createdBy: {
-          equals: user.id,
+  // Franchise can see only their created users (and themselves)
+  if (role === "franchise") {
+    return {
+      or: [
+        {
+          createdBy: {
+            equals: user.id,
+          },
         },
-      };
-    }
+        {
+          id: {
+            equals: user.id,
+          },
+        },
+      ],
+    } as any;
+  }
+
+  // Admin can see only their created users (and themselves)
+  if (role === "admin") {
+    return {
+      or: [
+        {
+          createdBy: {
+            equals: user.id,
+          },
+        },
+        {
+          id: {
+            equals: user.id,
+          },
+        },
+      ],
+    } as any;
+  }
+
+  if (role === "clients") {
+    return {
+      or: [
+        {
+          createdBy: {
+            equals: user.id,
+          },
+        },
+        {
+          id: {
+            equals: user.id,
+          },
+        },
+      ],
+    } as any;
   }
 
   return false;
@@ -42,7 +109,7 @@ export const Administrators: CollectionConfig = {
     admin: authenticated,
     create: authenticated,
     delete: authenticated,
-    read: access,
+    read: readAccess,
     update: authenticated,
   },
   admin: {
@@ -68,9 +135,11 @@ export const Administrators: CollectionConfig = {
         { label: "Super Admin", value: "superadmin" },
         { label: "Tenants", value: "tenants" },
         { label: "Clients", value: "clients" },
+        { label: "Designer", value: "designer" },
+        { label: "Editor", value: "editor" },
+        { label: "Franchise", value: "franchise" },
+        { label: "Guest", value: "guest" },
       ],
-      // defaultValue: "admin",
-      required: false,
       admin: {
         position: "sidebar",
       },
@@ -98,15 +167,6 @@ export const Administrators: CollectionConfig = {
         return [];
       },
     },
-    // {
-    //   name: "tenantID",
-    //   type: "text",
-    //   admin: {
-    //     position: "sidebar",
-    //     readOnly: true,
-    //   },
-    //   unique: true,
-    // },
     {
       name: "mongodbActions",
       type: "ui",
@@ -128,16 +188,5 @@ export const Administrators: CollectionConfig = {
       },
     },
   ],
-  // hooks: {
-  //   beforeValidate: [
-  //     async ({ data, operation }) => {
-  //       // Only generate on create
-  //       if (operation === "create" && data && !data.tenantID) {
-  //         data.tenantID = uuidv4(); // or custom format
-  //       }
-  //       return data;
-  //     },
-  //   ],
-  // },
   timestamps: true,
 };
